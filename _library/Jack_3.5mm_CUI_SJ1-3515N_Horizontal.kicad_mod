@@ -1,0 +1,226 @@
+(footprint "Jack_3.5mm_CUI_SJ1-3515N_Horizontal"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "TRS 3.5mm, horizontal, through-hole, with tip and ring switches, https://www.cuidevices.com/product/resource/sj1-351xn.pdf")
+	(tags "TRS audio jack stereo horizontal")
+	(property "Reference" "J2"
+		(at 5.2 -7 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "fc3c3e4f-7ef2-4156-b8cd-cc8c02a46c1b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "AudioJack"
+		(at 5.45 7.1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "07d54858-50bf-43f0-afc0-57002037e629")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "~"
+		(at 0 0 180)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "8739b16d-92fc-468a-8d20-011707362bf5")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Audio Jack, 3 Poles (Stereo / TRS), Switched TR Poles (Normalling)"
+		(at 0 0 180)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b375a753-45f3-4b63-b4a7-cd0fa7464bbc")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -1.8 -6.25)
+		(end -1.8 6.25)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Cmts.User")
+		(uuid "559d4318-d831-45e4-a91c-8b5619042baa")
+	)
+	(fp_rect
+		(start -5.8 -6.25)
+		(end 12.7 6.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "665e2f73-7702-4242-b62d-4539557b9f69")
+	)
+	(fp_line
+		(start -5.3 -3)
+		(end -5.3 3)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "bfc4ec28-0108-4d69-abc2-3e3bd82b12e2")
+	)
+	(fp_line
+		(start -1.8 -5.75)
+		(end -1.8 -3)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "b3fe9874-7a14-4865-bd9d-a66d3721a584")
+	)
+	(fp_line
+		(start -1.8 -3)
+		(end -5.3 -3)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "0d9446a6-b4c5-4dbf-b937-fc7714f0af7f")
+	)
+	(fp_line
+		(start -1.8 3)
+		(end -5.3 3)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "0ff145e1-71a1-4c47-b09f-b098d525b63c")
+	)
+	(fp_line
+		(start -1.8 5.75)
+		(end -1.8 3)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "6f074a2e-552c-4a3c-a713-696f477cadcc")
+	)
+	(fp_line
+		(start 12.2 -5.75)
+		(end -1.8 -5.75)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "eb47e612-6969-4950-a41e-0ed55e4f96ed")
+	)
+	(fp_line
+		(start 12.2 -5.75)
+		(end 12.2 5.75)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "50c80a1c-2dfe-481a-ba94-92ee6508bdc7")
+	)
+	(fp_line
+		(start 12.2 5.75)
+		(end -1.8 5.75)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "367f78d1-229a-4824-87aa-9ef87a51eb4d")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 5.2 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "d90faf98-c392-4bde-b766-8895ff8f4c19")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "R" thru_hole oval
+		(at 8.3 -5.2)
+		(size 4.5 2.5)
+		(drill oval 2.2 1
+			(offset 0 -0.25)
+		)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "2107cd22-2064-46cb-b493-ad8b27ddbfd1")
+	)
+	(pad "RN" thru_hole oval
+		(at 7.1 -2.6)
+		(size 4.5 2.5)
+		(drill oval 2.2 1
+			(offset 0 0.25)
+		)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "355a4ccc-17ba-40f9-834b-940ac2ab003e")
+	)
+	(pad "S" thru_hole oval
+		(at 0 0 270)
+		(size 4.5 3)
+		(drill oval 2.2 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "dee04c00-f25a-4d12-b438-608d3a90c3a1")
+	)
+	(pad "T" thru_hole oval
+		(at 4.3 4.6)
+		(size 4.5 3)
+		(drill oval 2.2 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "3e44dc2b-d213-4ede-b3e7-0be04c6ad8b6")
+	)
+	(pad "TN" thru_hole oval
+		(at 11.5 4.1 90)
+		(size 4.5 3)
+		(drill oval 2.2 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "5277357f-cfd7-4d5c-b2a8-d49839679a4c")
+	)
+	(embedded_fonts no)
+	(model "${KICAD9_3DMODEL_DIR}/Connector_Audio.3dshapes/Jack_3.5mm_Ledino_KB3SPRS_Horizontal.step"
+		(offset
+			(xyz 4 -4.5 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -0 -0 -0)
+		)
+	)
+)

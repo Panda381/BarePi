@@ -1,0 +1,336 @@
+(footprint "Raspberry_PinSocket_2x04_P2.54mm_Vertical"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "Through hole straight socket strip, 2x04, 2.54mm pitch, double cols (from Kicad 4.0.7), script generated")
+	(tags "Through hole socket strip THT 2x04 2.54mm double row")
+	(property "Reference" "REF**"
+		(at -1.27 -2.77 0)
+		(layer "F.SilkS")
+		(uuid "bca5e569-180d-41ec-b5bd-37b40507844c")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "PinSocket_2x04_P2.54mm_Vertical"
+		(at -1.27 10.39 0)
+		(layer "F.Fab")
+		(uuid "c17421b0-9559-4b8d-b904-aa367db80947")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "88341f61-a0f6-4788-b80c-d22c49b2251d")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "aaaf7f9e-6504-4230-a729-c2f6bc8a77cc")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(clearance 0.3)
+	(attr through_hole)
+	(fp_line
+		(start -4.34 -1.8)
+		(end 1.76 -1.8)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "1d671721-3f8b-443b-bb79-739ee665e98f")
+	)
+	(fp_line
+		(start -4.34 9.4)
+		(end -4.34 -1.8)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "ebefd950-5aa8-4189-9cb3-39aca4fb04f6")
+	)
+	(fp_line
+		(start -3.87 -1.33)
+		(end -3.87 8.95)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "4e43c1fb-9347-4b17-9997-f096d764a9de")
+	)
+	(fp_line
+		(start -3.87 -1.33)
+		(end -1.27 -1.33)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "178ef366-5c7f-45b4-ae3e-7c24efa89ba8")
+	)
+	(fp_line
+		(start -3.87 8.95)
+		(end 1.33 8.95)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "e83c0125-0db2-4ac2-ab65-426d7007dc31")
+	)
+	(fp_line
+		(start -3.81 -1.27)
+		(end 0.27 -1.27)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "1226fdd5-602f-447b-8201-e661e3aa0d36")
+	)
+	(fp_line
+		(start -3.81 8.89)
+		(end -3.81 -1.27)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "d36dedfe-f05b-4829-bd31-f14d383bf5e6")
+	)
+	(fp_line
+		(start -1.27 -1.33)
+		(end -1.27 1.27)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "1411196d-a694-499d-a12b-5d91adf2569b")
+	)
+	(fp_line
+		(start -1.27 1.27)
+		(end 1.33 1.27)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "9100df91-5428-4ac3-9b7a-b489b53e3a38")
+	)
+	(fp_line
+		(start 0 -1.33)
+		(end 1.33 -1.33)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "7b80544e-344e-44c7-98f9-3420ca9ee5b2")
+	)
+	(fp_line
+		(start 0.27 -1.27)
+		(end 1.27 -0.27)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "102730e8-ed02-4774-9e35-619f24763e92")
+	)
+	(fp_line
+		(start 1.27 -0.27)
+		(end 1.27 8.89)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "1d6654ac-dc2a-4b89-9d3f-77ad085576fd")
+	)
+	(fp_line
+		(start 1.27 8.89)
+		(end -3.81 8.89)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "27c6b94e-3d83-4b80-90a8-7f8f13c24ce6")
+	)
+	(fp_line
+		(start 1.33 -1.33)
+		(end 1.33 0)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "7a143ba1-c141-45f4-9761-23b7079d13cb")
+	)
+	(fp_line
+		(start 1.33 1.27)
+		(end 1.33 8.95)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "a8766917-e3fa-4efe-8fb0-6c3f92fb7182")
+	)
+	(fp_line
+		(start 1.76 -1.8)
+		(end 1.76 9.4)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "69cdff4e-0e90-4d90-91fc-7d29b978934c")
+	)
+	(fp_line
+		(start 1.76 9.4)
+		(end -4.34 9.4)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "5b6ee12a-2c0c-4e4b-99bd-f0da43d9f69d")
+	)
+	(fp_text user "${REFERENCE}"
+		(at -1.27 3.81 90)
+		(layer "F.Fab")
+		(uuid "26f9d3e5-e1bc-403b-b07d-0c1e72b34785")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole trapezoid
+		(at 0 0)
+		(size 3 1.6)
+		(drill 1
+			(offset 0.4 0)
+		)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "0eac7141-3d35-4c64-80c3-8a906d4d2a16")
+	)
+	(pad "2" thru_hole oval
+		(at -2.54 0)
+		(size 3 1.6)
+		(drill 1
+			(offset -0.4 0)
+		)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(thermal_bridge_angle 45)
+		(uuid "29869263-7c7d-45f5-b168-378822e8bb7e")
+	)
+	(pad "3" thru_hole oval
+		(at 0 2.54)
+		(size 3 1.6)
+		(drill 1
+			(offset 0.4 0)
+		)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(thermal_bridge_angle 45)
+		(uuid "91c8fc56-e7c1-4ef5-9ef1-c32d89a095c2")
+	)
+	(pad "4" thru_hole oval
+		(at -2.54 2.54)
+		(size 3 1.6)
+		(drill 1
+			(offset -0.4 0)
+		)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(thermal_bridge_angle 45)
+		(uuid "762e4966-66c1-4f7f-a906-0582e6f02557")
+	)
+	(pad "5" thru_hole oval
+		(at 0 5.08)
+		(size 3 1.6)
+		(drill 1
+			(offset 0.4 0)
+		)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(thermal_bridge_angle 45)
+		(uuid "8327c84e-9622-4b19-aee1-ca2c4891ea2a")
+	)
+	(pad "6" thru_hole oval
+		(at -2.54 5.08)
+		(size 3 1.6)
+		(drill 1
+			(offset -0.4 0)
+		)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(thermal_bridge_angle 45)
+		(uuid "690bb904-53f9-4630-8dfe-da9f1438ce19")
+	)
+	(pad "7" thru_hole oval
+		(at 0 7.62)
+		(size 3 1.6)
+		(drill 1
+			(offset 0.4 0)
+		)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(thermal_bridge_angle 45)
+		(uuid "dfc90d53-8756-4a81-ba70-b43e13291737")
+	)
+	(pad "8" thru_hole oval
+		(at -2.54 7.62)
+		(size 3 1.6)
+		(drill 1
+			(offset -0.4 0)
+		)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(thermal_bridge_angle 45)
+		(uuid "5efc5715-3243-4d1a-9d7d-68963de95374")
+	)
+	(embedded_fonts no)
+	(model "${KICAD9_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_2x04_P2.54mm_Vertical.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

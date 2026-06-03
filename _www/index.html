@@ -1,0 +1,1772 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=utf-8">
+<meta name="language" content="czech">
+<meta name="content-language" content="cs-cz">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>BarePi - Modulární mikročipová stavebnice</title>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<div align="center"><center>
+
+<table border="0" width="100%">
+    <tr>
+        <td width="33%"><p align="left"><a href="../index.html"><font
+        face="Arial">&lt;&lt; Zpět</font></a></p>
+        </td>
+        <td width="33%">&nbsp;</td>
+        <td width="34%"><p align="right"><font face="Arial">  <u>Česky:</u>
+        <img src="../../cz2.gif" width="50" height="30" />, </font><a
+        href="index_en.html"><font face="Arial">English: <img
+        src="../../en.gif" border="0" width="50" height="30" /></font></a></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<p align="center"><font color="#FF8000" size="6" face="Arial"><strong>BarePi</strong></font></p>
+
+<p align="center"><font color="#FF8000" size="4" face="Arial"><strong>Modulární
+mikročipová stavebnice</strong></font></p>
+
+<p align="center"><font face="Arial">Poslední aktualizace:
+10.06.2026</font></p>
+
+<p align="center"><font face="Arial">(c) 2026 Miroslav Němeček</font></p>
+
+<p align="center"><a href="https://github.com/Panda381/BarePi"><font
+face="Arial">https://github.com/Panda381/BarePi</font></a></p>
+
+<p align="center"><a href="dwn/BarePi.zip"><font face="Arial">Download
+podkladů stavebnice BarePi</font></a><font face="Arial"> (90 MB)</font></p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center"><font color="#FF0000" size="6" face="Arial"><strong>&gt;&gt;&gt;
+stránka je ve výstavbě &lt;&lt;&lt;</strong></font></p>
+
+<p align="center">&nbsp;</p>
+
+<p align="left"><font face="Arial"><em>Poznámka: Schémata a plošné
+spoje jsou ve formátu programu KiCAD verze 9. Plošné spoje
+byly původně navrženy pro domácí výrobu fotocestou a je
+tedy možné, že nejsou správně připraveny pro profesionální
+výrobu. Pokud si budete chtít nechat plošné spoje vyrobit
+profesionálně, doporučuji důkladně zkontrolovat návrhy, především
+rozměry součástek které nemusí být správně definované.
+Typicky SMD kondenzátory zřejmě nemají správné rozměry.</em></font></p>
+
+<h2 align="left"><a name="contents"></a><font face="Arial">Obsah</font></h2>
+
+<ul>
+    <li><p align="left"><a href="#description"><font face="Arial">Popis
+        stavebnice</font></a><font face="Arial"> (základní
+        charakteristika stavebnice)</font></p>
+    </li>
+    <li><p align="left"><a href="#pins"><font face="Arial">Konektor
+        sběrnice</font></a><font face="Arial"> (popis signálů
+        ka konektoru sběrnice)</font></p>
+    </li>
+    <li><p align="left"><a href="#disppins"><font face="Arial">Konektor
+        displeje</font></a><font face="Arial"> (popis signálů
+        na konektoru displeje)</font></p>
+    </li>
+    <li><p align="left"><a href="#zerotiny"><font face="Arial">ZeroTiny</font></a><font
+        face="Arial"> (příklad minimalistické herní konzole s
+        modulem Raspberry Zero, vytvořené na základě modulů
+        stavebnice)</font></p>
+    </li>
+</ul>
+
+<p align="left"><font face="Arial">Speciální moduly</font></p>
+
+<ul>
+    <li><p align="left"><a href="#base"><font face="Arial">Base</font></a><font
+        face="Arial"> (základní modul - napájení z USB,
+        stabilizátor 3,3V, výstup zvuku, microSD karta, tlačítko
+        Reset)</font></p>
+    </li>
+    <li><p align="left"><a href="#busexp"><font face="Arial">BusExp</font></a><font
+        face="Arial"> (expandér sběrnice pro spojení 4 modulů)</font></p>
+    </li>
+    <li><p align="left"><a href="#port"><font face="Arial">Port</font></a><font
+        face="Arial"> (porty SPI, I2C, UART, digitální I/O,
+        ADC)</font></p>
+    </li>
+    <li><p align="left"><a href="#rtc"><font face="Arial">RTC</font></a><font
+        face="Arial"> (hodiny reálného času a paměti EEPROM)</font></p>
+    </li>
+    <li><p align="left"><a href="#testled"><font face="Arial">TestLed</font></a><font
+        face="Arial"> (tester sběrnice)</font></p>
+    </li>
+</ul>
+
+<p align="left"><font face="Arial">Procesory</font></p>
+
+<ul>
+    <li><p align="left"><a href="#megatinyjoypad"><font
+        face="Arial">MegaTinyJoypad</font></a><font face="Arial">
+        (herní konzole Mega Tiny Joypad, procesorový modul
+        ESP-07S, displej OLED 128x64)</font></p>
+    </li>
+    <li><p align="left"><a href="#pga2350"><font face="Arial">PGA2350</font></a><font
+        face="Arial"> (herní konzole PicoPadPGA, procesor
+        RP2350)</font></p>
+    </li>
+    <li><p align="left"><a href="#picopad"><font face="Arial">PicoPad</font></a><font
+        face="Arial"> (konzole PicoPad, procesor RP2040 nebo
+        RP2350)</font></p>
+    </li>
+    <li><p align="left"><a href="#picopadhstx"><font face="Arial">PicoPadHSTX</font></a><font
+        face="Arial"> (konzole PicoPadHSTX s výstupem na VGA
+        nebo HDMI, procesor RP2350)</font></p>
+    </li>
+    <li><p align="left"><a href="#pidiboy"><font face="Arial">PidiBoy</font></a><font
+        face="Arial"> (konzole PidiBoy, procesor CH32V006F8P6,
+        displej OLED 128x64)</font></p>
+    </li>
+    <li><p align="left"><a href="#pidimet"><font face="Arial">PidiMet</font></a><font
+        face="Arial">, </font><a href="#pidimetadapter"><font
+        face="Arial">PidiMetAdapter</font></a><font face="Arial">
+        (univerzální multimetr)</font></p>
+    </li>
+    <li><p align="left"><a href="#pidipad"><font face="Arial">PidiPad</font></a><font
+        face="Arial"> (konzole PidiPad, procesor CH32V006E8R6,
+        výstup na VGA monitor)</font></p>
+    </li>
+    <li><p align="left"><a href="#sumopad"><font face="Arial">SumoPad</font></a><font
+        face="Arial"> (konzole SumoPad, procesor CH32V208RBT6,
+        výstup na VGA monitor nebo LCD displej 320x240)</font></p>
+    </li>
+    <li><p align="left"><a href="#tinyjoypad"><font face="Arial">TinyJoypad</font></a><font
+        face="Arial"> (herní konzole Tiny Joypad, procesor
+        ATtiny85, displej OLED 128x64)</font></p>
+    </li>
+    <li><p align="left"><a href="#tweetyboy"><font face="Arial">TweetyBoy</font></a><font
+        face="Arial"> (herní konzole TweetyBoy, procesor
+        CH32X035G8R6, displej LCD 160x80)</font></p>
+    </li>
+    <li><p align="left"><a href="#zero"><font face="Arial">Zero</font></a><font
+        face="Arial"> (modul Raspberry Zero 1 nebo Raspberry Zero
+        2)</font></p>
+    </li>
+</ul>
+
+<p align="left"><font face="Arial">Displeje</font></p>
+
+<ul>
+    <li><p align="left"><a href="#disphdmi"><font face="Arial">DispHDMI</font></a><font
+        face="Arial"> (adaptér pro připojení HDMI monitoru)</font></p>
+    </li>
+    <li><p align="left"><a href="#dispvga"><font face="Arial">DispVGA</font></a><font
+        face="Arial"> (adaptér pro připojení VGA monitoru)</font></p>
+    </li>
+    <li><p align="left"><a href="#extdisp"><font face="Arial">ExtDisp</font></a><font
+        face="Arial"> (konvertor pro grabování LCD displeje
+        320x240 a zobrazení na VGA nebo HDMI monitoru)</font></p>
+    </li>
+    <li><p align="left"><a href="#lcd16x2"><font face="Arial">LCD16x2</font></a><font
+        face="Arial"> (textový LCD displej, 2 řádky po 16
+        znacích)</font></p>
+    </li>
+    <li><p align="left"><a href="#lcd160x80"><font face="Arial">LCD160x80</font></a><font
+        face="Arial"> (LCD barevný displej 160x80)</font></p>
+    </li>
+    <li><p align="left"><a href="#lcd320x240"><font face="Arial">LCD320x240</font></a><font
+        face="Arial"> (LCD barevný displej 320x240)</font></p>
+    </li>
+    <li><p align="left"><a href="#led12"><font face="Arial">LED12</font></a><font
+        face="Arial"> (7-segmentový LED displej o 12 pozicích)</font></p>
+    </li>
+    <li><p align="left"><a href="#oled128x64"><font face="Arial">OLED128x64</font></a><font
+        face="Arial"> (OLED černobílý displej 128x64)</font></p>
+    </li>
+</ul>
+
+<p align="left"><font face="Arial">Klávesnice</font></p>
+
+<ul>
+    <li><p align="left"><a href="#calckey"><font face="Arial">CalcKey</font></a><font
+        face="Arial"> (klávesnice pro kalkulačky)</font></p>
+    </li>
+    <li><p align="left"><a href="#keypad"><font face="Arial">KeyPad</font></a><font
+        face="Arial"> (základní herní klávesnice s 9 tlačítky)</font></p>
+    </li>
+    <li><p align="left"><a href="#minikey"><font face="Arial">MiniKey</font></a><font
+        face="Arial"> (minimalistická alfanumerická
+        klávesnice)</font></p>
+    </li>
+</ul>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left"><a name="description"></a><font face="Arial">Popis
+stavebnice</font></h3>
+
+<p align="left"><font face="Arial">BarePi je modulární mikročipová
+stavebnice, určená k programování malých zařízení, jako
+jsou herní konzole či kalkulačky. Hlavní zaměření je na
+modul Raspberry Zero 2, programovaný jako bare-metal (tedy bez
+operačního systému). Lze ale používat i jiné typy procesorů,
+podporující signály s úrovní 3,3V (ATmega, CH32V, ESP32).
+Moduly stavebnice jsou propojené skrze 40-pinové konektory, tvořící
+sběrnici se signály vycházejícími z modulu Raspberry Zero 2.
+Konektory zajištují dostatečnou pevnost spojení, nejsou potřeba
+přídavné mechanické spoje. Většina modulů je průchozích
+- obsahují jak vstupní konektor sběrnice na horním okraji
+desky, tak výstupní konektor sběrnice na dolním okraji desky.
+Výjimkou jsou moduly procesory, které obsahují pouze
+výstupní konektor, a modul alfanumerické klávesnice, který
+má pouze vstupní konektor.</font></p>
+
+<p align="left"><font face="Arial">Propojovací konektor
+sestává z dutinkové lišty 2x20 pinů na dolní straně modulu
+(výstup signálů z modulu - např. procesorový modul) a
+pinové lišty 2x20 pinů na horní straně modulu (vstup signálů
+do modulu - např. klávesnice). Většina modulů má šířku
+65 milimetrů, vycházející z šířky modulu Raspberry Zero 2.
+Většina zařízení obsahuje procesorový modul, modul BASE s
+napájením a výstupem zvuku, modul displeje a modul
+klávesnice. Všechny signály na sběrnici jsou úrovně 3,3V.
+Sběrnice obsahuje sice i napájecí napětí 5V, ale toto napětí
+slouží jednak k přivedení napájení do zařízení
+(následuje stabilizátor na 3,3V) a jednak napětí pro případný
+převodník signálů na úroveň 5V. Na samotné signálové
+vodiče nesmí být přivedena úroveň 5V, v mnoha případech
+by mohlo dojít k poškození zařízení.</font></p>
+
+<p align="left"><font face="Arial">Při stavbě modulů můžete
+sice moduly procesorů a displeje přiletovat natvrdo přes
+pinovou lištu, ale doporučuji používat raději dutinkovou
+lištu, pro snadnou možnost výměny.</font></p>
+
+<h3 align="left"><a name="pins"></a><font face="Arial">Konektor
+sběrnice</font></h3>
+
+<p align="left"><font face="Arial">Definice signálů na
+konektoru sběrnice, při pohledu na dutinkovou lištu na dolní
+straně modulu. V závorce je uvedeno odpovídající číslo
+GPIO pinu modulu Raspberry Zero 2.</font></p>
+
+<p align="left"><a href="img/BarePi_pins2.jpg"><font face="Arial"><img
+src="img/BarePi_pins2_m.jpg" border="0" width="500" height="355"></font></a></p>
+
+<p align="left"><a href="img/BarePi_pins.png"><font face="Arial"><img
+src="img/BarePi_pins_m.jpg" border="0" width="463" height="315"></font></a></p>
+
+<ul>
+    <li><p align="left"><font face="Arial"><strong>1,2</strong> </font><font
+        color="#FF0000" face="Arial"><strong>5V</strong></font><font
+        face="Arial"> ... Napájecí napětí 5V. Slouží k
+        napájení zařízení, např. z USB konektoru nebo z
+        baterie 3,7V. Samotné zařízení je napájeno napětím
+        3,3V, zařízení musí tedy obsahovat i stabilizátor
+        napětí na 3,3V. Všechny signály na sběrnici jsou
+        úrovně 3,3V. Jsou-li potřebné signály s úrovní 5V,
+        je nutné použít převodník.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>3,4</strong> </font><font
+        color="#FF0000" face="Arial"><strong>3V3</strong></font><font
+        face="Arial"> ... Napájecí napětí 3,3V. Je hlavní
+        napájecí napětí zařízení. Může být získáno
+        stabilizátorem z napětí 5V (např. z USB konektoru)
+        nebo měničem napětí z baterie.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>5</strong> </font><font
+        color="#FF0000" face="Arial"><strong>BUS_SDA</strong></font><font
+        face="Arial"> (GPIO0) ... Datový vodič interní I2C
+        periferie. Interní I2C periferie slouží k přímému
+        řízení modulů stavebnice. Interní I2C periferie může
+        být samostatná periferie, oddělená od externí uživatelské
+        I2C periferie, aby měl uživatel možnost samostatného
+        řízení komunikace. V modulu Raspberry Zero 2 se jedná
+        o periferii I2C0. U jiných modulů může být interní
+        I2C periferie sdílená s externí I2C periferie. V
+        modulu Raspberry Zero 2 se periferie I2C0 používá též
+        k přístupu systémových EEPROM pamětí při zapnutí
+        zařízení - na to je potřeba pamatovat, aby nedocházelo
+        k překrytí funkcí EEPROM pamětí. Signál je typu
+        otevřený kolektor - je nutné používat pull-up
+        rezistory.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>6</strong> </font><font
+        color="#FF0000" face="Arial"><strong>BUS_SCL</strong></font><font
+        face="Arial"> (GPIO1) ... Hodinový vodič interní I2C
+        periferie. V modulu Raspberry Zero 2 se jedná o
+        periferii I2C0. Signál je typu otevřený kolektor - je
+        nutné používat pull-up rezistory.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>7</strong> </font><font
+        color="#FF0000" face="Arial"><strong>I2C_SDA</strong></font><font
+        face="Arial"> (GPIO2) ... Datový vodič externí I2C
+        periferie. Externí I2C sběrnice slouží k řízení uživatelských
+        zařízení, aby komunikace nekolidovala s řízením
+        modulů stavebnice. V modulu Raspberry Zero 2 se jedná o
+        periferii I2C1. U jiných modulů může být externí
+        periferie sdílená s interní I2C periferie. Signál je
+        typu otevřený kolektor - je nutné používat pull-up
+        rezistory.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>8 </strong></font><font
+        color="#FF0000" face="Arial"><strong>I2C_SCL</strong></font><font
+        face="Arial"> (GPIO3) ... Hodinový vodič externí I2C
+        periferie. V modulu Raspberry Zero 2 se jedná o
+        periferii I2C1. Signál je typu otevřený kolektor - je
+        nutné používat pull-up rezistory.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>9 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_ALT</strong></font><font
+        face="Arial"> (GPIO4) ... Vstup tlačítka
+        alternativních funkcí &quot;ALT&quot;. Tlačítko mění
+        význam ostatních kláves klávesnice. Tlačítko
+        spojuje pin s GND a vyžaduje použít pull-up rezistor.
+        Tento signál může mít též další funkce, není-li
+        využívána funkce tlačítka. Na pin může být
+        vyveden hodinový signál z procesoru - u modulu
+        Raspberry Zero 2 je to signál GPCLK0. Z toho důvodu by
+        mělo být tlačítko &quot;ALT&quot; připojeno přes
+        ochranný rezistor (např. 1K0), který zabrání poškození
+        obvodů při nechtěném stisku tlačítka, je-li na pin
+        vyveden hodinový signál. Další doplňlovou funkcí
+        pinu je vstup ADC převodníku - typicky u modulů
+        Raspberry Pico a CH32.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>10 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_DOWN</strong></font><font
+        face="Arial"> (GPIO5) ... Vstup tlačítka
+        &quot;DOWN&quot;. Spolu s tlačítkem &quot;ALT&quot; má
+        alternativní význam &quot;Page Down&quot;. Tlačítko
+        spojuje pin s GND a vyžaduje použít pull-up rezistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>11 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_UP</strong></font><font
+        face="Arial"> (GPIO6) ... Vstup tlačítka
+        &quot;UP&quot;. Spolu s tlačítkem &quot;ALT&quot; má
+        alternativní význam &quot;Page Up&quot;. Tlačítko
+        spojuje pin s GND a vyžaduje použít pull-up rezistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>12 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SPI_CS1</strong></font><font
+        face="Arial"> (GPIO7) ... Druhý výběrový signál
+        periferie SPI. V modulu Raspberry Zero se jedná o
+        periferii SPI0.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>13 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SPI_CS0</strong></font><font
+        face="Arial"> (GPIO8) ... První výběrový signál
+        periferie SPI. V modulu Raspberry Zero se jedná o
+        periferii SPI0.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>14 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SPI_MISO</strong></font><font
+        face="Arial"> (GPIO9) ... Signál MISO periferie SPI -
+        vstup dat do procesoru z periferie (signál RX). V modulu
+        Raspberry Zero se jedná o periferii SPI0. V některých
+        zařízeních může být SPI periferie sdílena s SD
+        kartou - v tom případě je nutné před použitím SPI
+        periferie vyjmout SD kartu ze slotu.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>15 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SPI_MOSI</strong></font><font
+        face="Arial"> (GPIO10) ... Signál MOSI periferie SPI -
+        výstup dat z procesoru na periferii (signál TX). V
+        modulu Raspberry Zero se jedná o periferii SPI0.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>16 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SPI_SCLK</strong></font><font
+        face="Arial"> (GPIO11) ... Hodinový signál periferie
+        SPI. V modulu Raspberry Zero se jedná o periferii SPI0.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>17 </strong></font><font
+        color="#FF0000" face="Arial"><strong>PWM_L</strong></font><font
+        face="Arial"> (GPIO12) ... Levý kanál zvukového
+        výstupu. Zpravidla se jedná o PWM modulaci, může být
+        proto potřeba použít RC filtr.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>18 </strong></font><font
+        color="#FF0000" face="Arial"><strong>PWM_R</strong></font><font
+        face="Arial"> (GPIO13) ... Pravý kanál zvukového
+        výstupu. Zpravidla se jedná o PWM modulaci, může být
+        proto potřeba použít RC filtr.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>19 </strong></font><font
+        color="#FF0000" face="Arial"><strong>UART_TX</strong></font><font
+        face="Arial"> (GPIO14) ... Výstup sériových dat UART
+        portu. V některých modulech může být tento pin použit
+        jako výstup sériových dat CAN Bus (signál CAN_TX).</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>20 </strong></font><font
+        color="#FF0000" face="Arial"><strong>UART_RX</strong></font><font
+        face="Arial"> (GPIO15) ... Vstup sériových dat UART
+        portu. V některých modulech může být tento pin použit
+        jako vstup sériových dat CAN Bus (signál CAN_RX).</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>21 </strong></font><font
+        color="#FF0000" face="Arial"><strong>LCD_DC</strong></font><font
+        face="Arial"> (GPIO16) ... Řídicí signál pro LCD SPI
+        displej - rozlišení dat a řídicího kódu.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>22 </strong></font><font
+        color="#FF0000" face="Arial"><strong>LCD_RES</strong></font><font
+        face="Arial"> (GPIO17) ... Signál pro resetování
+        řadiče LCD SPI displeje.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>23 </strong></font><font
+        color="#FF0000" face="Arial"><strong>LCD_CS</strong></font><font
+        face="Arial"> (GPIO18) ... Signál pro výběr LCD SPI
+        displeje. V modulu Raspberry Zero se jedná o periferii
+        SPI1. Na tomto pinu může být volitelně k dispozici
+        signál PCM_CLK pro rozhraní I2S/PCM.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>24 </strong></font><font
+        color="#FF0000" face="Arial"><strong>LCD_BL</strong></font><font
+        face="Arial"> (GPIO19) ... Signál pro řízení jasu
+        podsvícení LCD SPI displeje. Zpravidla se jedná o PWM
+        šířkově modulovaný signál. Na tomto pinu může být
+        volitelně k dispozici signál PCM_FS pro rozhraní
+        I2S/PCM. Pokud procesor neumožňuje plynulé řízení
+        jasu, měla by na tomto pinu být hodnota HIGH pro plný
+        jas displeje.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>25 </strong></font><font
+        color="#FF0000" face="Arial"><strong>LCD_MOSI</strong></font><font
+        face="Arial"> (GPIO20) ... Výstup sériových dat do LCD
+        SPI displeje. V modulu Raspberry Zero se jedná o
+        periferii SPI1. Na tomto pinu může být volitelně k
+        dispozici signál PCM_DIN pro rozhraní I2S/PCM.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>26 </strong></font><font
+        color="#FF0000" face="Arial"><strong>LCD_SCK</strong></font><font
+        face="Arial"> (GPIO21) ... Hodinový signál LCD SPI
+        displeje. V modulu Raspberry Zero se jedná o periferii
+        SPI1. Na tomto pinu může být volitelně k dispozici
+        signál PCM_DOUT pro rozhraní I2S/PCM.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>27 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_A</strong></font><font
+        face="Arial"> (GPIO22) ... Vstup tlačítka &quot;A&quot;
+        - hlavní akční tlačítko. Na alfanumerické
+        klávesnici odpovídá klávese &quot;Mezerník&quot;.
+        Spolu s tlačítkem &quot;ALT&quot; má alternativní
+        význam &quot;Insert&quot;. Tlačítko spojuje pin s GND
+        a vyžaduje použít pull-up rezistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>28 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_B</strong></font><font
+        face="Arial"> (GPIO23) ... Vstup tlačítka &quot;B&quot;
+        - vedlejší akční tlačítko. Na alfanumerické
+        klávesnici odpovídá klávese &quot;Enter&quot;. Spolu
+        s tlačítkem &quot;ALT&quot; má alternativní význam
+        &quot;Edit&quot;. Tlačítko spojuje pin s GND a vyžaduje
+        použít pull-up rezistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>29 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_X</strong></font><font
+        face="Arial"> (GPIO24) ... Vstup tlačítka &quot;X&quot;
+        - tlačítko doplňkových funkcí (např. nápověda).
+        Na alfanumerické klávesnici odpovídá klávese
+        &quot;Tab&quot;. Spolu s tlačítkem &quot;ALT&quot; má
+        alternativní význam &quot;Print Screen&quot;. Tlačítko
+        spojuje pin s GND a vyžaduje použít pull-up rezistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>30 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_RIGHT</strong></font><font
+        face="Arial"> (GPIO25) ... Vstup tlačítka
+        &quot;RIGHT&quot;. Spolu s tlačítkem &quot;ALT&quot;
+        má alternativní význam &quot;End&quot;. Tlačítko
+        spojuje pin s GND a vyžaduje použít pull-up rezistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>31 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_LEFT</strong></font><font
+        face="Arial"> (GPIO26) ... Vstup tlačítka
+        &quot;LEFT&quot;. Spolu s tlačítkem &quot;ALT&quot; má
+        alternativní význam &quot;Home&quot;. Tlačítko
+        spojuje pin s GND a vyžaduje použít pull-up rezistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>32 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_Y</strong></font><font
+        face="Arial"> (GPIO27) ... Vstup tlačítka &quot;Y&quot;
+        - tlačítko přerušení, ukončení nebo menu. Na
+        alfanumerické klávesnici odpovídá klávese
+        &quot;Esc&quot;. Spolu s tlačítkem &quot;ALT&quot; má
+        alternativní význam &quot;Menu&quot;. Tlačítko
+        spojuje pin s GND a vyžaduje použít pull-up rezistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>33 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SD_CS</strong></font><font
+        face="Arial"> ... SPI signál pro výběr SD karty. Na
+        tento signál může být napojena LED indikující přístup
+        k SD kartě.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>34 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SD_MISO</strong></font><font
+        face="Arial"> ... Vstup SPI dat z SD karty do procesoru.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>35 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SD_MOSI</strong></font><font
+        face="Arial"> ... Výstup SPI dat z procesoru na SD
+        kartu.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>36 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SD_SCLK</strong></font><font
+        face="Arial"> ... Hodiny SPI pro SD kartu.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>37 </strong></font><font
+        color="#FF0000" face="Arial"><strong>USR_LED</strong></font><font
+        face="Arial"> ... Výstup na uživatelskou LED. Aktivní
+        signál má úroveň HIGH.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>38 </strong></font><font
+        color="#FF0000" face="Arial"><strong>RESET</strong></font><font
+        face="Arial"> ... Vstup tlačítka &quot;RESET&quot; pro
+        resetování procesoru. Tlačítko spojuje pin s GND a vyžaduje
+        použít pull-up rezistor. U některých modulů je
+        pull-up rezistor interně součástí modulu.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>39, 40 </strong></font><font
+        color="#FF0000" face="Arial"><strong>GND</strong></font><font
+        face="Arial"> ... Zem 0V.</font></p>
+    </li>
+</ul>
+
+<h3 align="left"><a name="disppins"></a><font face="Arial">Konektor
+displeje</font></h3>
+
+<p align="left"><font face="Arial">Některé moduly umožňují
+výstup obrazu na externí displej s VGA nebo HDMI rozhraním.
+Tyto moduly obsahují konektor s dutinkovou lištou 2x10 pinů,
+který obsahuje signály pro výstup jak na HDMI displej, tak na
+VGA displej. Kromě toho obsahuje konektor i signál sloužící
+k detekci, zda je do konektoru zasunut modul DispHDMI, DispVGA
+nebo je konektor ponechán volný. Podle toho může dojít k
+volbě interface pro HDMI displej, VGA displej nebo interní LCD
+displej.</font></p>
+
+<p align="left"><font face="Arial">Definice signálů na
+konektoru displeje, při pohledu na dutinkovou lištu na výstupu
+z procesorového modulu. V závorce je uvedeno odpovídající číslo
+GPIO pinu modulu PGA2350.</font></p>
+
+<p align="left"><a href="img/BarePi_disppins2.jpg"><font
+face="Arial"><img src="img/BarePi_disppins2_m.jpg" border="0"
+width="494" height="350"></font></a></p>
+
+<p align="left"><a href="img/BarePi_disppins.png"><font
+face="Arial"><img src="img/BarePi_disppins_m.jpg" border="0"
+width="370" height="165"></font></a></p>
+
+<ul>
+    <li><p align="left"><font face="Arial"><strong>1 </strong></font><font
+        color="#FF0000" face="Arial"><strong>HSYNC</strong></font><font
+        face="Arial"> (GPIO18) ... Horizontální synchronizace
+        VGA displeje. Signál je v adaptéru DispVGA ochráněn
+        rezistorem 47 ohmů k omezení proudového nárazu na
+        dlouhých vodičích.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>2 </strong></font><font
+        color="#FF0000" face="Arial"><strong>VSYNC</strong></font><font
+        face="Arial"> (GPIO19) ... Vertikální synchronizace VGA
+        displeje. Signál je v adaptéru DispVGA ochráněn
+        rezistorem 47 ohmů k omezení proudového nárazu na
+        dlouhých vodičích.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>3 </strong></font><font
+        color="#FF0000" face="Arial"><strong>GND</strong></font><font
+        face="Arial"> ... Zem 0V.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>4 </strong></font><font
+        color="#FF0000" face="Arial"><strong>BLUE</strong></font><font
+        face="Arial"> ... Modrá složka pro VGA displej.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>5 </strong></font><font
+        color="#FF0000" face="Arial"><strong>DISP_SEL</strong></font><font
+        face="Arial"> ... Detekce připojeného adaptéru.
+        Signál je v adaptéru DispVGA spojen se zemí GND, v
+        adaptéru DispHDMI s napájením 3V3. Není-li zasunut žádný
+        adaptér, není signál připojen k žádnému vodiči -
+        v této konfiguraci se může použít interní LCD
+        displej. U některých zařízení slouží tento stav k
+        autodetekci připojeného typu monitoru VGA nebo HDMI,
+        ale nedoporučuje se autodetekci používat, není
+        dostatečně spolehlivá.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>6 </strong></font><font
+        color="#FF0000" face="Arial"><strong>GREEN</strong></font><font
+        face="Arial"> ... Zelená složka pro VGA displej.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>7 </strong></font><font
+        color="#FF0000" face="Arial"><strong>3V3</strong></font><font
+        face="Arial"> ... Napájecí napětí 3,3V. Rezervováno
+        pro pull-up rezistory adaptéru DispHDMI, v současnosti
+        se nevyužívá.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>8 </strong></font><font
+        color="#FF0000" face="Arial"><strong>RED</strong></font><font
+        face="Arial"> ... Červená složka pro VGA displej.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>9 </strong></font><font
+        color="#FF0000" face="Arial"><strong>HOTPLUG</strong></font><font
+        face="Arial"> ... Detekce připojení HDMI monitoru.
+        Je-li HDMI monitor připojen a připraven přijímat
+        signál, nastaví signál HOTPLUG na hodnotu HIGH. Při
+        běžné činnosti začne zařízení vysílat obraz
+        teprve až je signál HOTPLUG nastaven. Signál má
+        zpravidla úroveň +5V, proto je v adaptéru DispHDMI použita
+        odporová dělička, která napětí sníží na úroveň
+        3,3V. V současnosti signál HOTPLUG žádné moduly
+        stavebnice nepoužívají, obraz se vysílá nezávisle
+        na připojení monitoru.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>10 </strong></font><font
+        color="#FF0000" face="Arial"><strong>5V</strong></font><font
+        face="Arial"> ... Napájecí napětí 5V. Napětí slouží
+        k napájení komunikačních obvodů monitoru, k napájení
+        zobrazovacích adaptérů (např. převodník VGA na
+        HDMI) a k napájení konfigurační EEPROM monitoru.
+        Proud je v adaptéru omezen ochranným rezistorem 47 ohmů.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>11 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SDA</strong></font><font
+        face="Arial"> ... Datový signál I2C sběrnice sloužící
+        k načtení EDID dat z HDMI monitoru. V současnosti žádné
+        moduly stavebnice tento signál nepoužívají. Pozor při
+        jeho použití - u většiny monitorů je signál připojen
+        přes pull-up rezistor na napětí +5V, což může být
+        nebezpečné pro obvody pracující s úrovněmi 3,3V.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>12 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SCL</strong></font><font
+        face="Arial"> ... Hodinový signál I2C sběrnice sloužící
+        k načtení EDID dat z HDMI monitoru. V současnosti žádné
+        moduly stavebnice tento signál nepoužívají. Pozor při
+        jeho použití - u většiny monitorů je signál připojen
+        přes pull-up rezistor na napětí +5V, což může být
+        nebezpečné pro obvody pracující s úrovněmi 3,3V.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>13 </strong></font><font
+        color="#FF0000" face="Arial"><strong>CKN</strong></font><font
+        face="Arial"> (GPIO15) ... Signál CK- pro HDMI displej.
+        Signál je v HDMI adaptéru omezen rezistorem 270 ohmů.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>14 </strong></font><font
+        color="#FF0000" face="Arial"><strong>CKP</strong></font><font
+        face="Arial"> (GPIO14) ... Signál CK+ pro HDMI displej.
+        Signál je v HDMI adaptéru omezen rezistorem 270 ohmů.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>15 </strong></font><font
+        color="#FF0000" face="Arial"><strong>D0N</strong></font><font
+        face="Arial"> (GPIO13) ... Signál D0- pro HDMI displej.
+        Signál je v HDMI adaptéru omezen rezistorem 270 ohmů.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>16 </strong></font><font
+        color="#FF0000" face="Arial"><strong>D0P</strong></font><font
+        face="Arial"> (GPIO12) ... Signál D0+ pro HDMI displej.
+        Signál je v HDMI adaptéru omezen rezistorem 270 ohmů.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>17 </strong></font><font
+        color="#FF0000" face="Arial"><strong>D1N</strong></font><font
+        face="Arial"> (GPIO19) ... Signál D1- pro HDMI displej.
+        Signál je v HDMI adaptéru omezen rezistorem 270 ohmů.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>18 </strong></font><font
+        color="#FF0000" face="Arial"><strong>D1P</strong></font><font
+        face="Arial"> (GPIO18) ... Signál D1+ pro HDMI displej.
+        Signál je v HDMI adaptéru omezen rezistorem 270 ohmů.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>19 </strong></font><font
+        color="#FF0000" face="Arial"><strong>D2N</strong></font><font
+        face="Arial"> (GPIO17) ... Signál D2- pro HDMI displej.
+        Signál je v HDMI adaptéru omezen rezistorem 270 ohmů.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>20 </strong></font><font
+        color="#FF0000" face="Arial"><strong>D2P</strong></font><font
+        face="Arial"> (GPIO16) ... Signál D2+ pro HDMI displej.
+        Signál je v HDMI adaptéru omezen rezistorem 270 ohmů.</font></p>
+    </li>
+</ul>
+
+<h3 align="left"><a name="zerotiny"></a><font face="Arial">ZeroTiny</font></h3>
+
+<p align="left"><font face="Arial">Herní konzole
+&quot;ZeroTiny&quot; není součástí stavebnice BarePi. Jedná
+se o minimalistickou herní konzoli založenou na modulu
+Raspberry Zero 2 nebo Raspberry Zero 1. Je to příklad vytvoření
+koncového zařízení na základě modulů stavebnice. Jeho
+zapojení odpovídá spojení modulů &quot;Zero&quot;,
+&quot;Base&quot; a &quot;KeyPad&quot;.</font></p>
+
+<p align="left"><a href="img/ZeroTiny.jpg"><img
+src="img/ZeroTiny_m.jpg" border="0" width="400" height="256"></a>
+<a href="img/ZeroTiny_assembly.jpg"><img
+src="img/ZeroTiny_assembly_m.jpg" border="0" width="400"
+height="231"></a></p>
+
+<p align="left"><a href="img/ZeroTiny_3D.jpg"><font face="Arial"><img
+src="img/ZeroTiny_3D_m.jpg" border="0" width="400" height="297"></font></a><font
+face="Arial"> </font><a href="img/ZeroTiny_3D_bottom.jpg"><font
+face="Arial"><img src="img/ZeroTiny_3D_bottom_m.jpg" border="0"
+width="400" height="284"></font></a></p>
+
+<p align="left"><a href="img/ZeroTiny_diagram.png"><font
+face="Arial"><img src="img/ZeroTiny_diagram_m.jpg" border="0"
+width="574" height="321"></font></a></p>
+
+<p align="left"><a href="img/ZeroTiny_mounting.jpg"><font
+face="Arial"><img src="img/ZeroTiny_mounting_m.jpg" border="0"
+width="403" height="210"></font></a><font face="Arial"> </font><a
+href="igm/ZeroTiny_label.png"><font face="Arial"><img
+src="img/ZeroTiny_label_m.jpg" border="0" width="390"
+height="183"></font></a></p>
+
+<p align="left"><a href="img/ZeroTiny_bottom.png"><font
+face="Arial"><img src="img/ZeroTiny_bottom_m.jpg" border="0"
+width="403" height="210"></font></a><a
+href="img/ZeroTiny_top.png"><font face="Arial"><img
+src="img/ZeroTiny_top_m.jpg" border="0" width="403" height="210"></font></a></p>
+
+<h2 align="left"><font face="Arial">Speciální moduly</font></h2>
+
+<h3 align="left"><a name="base"></a><font face="Arial">Base</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;Base&quot; je
+základní modul stavebnice. Modul může být vhodné použít u
+všech zařízení - zajišťuje napájení zařízení z USB
+konektoru (s využitím stabilizátoru 3,3V), výstup zvuku, slot
+pro microSD kartu, tlačítko pro reset procesoru, LED
+indikující přístup k SD kartě a uživatelskou LED. Před výrobou
+plošného spoje zkontrolujte definici pro audio konektor, slot
+pro SD kartu, reproduktor a stabilizátor HT7533 - uspořádání
+a piny se mohou u různých výrobců lišit.</font></p>
+
+<p align="left"><a href="img/BarePi_Base_3D.jpg"><font
+face="Arial"><img src="img/BarePi_Base_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="mg/BarePi_Base_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_Base_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Base_diagram.png"><font
+face="Arial"><img src="img/BarePi_Base_diagram_m.jpg" border="0"
+width="746" height="367"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Base_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_Base_mounting_m.jpg" border="0"
+width="435" height="299"></font></a><font face="Arial"> </font><a
+href="img/BarePi_Base_label.png"><font face="Arial"><img
+src="img/BarePi_Base_label_m.jpg" border="0" width="384"
+height="248"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Base_bottom.png"><font
+face="Arial"><img src="img/BarePi_Base_bottom_m.jpg" border="0"
+width="435" height="299"></font></a><a
+href="img/BarePi_Base_top.png"><font face="Arial"><img
+src="img/BarePi_Base_top_m.jpg" border="0" width="435"
+height="299"></font></a></p>
+
+<h3 align="left"><a name="busexp"></a><font face="Arial">BusExp</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;BusExp&quot; je
+expandér sběrnice.</font></p>
+
+<p align="left"><a href="img/BarePi_BusExp_3D.jpg"><font
+face="Arial"><img src="img/BarePi_BusExp_3D_m.jpg" border="0"
+width="350" height="260"></font></a><font face="Arial"> </font><a
+href="img/BarePi_BusExp_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_BusExp_3D_bottom_m.jpg" border="0" width="350"
+height="260"></font></a></p>
+
+<p align="left"><a href="img/BarePi_BusExp_diagram.png"><font
+face="Arial"><img src="img/BarePi_BusExp_diagram_m.jpg"
+border="0" width="523" height="449"></font></a></p>
+
+<p align="left"><a href="img/BarePi_BusExp_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_BusExp_mounting_m.jpg"
+border="0" width="324" height="227"></font></a></p>
+
+<p align="left"><a href="img/BarePi_BusExp_bottom.png"><font
+face="Arial"><img src="img/BarePi_BusExp_bottom_m.jpg" border="0"
+width="324" height="227"></font></a><a
+href="img/BarePi_BusExp_top.png"><font face="Arial"><img
+src="img/BarePi_BusExp_top_m.jpg" border="0" width="324"
+height="227"></font></a></p>
+
+<h3 align="left"><a name="port"></a><font face="Arial">Port</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;Port&quot; je
+modul pro připojení externích periferií. Obsahuje konektory
+pro připojení SPI, I2C, UART a také procesor CH32V002A4M6,
+který zprostředkovává 12 digitálních vstupů/výstupů a 6
+analogových ADC vstupů.</font></p>
+
+<p align="left"><a href="img/BarePi_Port_3D.jpg"><font
+face="Arial"><img src="img/BarePi_Port_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_Port_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_Port_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Port_diagram.png"><font
+face="Arial"><img src="img/BarePi_Port_diagram_m.jpg" border="0"
+width="539" height="543"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Port_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_Port_mounting_m.jpg" border="0"
+width="406" height="441"></font></a><font face="Arial"> </font><a
+href="img/BarePi_Port_label.png"><font face="Arial"><img
+src="img/BarePi_Port_label_m.jpg" border="0" width="384"
+height="384"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Port_bottom.png"><font
+face="Arial"><img src="img/BarePi_Port_bottom_m.jpg" border="0"
+width="406" height="441"></font></a><font face="Arial"> </font><a
+href="img/BarePi_Port_top.png"><font face="Arial"><img
+src="img/BarePi_Port_top_m.jpg" border="0" width="406"
+height="441"></font></a></p>
+
+<h3 align="left"><a name="rtc"></a><font face="Arial">RTC</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;RTC&quot; je modul
+obsahující hodiny reálného času a paměti EEPROM. Hodiny reálného
+času zajišťuje obvod DS3231, zálohovaný baterií CR2032. Je
+možné použít buď originální obvod MAXIM, nebo podstatně
+levnější čínský klon, který má sice nižší přesnost,
+ale pro běžné použití je jeho přesnost dostačující.
+Osobně jsem použil prodávaný </font><a
+href="https://www.laskakit.cz/arduino-rtc-hodiny-realneho-casu-ds3231-at24c32/"><font
+face="Arial">modul hodin reálného času</font></a><font
+face="Arial">, ze kterého jsem vyletoval obvod DS3231, paměť
+AT24C32 a držák baterie CR2032, a vše použil v tomto modulu.
+Modul &quot;RTC&quot; obsahuje vestavěnou paměť EEPROM
+AT24C32, o kapacitě 4KB, na I2C adrese 0x57. Tato paměť je
+využívána k ukládání konfigurace programů. K modulu lze
+připojit externí moduly s EEPROM pamětí o kapacitě až 64KB,
+ve 2 různých konfiguracích uspořádání pinů. K prvnímu
+slotu, J3, lze připojit EEPROM modul s uspořádaním pinů </font><a
+href="https://www.laskakit.cz/eeprom-modul--at24c02--i2c/"><font
+face="Arial">VCC-GND-SCL-SDA</font></a><font face="Arial">. Druhý
+slot, J4, slouží k připojení EEPROM modulu s uspořádáním
+pinů </font><a
+href="https://www.hadex.cz/p/m518b-pamet-i2c-eeprom-s-at24c256-pro-arduino"><font
+face="Arial">VCC-SCL-SDA-GND</font></a><font face="Arial">.
+Paměťové sloty mohou mít I2C adresu 0x50 až 0x56. U pamětí
+AT23C256 a AT23C512 lze zvolit adresový rozsah pouze 0x50 až
+0x53. Při použití EEPROM pamětí je potřeba pamatovat na to,
+že moduly Raspberry Pi (Zero, 1, 2, 3) používají při svém
+startu sběrnici I2C0 pro čtení ID EEPROM. Pokud uživatelské
+EEPROM nebudou používat stejnou strukturu dat jako ID EEPROM,
+neměl by s tím být problém.</font></p>
+
+<p align="left"><a href="img/BarePi_RTC_3D.jpg"><font
+face="Arial"><img src="img/BarePi_RTC_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_RTC_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_RTC_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_RTC_diagram.png"><font
+face="Arial"><img src="img/BarePi_RTC_diagram_m.jpg" border="0"
+width="534" height="397"></font></a></p>
+
+<p align="left"><a href="img/BarePi_RTC_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_RTC_mounting_m.jpg" border="0"
+width="402" height="336"></font></a><font face="Arial"> </font><a
+href="img/BarePi_RTC_label.png"><font face="Arial"><img
+src="img/BarePi_RTC_label_m.jpg" border="0" width="384"
+height="283"></font></a></p>
+
+<p align="left"><a href="img/BarePi_RTC_bottom.png"><font
+face="Arial"><img src="img/BarePi_RTC_bottom_m.jpg" border="0"
+width="402" height="336"></font></a><a
+href="img/BarePi_RTC_top.png"><font face="Arial"><img
+src="img/BarePi_RTC_top_m.jpg" border="0" width="402"
+height="336"></font></a></p>
+
+<h3 align="left"><a name="testled"></a><font face="Arial">TestLed</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;TestLed&quot; je
+testovací modul pro testování sběrnice stavebnice. Pomocí
+LED indikuje stavy signálů sběrnice. Téměř všechny LED,
+kromě LED pro indikaci napájecích napětí 5V a 3,3V, jsou
+zapojeny mezi signálem a napájecím napětím 3,3V. Svým
+rozsvícením indikují tedy stav LOW - z toho důvodu, že
+většina signálů je negativní, kdy klidový stav je HIGH, a
+aktivní stav LOW. Výjimkou jsou některé signály, jako
+USR_LED, PWM_L, PWM_R, LCD_BL, které mají pozitivní význam a
+bylo by sice vhodnější indikovat jejich úroveň HIGH. Ale z
+důvodu možnosti snadné detekce zkratu mezi signály je
+ponecháno stejné zapojení i pro tyto speciální případy
+signálů. Testovací LED pro signál USR_LED bude tedy svítit v
+případě, kdy bude uživatelská LED zhasnutá, a podobně bude
+svítit LED pro podsvícení displeje, pokud bude podsvícení
+vypnuto. Samozřejmě v případech, kdy signál nebude použitý
+a bude ve stavu vysoké impedance, tak LED nebudou svítit ani při
+úrovni LOW. Pro snadné testování sběrnice lze do některých
+procesorů nahrát program, který LED sběrnice postupně
+rozsvěcuje, a tak lze vizuálně zkontrolovat chyby přerušení
+sběrnice nebo zkratu na sběrnici.</font></p>
+
+<p align="left"><font face="Arial">V modulu se používají SMD
+LED diody s pouzdrem PLCC-4. Různí výrobci používají různé
+zapojení pinů - proto se na plošném spoji využívají pouze
+2 kontakty ze 4, jejichž zapojení výrobci dodržují.</font></p>
+
+<p align="left"><a href="img/BarePi_TestLed_3D.jpg"><font
+face="Arial"><img src="img/BarePi_TestLed_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_TestLed_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_TestLed_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TestLed_diagram.png"><font
+face="Arial"><img src="img/BarePi_TestLed_diagram_m.jpg"
+border="0" width="572" height="596"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TestLed_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_TestLed_mounting_m.jpg"
+border="0" width="401" height="390"></font></a><font face="Arial">
+</font><a href="img/BarePi_TestLed_label.png"><font face="Arial"><img
+src="img/BarePi_TestLed_label_m.jpg" border="0" width="384"
+height="337"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TestLed_bottom.png"><font
+face="Arial"><img src="img/BarePi_TestLed_bottom_m.jpg"
+border="0" width="401" height="390"></font></a><a
+href="img/BarePi_TestLed_top.png"><font face="Arial"><img
+src="img/BarePi_TestLed_top_m.jpg" border="0" width="401"
+height="390"></font></a></p>
+
+<h2 align="left"><font face="Arial">Procesory</font></h2>
+
+<h3 align="left"><a name="megatinyjoypad"></a><font face="Arial">MegaTinyJoypad</font></h3>
+
+<p align="left"><font face="Arial">Modul
+&quot;MegaTinyJoypad&quot; je určen k řízení herní konzole
+&quot;</font><a href="https://www.tinyjoypad.com/esp8285"><font
+face="Arial">MEGA Tiny Joypad</font></a><font face="Arial">&quot;,
+podle návrhu (c) Daniel C (Electro L.I.B). Modul obsahuje
+procesorovou jednotku ESP-07S, kterou je možné buď přiletovat
+do modulu přímo, nebo použít </font><a
+href="https://pajenicko.cz/adapter-pro-esp8266-esp07-esp08-esp12"><font
+face="Arial">adaptér pro ESP-07</font></a><font face="Arial"> a
+konektor s dutinkovou lištou. Program lze do procesoru nahrát přes
+UART piny, po stisku tlačítka &quot;A&quot; během zapnutí
+napájení. K modulu je potřeba připojit moduly
+&quot;Base&quot;, &quot;OLED128x64&quot; a &quot;KeyPad&quot;.</font></p>
+
+<p align="left"><a href="img/BarePi_MegaTinyJoypad_3D.jpg"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad_3D_m.jpg"
+border="0" width="400" height="297"></font></a><font face="Arial">
+</font><a href="img/BarePi_MegaTinyJoypad_3D_bottom.jpg"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad_3D_bottom_m.jpg"
+border="0" width="400" height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MegaTinyJoypad_diagram.png"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad_diagram_m.jpg"
+border="0" width="525" height="222"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MegaTinyJoypad_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad_mounting_m.jpg"
+border="0" width="396" height="239"></font></a><font face="Arial">
+</font><a href="img/BarePi_MegaTinyJoypad_panel.png"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad_panel_m.jpg"
+border="0" width="384" height="224"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MegaTinyJoypad_bottom.png"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad_bottom_m.jpg"
+border="0" width="396" height="239"></font></a><a
+href="img/BarePi_MegaTinyJoypad_top.png"><font face="Arial"><img
+src="img/BarePi_MegaTinyJoypad_top_m.jpg" border="0" width="396"
+height="239"></font></a></p>
+
+<h3 align="left"><a name="pga2350"></a><font face="Arial">PGA2350</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;PGA2350&quot; je
+varianta konzole PicoPad s </font><a
+href="https://botland.cz/desky-mikrokontroleru-rp235x/25394-pga2350-vyvojova-deska-s-mikrokontrolerem-rp2350b-pimoroni-pim722-0769894025840.html"><font
+face="Arial">procesorovým modulem PGA2350</font></a><font
+face="Arial">, s procesorem RP2350B, 16 MB Flash a 8 MB PSRAM.
+Výstup obrazu je možný na LCD displej 320x240 pixelů, na VGA
+monitor nebo na HDMI monitor. K modulu je potřeba připojit
+moduly &quot;DispVGA&quot;, &quot;DispHSTX&quot;,
+&quot;LCD320x240&quot;, &quot;Base&quot; a &quot;KeyPad&quot;.</font></p>
+
+<p align="left"><a href="img/BarePi_PGA2350_3D.jpg"><font
+face="Arial"><img src="img/BarePi_PGA2350_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PGA2350_3D_bottom,jpg"><font face="Arial"><img
+src="img/BarePi_PGA2350_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PGA2350_diagram.png"><font
+face="Arial"><img src="img/BarePi_PGA2350_diagram_m.jpg"
+border="0" width="675" height="573"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PGA2350_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_PGA2350_mounting_m.jpg"
+border="0" width="428" height="413"></font></a><font face="Arial">
+</font><a href="img/BarePi_PGA2350_label.png"><font face="Arial"><img
+src="img/BarePi_PGA2350_label_m.jpg" border="0" width="384"
+height="384"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PGA2350_bottom.png"><font
+face="Arial"><img src="img/BarePi_PGA2350_bottom_m.jpg"
+border="0" width="428" height="413"></font></a><a
+href="img/BarePi_PGA2350_top.png"><font face="Arial"><img
+src="img/BarePi_PGA2350_top_m.jpg" border="0" width="428"
+height="413"></font></a></p>
+
+<h3 align="left"><a name="picopad"></a><font face="Arial">PicoPad</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;PicoPad&quot;
+slouží k sestavení herní konzole PicoPad. Modul Pico doporučuji
+neletovat do modulu napevno, ale použít dutinkové lišty, aby
+byla možná snadná výměna mezi moduly Pico 1, Pico 2 (PicoPad
+2) a Pimoroni Pico Plus 2. K modulu je potřeba připojit moduly
+&quot;Base&quot;, &quot;LCD320x240&quot; a &quot;KeyPad&quot;.</font></p>
+
+<p align="left"><a href="img/BarePi_PicoPad_3D.jpg"><font
+face="Arial"><img src="img/BarePi_PicoPad_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PicoPad_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_PicoPad_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PicoPad_diagram.png"><font
+face="Arial"><img src="img/BarePi_PicoPad_diagram_m.jpg"
+border="0" width="543" height="231"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PicoPad_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_PicoPad_mounting_m.jpg"
+border="0" width="407" height="285"></font></a><font face="Arial">
+</font><a href="img/BarePi_PicoPad_label.png"><font face="Arial"><img
+src="img/BarePi_PicoPad_label_m.jpg" border="0" width="384"
+height="266"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PicoPad_bottom.png"><font
+face="Arial"><img src="img/BarePi_PicoPad_bottom_m.jpg"
+border="0" width="407" height="285"></font></a><a
+href="img/BarePi_PicoPad_top.png"><font face="Arial"><img
+src="img/BarePi_PicoPad_top_m.jpg" border="0" width="407"
+height="285"></font></a></p>
+
+<h3 align="left"><a name="picopadhstx"></a><font face="Arial">PicoPadHSTX</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;PicoPadHXTS&quot;
+slouží k sestavení herní konzole PicoPadHSTX. K modulu je potřeba
+připojit moduly &quot;DispVGA&quot;, &quot;DispHSTX&quot;,
+&quot;Base&quot; a &quot;KeyPad&quot;.</font></p>
+
+<p align="left"><a href="img/BarePi_PicoPadHSTX_3D.jpg"><font
+face="Arial"><img src="img/BarePi_PicoPadHSTX_3D_m.jpg"
+border="0" width="400" height="297"></font></a><font face="Arial">
+</font><a href="img/BarePi_PicoPadHSTX_3D_bottom.jpg"><font
+face="Arial"><img src="img/BarePi_PicoPadHSTX_3D_bottom_m.jpg"
+border="0" width="400" height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PicoPadHSTX_diagram.png"><font
+face="Arial"><img src="img/BarePi_PicoPadHSTX_diagram_m.jpg"
+border="0" width="553" height="413"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PicoPadHSTX_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_PicoPadHSTX_mounting_m.jpg"
+border="0" width="428" height="305"></font></a><font face="Arial">
+</font><a href="img/BarePi_PicoPadHSTX_label.png"><font
+face="Arial"><img src="img/BarePi_PicoPadHSTX_label_m.jpg"
+border="0" width="384" height="283"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PicoPadHSTX_bottom.png"><font
+face="Arial"><img src="img/BarePi_PicoPadHSTX_bottom_m.jpg"
+border="0" width="428" height="305"></font></a><a
+href="img/BarePi_PicoPadHSTX_top.png"><font face="Arial"><img
+src="img/BarePi_PicoPadHSTX_top_m.jpg" border="0" width="428"
+height="305"></font></a></p>
+
+<h3 align="left"><a name="pidiboy"></a><font face="Arial">PidiBoy</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;PidiBoy&quot; je
+určený k sestavení herní konzole PidiBoy, s procesorem
+CH32V006F8P6 a výstupem na OLED displej 128x64. K modulu je potřeba
+připojit moduly &quot;Base&quot;, &quot;OLED128x64&quot; a
+&quot;KeyPad&quot;.</font></p>
+
+<p align="left"><a href="img/BarePi_PidiBoy_3D.jpg"><font
+face="Arial"><img src="img/BarePi_PidiBoy_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PidiBoy_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_PidiBoy_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiBoy_diagram.png"><font
+face="Arial"><img src="img/BarePi_PidiBoy_diagram_m.jpg"
+border="0" width="523" height="219"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiBoy_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_PidiBoy_mounting_m.jpg"
+border="0" width="403" height="168"></font></a><font face="Arial">
+</font><a href="img/BarePi_PidiBoy_panel.png"><font face="Arial"><img
+src="img/BarePi_PidiBoy_panel_m.jpg" border="0" width="384"
+height="154"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiBoy_bottom.png"><font
+face="Arial"><img src="img/BarePi_PidiBoy_bottom_m.jpg"
+border="0" width="403" height="168"></font></a><a
+href="img/BarePi_PidiBoy_top.png"><font face="Arial"><img
+src="img/BarePi_PidiBoy_top_m.jpg" border="0" width="403"
+height="168"></font></a></p>
+
+<h3 align="left"><a name="pidimet"></a><font face="Arial">PidiMet</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;PidiMet&quot;
+slouží k sestavení univerzálního multimetru PidiMet. K
+modulu je potřeba připojit moduly &quot;Base&quot;,
+&quot;OLED128x64&quot; a &quot;KeyPad&quot;. Pro připojení měřicích
+vodičů je možné použít adaptér &quot;PidiMetAdapter&quot;.
+Při konstrukci tohoto modulu upozorňuji, že některé součástky
+jsou příliš ztěsnané na sobě a špatně se letují - možná
+by bylo vhodnější desku mírně přeuspořádat, a také
+zvolit pro kondenzátory větší pouzdra.</font></p>
+
+<p align="left"><a href="img/BarePi_PidiMet_3D.jpg"><font
+face="Arial"><img src="img/BarePi_PidiMet_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PidiMet_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_PidiMet_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiMet_diagram.png"><font
+face="Arial"><img src="img/BarePi_PidiMet_diagram_m.jpg"
+border="0" width="670" height="607"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiMet_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_PidiMet_mounting_m.jpg"
+border="0" width="402" height="330"></font></a><font face="Arial">
+</font><a href="img/BarePi_PidiMet_panel.png"><font face="Arial"><img
+src="img/BarePi_PidiMet_panel_m.jpg" border="0" width="384"
+height="283"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiMet_bottom.png"><font
+face="Arial"><img src="img/BarePi_PidiMet_bottom_m.jpg"
+border="0" width="402" height="330"></font></a><a
+href="img/BarePi_PidiMet_top.png"><font face="Arial"><img
+src="img/BarePi_PidiMet_top_m.jpg" border="0" width="402"
+height="330"></font></a></p>
+
+<h3 align="left"><a name="pidimetadapter"></a><font face="Arial">PidiMetAdapter</font></h3>
+
+<p align="left"><font face="Arial">Modul
+&quot;PidiMetAdapter&quot; je adaptér pro připojení měřicích
+vodičů k modulu &quot;PidiMet&quot;.</font></p>
+
+<p align="left"><a href="img/BarePi_PidiMetAdapter_3D.jpg"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter_3D_m.jpg"
+border="0" width="400" height="297"></font></a><font face="Arial">
+</font><a href="img/BarePi_PidiMetAdapter_3D_bottom.jpg"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter_3D_bottom_m.jpg"
+border="0" width="400" height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiMetAdapter_diagram.png"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter_diagram_m.jpg"
+border="0" width="181" height="231"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiMetAdapter_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter_mounting_m.jpg"
+border="0" width="399" height="129"></font></a><font face="Arial">
+</font><a href="img/BarePi_PidiMetAdapter_panel.png"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter_panel_m.jpg"
+border="0" width="384" height="112"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiMetAdapter_bottom.png"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter_bottom_m.jpg"
+border="0" width="399" height="129"></font></a><a
+href="img/BarePi_PidiMetAdapter_top.png"><font face="Arial"><img
+src="img/BarePi_PidiMetAdapter_top_m.jpg" border="0" width="399"
+height="129"></font></a></p>
+
+<h3 align="left"><a name="pidipad"></a><font face="Arial">PidiPad</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;PidiPad&quot;
+slouží k sestavení herní konzole PidiPad, s procesorem
+CH32V006E8R6 a výstupem na VGA monitor. K modulu je potřeba
+připojit moduly &quot;DispVGA&quot;, &quot;Base&quot; a
+&quot;KeyPad&quot;.</font></p>
+
+<p align="left"><a href="img/BarePi_PidiPad_3D_bottom.jpg"><font
+face="Arial"><img src="img/BarePi_PidiPad_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PidiPad_3D.jpg"><font face="Arial"><img
+src="img/BarePi_PidiPad_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiPad_diagram.png"><font
+face="Arial"><img src="img/BarePi_PidiPad_diagram_m.jpg"
+border="0" width="580" height="350"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiPad_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_PidiPad_mounting_m.jpg"
+border="0" width="394" height="216"></font></a><font face="Arial">
+</font><a href="img/BarePi_PidiPad_panel.png"><font face="Arial"><img
+src="img/BarePi_PidiPad_panel_m.jpg" border="0" width="384"
+height="207"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiPad_bottom.png"><font
+face="Arial"><img src="img/BarePi_PidiPad_bottom_m.jpg"
+border="0" width="394" height="216"></font></a><a
+href="img/BarePi_PidiPad_top.png"><font face="Arial"><img
+src="img/BarePi_PidiPad_top_m.jpg" border="0" width="394"
+height="216"></font></a></p>
+
+<h3 align="left"><a name="sumopad"></a><font face="Arial">SumoPad</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;SumoPad&quot;
+slouží k sestavení herní konzole SumoPad. K modulu je potřeba
+připojit moduly &quot;DispVGA&quot;, &quot;LCD320x240&quot;,
+&quot;Base&quot; a &quot;KeyPad&quot;. Srdcem modulu je procesor
+CH32V208RBT6. Vzhledem k obtížnosti jeho letování (a také kvůli
+vyšší ceně) nemusí být procesor naletován přímo do desky
+modulu, ale může být přiletován na </font><a
+href="https://www.gme.cz/v/1508812/ups-qfp-universal-ic-adapter-qfp-qfp64-qfn64-na-sil64"><font
+face="Arial">adaptéru LQFP-64</font></a><font face="Arial">, aby
+bylo možné procesor vyměňovat a používat i v jiných
+modulech. Výstup obrazu je možný buď na externí monitor VGA,
+nebo na interní displej LCD320x240 - v závislosti na tom, zda
+je do modulu zasunut adaptér &quot;DispVGA&quot;.</font></p>
+
+<p align="left"><a href="img/BarePi_SumoPad_3D.jpg"><font
+face="Arial"><img src="img/BarePi_SumoPad_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_SumoPad_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_SumoPad_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_SumoPad_diagram.png"><font
+face="Arial"><img src="img/BarePi_SumoPad_diagram_m.jpg"
+border="0" width="482" height="609"></font></a></p>
+
+<p align="left"><a href="img/BarePi_SumoPad_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_SumoPad_mounting_m.jpg"
+border="0" width="428" height="410"></font></a><font face="Arial">
+</font><a href="img/BarePi_SumoPad_panel.png"><font face="Arial"><img
+src="img/BarePi_SumoPad_panel_m.jpg" border="0" width="384"
+height="384"></font></a></p>
+
+<p align="left"><a href="img/BarePi_SumoPad_bottom.png"><font
+face="Arial"><img src="img/BarePi_SumoPad_bottom_m.jpg"
+border="0" width="428" height="410"></font></a><a
+href="img/BarePi_SumoPad_top.png"><font face="Arial"><img
+src="img/BarePi_SumoPad_top_m.jpg" border="0" width="428"
+height="410"></font></a></p>
+
+<h3 align="left"><a name="tinyjoypad"></a><font face="Arial">TinyJoypad</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;TinyJoypad&quot;
+je určen k řízení herní konzole &quot;</font><a
+href="https://www.tinyjoypad.com/tinyjoypad_attiny85"><font
+face="Arial">Tiny Joypad</font></a><font face="Arial">&quot;,
+podle návrhu (c) Daniel C (Electro L.I.B). Modul obsahuje
+procesor ATtiny85. Program se do procesoru nahrává v
+programátoru, proto je vhodné pro procesor použít DIL
+objímku. K modulu je potřeba připojit moduly &quot;Base&quot;,
+&quot;OLED128x64&quot; a &quot;KeyPad&quot;.</font></p>
+
+<p align="left"><a href="img/BarePi_TinyJoypad_3D.jpg"><font
+face="Arial"><img src="img/BarePi_TinyJoypad_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_TinyJoypad_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_TinyJoypad_3D_bottom_m.jpg" border="0"
+width="400" height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TinyJoypad_diagram.png"><font
+face="Arial"><img src="img/BarePi_TinyJoypad_diagram_m.jpg"
+border="0" width="534" height="225"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TinyJoypad_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_TinyJoypad_mounting_m.jpg"
+border="0" width="394" height="172"></font></a><font face="Arial">
+</font><a href="img/BarePi_TinyJoypad_panel.png"><font
+face="Arial"><img src="img/BarePi_TinyJoypad_panel_m.jpg"
+border="0" width="384" height="154"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TinyJoypad_bottom.png"><font
+face="Arial"><img src="img/BarePi_TinyJoypad_bottom_m.jpg"
+border="0" width="394" height="172"></font></a><a
+href="img/BarePi_TinyJoypad_top.png"><font face="Arial"><img
+src="img/BarePi_TinyJoypad_top_m.jpg" border="0" width="394"
+height="172"></font></a></p>
+
+<h3 align="left"><a name="tweetyboy"></a><font face="Arial">TweetyBoy</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;TweetyBoy&quot; je
+určen k sestavení herní konzole TweetyBoy. K modulu je potřeba
+připojit moduly &quot;LCD160x80&quot;, &quot;Base&quot; a
+&quot;KeyPad&quot;. Modul je řízen procesorem CH32X035G8R6.</font></p>
+
+<p align="left"><a href="img/BarePi_TweetyBoy_3D.jpg"><font
+face="Arial"><img src="img/BarePi_TweetyBoy_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_TweetyBoy_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_TweetyBoy_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TweetyBoy_diagram.png"><font
+face="Arial"><img src="img/BarePi_TweetyBoy_diagram_m.jpg"
+border="0" width="607" height="223"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TweetyBoy_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_TweetyBoy_mounting_m.jpg"
+border="0" width="399" height="180"></font></a><font face="Arial">
+</font><a href="img/BarePi_TweetyBoy_panel.png"><font
+face="Arial"><img src="img/BarePi_TweetyBoy_panel_m.jpg"
+border="0" width="384" height="165"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TweetyBoy_bottom.png"><font
+face="Arial"><img src="img/BarePi_TweetyBoy_bottom_m.jpg"
+border="0" width="399" height="180"></font></a><a
+href="img/BarePi_TweetyBoy_top.png"><font face="Arial"><img
+src="img/BarePi_TweetyBoy_top_m.jpg" border="0" width="399"
+height="180"></font></a></p>
+
+<h3 align="left"><a name="zero"></a><font face="Arial">Zero</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;Zero&quot; je
+nejvyšší typ procesorového modulu ve stavebnici BarePi.
+Obsahuje modul Raspberry Zero 1 nebo Raspberry Zero 2. Pro
+snadnou výměnu proto doporučuji modul osadit raději
+konektorem s dutinkovou lištou, namísto naletování natvrdo přes
+pinovou lištu. Na rozdíl od ostatních modulů obsahuje USB
+konektor pro napájení a microSD kartu, může být tedy
+provozován i samostatně, bez ostatních modulů. Pro výstup
+PWM zvuku může být potřeba připojit modul &quot;Base&quot;
+(doporučuji v modulu &quot;Base&quot; odpojit propojkou interní
+stabilizátor). Pro ovládání her může být potřeba
+připojit modul &quot;KeyPad&quot;. Minimalistickou verzí herní
+konzole je ZeroTiny - při použití modulů stavebnice odpovídá
+spojení modulů &quot;Zero&quot;, &quot;Base&quot; a
+&quot;KeyPad&quot;.</font></p>
+
+<p align="left"><a href="img/BarePi_Zero_3D.jpg"><font
+face="Arial"><img src="img/BarePi_Zero_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_Zero_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_Zero_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Zero_diagram.png"><font
+face="Arial"><img src="img/BarePi_Zero_diagram_m.jpg" border="0"
+width="493" height="311"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Zero_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_Zero_mounting_m.jpg" border="0"
+width="402" height="306"></font></a><font face="Arial"> </font><a
+href="img/BarePi_Zero_label.png"><font face="Arial"><img
+src="img/BarePi_Zero_label_m.jpg" border="0" width="384"
+height="283"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Zero_bottom.png"><font
+face="Arial"><img src="img/BarePi_Zero_bottom_m.jpg" border="0"
+width="402" height="306"></font></a><a
+href="img/BarePi_Zero_top.png"><font face="Arial"><img
+src="img/BarePi_Zero_top_m.jpg" border="0" width="402"
+height="306"></font></a></p>
+
+<h2 align="left"><font face="Arial">Displeje</font></h2>
+
+<h3 align="left"><a name="disphdmi"></a><font face="Arial">DispHDMI</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;DispHDMI&quot; je
+modul pro výstup obrazu na displej s HDMI rozhraním. Nejedná
+se o samostatný modul, ale o pomocný modul připojitelný k některým
+procesorům pomocí konektoru s pinovou lištou 2x10 pinů.
+Konektor obsahuje signály pro výstup jak na HDMI displej, tak
+na VGA displej. Kromě toho obsahuje i signál sloužící k
+detekci, zda je do konektoru zasunut modul DispHDMI, DispVGA nebo
+je konektor ponechán volný. Podle toho může dojít k volbě
+interface pro HDMI displej, VGA displej nebo interní LCD
+displej.</font></p>
+
+<p align="left"><a href="img/BarePi_DispHDMI_3D.jpg"><font
+face="Arial"><img src="img/BarePi_DispHDMI_3D_m.jpg" border="0"
+width="300" height="223"></font></a><font face="Arial"> </font><a
+href="img/BarePi_DispHDMI_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_DispHDMI_3D_bottom_m.jpg" border="0" width="300"
+height="223"></font></a></p>
+
+<p align="left"><a href="img/BarePi_DispHDMI_diagram.png"><font
+face="Arial"><img src="img/BarePi_DispHDMI_diagram_m.jpg"
+border="0" width="470" height="280"></font></a></p>
+
+<p align="left"><a href="img/BarePi_DispHDMI_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_DispVGA_mounting_m.jpg"
+border="0" width="201" height="252"></font></a><font face="Arial">
+</font><a href="img/BarePi_DispHDMI_bottom.png"><font
+face="Arial"><img src="img/BarePi_DispHDMI_bottom_m.jpg"
+border="0" width="204" height="219"></font></a><a
+href="img/BarePi_DispHDMI_top.png"><font face="Arial"><img
+src="img/BarePi_DispHDMI_top_m.jpg" border="0" width="204"
+height="219"></font></a></p>
+
+<h3 align="left"><a name="dispvga"></a><font face="Arial">DispVGA</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;DispVGA&quot; je
+modul pro výstup obrazu na displej s VGA rozhraním. Nejedná se
+o samostatný modul, ale o pomocný modul připojitelný k některým
+procesorům pomocí konektoru s pinovou lištou 2x10 pinů.
+Konektor obsahuje signály pro výstup jak na HDMI displej, tak
+na VGA displej. Kromě toho obsahuje i signál sloužící k
+detekci, zda je do konektoru zasunut modul DispHDMI, DispVGA nebo
+je konektor ponechán volný. Podle toho může dojít k volbě
+interface pro HDMI displej, VGA displej nebo interní LCD
+displej.</font></p>
+
+<p align="left"><a href="img/BarePi_DispVGA_3D.jpg"><font
+face="Arial"><img src="img/BarePi_DispVGA_3D_m.jpg" border="0"
+width="300" height="223"></font></a><font face="Arial"> </font><a
+href="img/BarePi_DispVGA_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_DispVGA_3D_bottom_m.jpg" border="0" width="300"
+height="223"></font></a></p>
+
+<p align="left"><a href="img/BarePi_DispVGA_diagram.png"><font
+face="Arial"><img src="img/BarePi_DispVGA_diagram_m.jpg"
+border="0" width="461" height="175"></font></a></p>
+
+<p align="left"><a href="img/BarePi_DispVGA_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_DispVGA_mounting_m.jpg"
+border="0" width="201" height="252"></font></a><font face="Arial">
+</font><a href="img/BarePi_DispVGA_bottom.png"><font face="Arial"><img
+src="img/BarePi_DispVGA_bottom_m.jpg" border="0" width="201"
+height="252"></font></a><a href="img/BarePi_DispVGA_top.png"><font
+face="Arial"><img src="img/BarePi_DispVGA_top_m.jpg" border="0"
+width="201" height="252"></font></a></p>
+
+<h3 align="left"><a name="extdisp"></a><font face="Arial">ExtDisp</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;ExtDisp&quot; je
+určen k zachytávání signálů pro LCD displej s řadičem
+ST7789 a rozlišením 320x240 pixelů, a jeho zobrazení na VGA
+nebo HDMI monitoru. Volba monitoru je určena tím, zda je do
+konektoru displeje zasunut DispVGA adaptér nebo DispHDMI
+adaptér.</font></p>
+
+<p align="left"><a href="img/BarePi_ExtDisp_3D.jpg"><font
+face="Arial"><img src="img/BarePi_ExtDisp_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_ExtDisp_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_ExtDisp_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_ExtDisp_diagram.png"><font
+face="Arial"><img src="img/BarePi_ExtDisp_diagram_m.jpg"
+border="0" width="664" height="569"></font></a></p>
+
+<p align="left"><a href="img/BarePi_ExtDisp_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_ExtDisp_mounting_m.jpg"
+border="0" width="440" height="455"></font></a><font face="Arial">
+</font><a href="img/BarePi_ExtDisp_label.png"><font face="Arial"><img
+src="img/BarePi_ExtDisp_label_m.jpg" border="0" width="384"
+height="384"></font></a></p>
+
+<p align="left"><a href="img/BarePi_ExtDisp_bottom.png"><font
+face="Arial"><img src="img/BarePi_ExtDisp_bottom_m.jpg"
+border="0" width="440" height="456"></font></a><a
+href="img/BarePi_ExtDisp_top.png"><font face="Arial"><img
+src="img/BarePi_ExtDisp_top_m.jpg" border="0" width="440"
+height="456"></font></a></p>
+
+<h3 align="left"><a name="lcd16x2"></a><font face="Arial">LCD16x2</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;LCD16x2&quot; je
+znakový LCD displej DM1602A se 2 řádky po 16 znacích a s
+řadičem HD44780. Modul obsahuje procesor CH32V002A4M6, který
+slouží k řízení displeje a ke komunikaci s hlavním
+procesorem přes sběrnici I2C. Pomocnou funkcí procesoru je
+generování předpětí 5V pro LCD displej. Pomocí tlačítek
+V0_DN a V0_UP lze řídit úroveň napětí pro předpětí, a
+tím i kontrast LCD displeje. Pomocí propojky
+&quot;Backlight&quot; lze zapnout nebo vypnout podsvícení
+displeje.</font></p>
+
+<p align="left"><a href="img/BarePi_LCD16x2_3D.jpg"><font
+face="Arial"><img src="img/BarePi_LCD16x2_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LCD16x2_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_LCD16x2_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD16x2_diagram.png"><font
+face="Arial"><img src="img/BarePi_LCD16x2_diagram_m.jpg"
+border="0" width="635" height="433"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD16x2_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_LCD16x2_mounting_m.jpg"
+border="0" width="491" height="417"></font></a><font face="Arial">
+</font><a href="img/BarePi_LCD16x2_label.png"><font face="Arial"><img
+src="img/BarePi_LCD16x2_label_m.jpg" border="0" width="472"
+height="360"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD16x2_bottom.png"><font
+face="Arial"><img src="img/BarePi_LCD16x2_bottom_m.jpg"
+border="0" width="491" height="417"></font></a><a
+href="img/BarePi_LCD16x2_top.png"><font face="Arial"><img
+src="img/BarePi_LCD16x2_top_m.jpg" border="0" width="491"
+height="417"></font></a></p>
+
+<h3 align="left"><a name="lcd160x80"></a><font face="Arial">LCD160x80</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;LCD160x80&quot; je
+grafický barevný displej 0.96&quot; s rozhraním SPI, rozlišením
+160x80 a řadičem ST7735S. Modul obsahuje volitelně procesor
+CH32V002J4M6, ale není nutné ho použít, slouží pouze k
+identifikaci připojení modulu ke sběrnici. K jerdnodušší
+identifikaci připojení displeje slouží též volitelně
+rezistor R1, připojený mezi signály LCD_RE a LCD_CS.</font></p>
+
+<p align="left"><a href="img/BarePi_LCD160x80_3D.jpg"><font
+face="Arial"><img src="img/BarePi_LCD160x80_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LCD160x80_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_LCD160x80_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD160x80_diagram.png"><font
+face="Arial"><img src="img/BarePi_LCD160x80_diagram_m.jpg"
+border="0" width="673" height="345"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD160x80_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_LCD160x80_mounting_m.jpg"
+border="0" width="399" height="334"></font></a><font face="Arial">
+</font><a href="img/BarePi_LCD160x80_label.png"><font
+face="Arial"><img src="img/BarePi_LCD160x80_label_m.jpg"
+border="0" width="384" height="289"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD160x80_bottom.png"><font
+face="Arial"><img src="img/BarePi_LCD160x80_bottom_m.jpg"
+border="0" width="399" height="334"></font></a><a
+href="img/BarePi_LCD160x80_top.png"><font face="Arial"><img
+src="img/BarePi_LCD160x80_top_m.jpg" border="0" width="399"
+height="334"></font></a></p>
+
+<h3 align="left"><a name="lcd320x240"></a><font face="Arial">LCD320x240</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;LCD320x240&quot;
+je grafický barevný displej 2.0&quot; s rozhraním SPI, rozlišením
+320x240 a řadičem ST7789. Modul obsahuje volitelně procesor
+CH32V002J4M6, ale není nutné ho použít, slouží pouze k
+identifikaci připojení modulu ke sběrnici. K jerdnodušší
+identifikaci připojení displeje slouží též volitelně
+rezistor R1, připojený mezi signály LCD_DC a LCD_CS.</font></p>
+
+<p align="left"><a href="img/BarePi_LCD320x240_3D.jpg"><font
+face="Arial"><img src="img/BarePi_LCD320x240_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LCD320x240_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_LCD320x240_3D_bottom_m.jpg" border="0"
+width="400" height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD320x240_diagram.png"><font
+face="Arial"><img src="img/BarePi_LCD320x240_diagram_m.jpg"
+border="0" width="655" height="350"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD320x240_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_LCD320x240_mounting_m.jpg"
+border="0" width="399" height="338"></font></a><font face="Arial">
+</font><a href="img/BarePi_LCD320x240_label.png"><font
+face="Arial"><img src="img/BarePi_LCD320x240_label_m.jpg"
+border="0" width="384" height="289"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD320x240_bottom.png"><font
+face="Arial"><img src="img/BarePi_LCD320x240_bottom_m.jpg"
+border="0" width="399" height="338"></font></a><a
+href="img/BarePi_LCD320x240_top.png"><font face="Arial"><img
+src="img/BarePi_LCD320x240_top_m.jpg" border="0" width="399"
+height="338"></font></a></p>
+
+<h3 align="left"><a name="led12"></a><font face="Arial">LED12</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;LED12&quot;
+obsahuje 12-místný displej ze 7-segmentových LED číslovek.
+Je řízen procesorem CH32V006E8R6, který komunikuje s hlavním
+procesorem přes I2C sběrnici. Při konstrukci doporučuji umístit
+před displej červené plexi sklo, které zajistí dobrý
+kontrast zobrazeného údaje i při denním světle.</font></p>
+
+<p align="left"><a href="img/BarePi_LED12_3D.jpg"><font
+face="Arial"><img src="img/BarePi_LED12_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LED12_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_LED12_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LED12_diagram.png"><font
+face="Arial"><img src="img/BarePi_LED12_diagram_m.jpg" border="0"
+width="863" height="366"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LED12_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_LED12_mounting_m.jpg"
+border="0" width="545" height="345"></font></a><font face="Arial">
+</font><a href="img/BarePi_LED12_label.png"><font face="Arial"><img
+src="img/BarePi_LED12_label_m.jpg" border="0" width="531"
+height="295"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LED12_bottom.png"><font
+face="Arial"><img src="img/BarePi_LED12_bottom_m.jpg" border="0"
+width="545" height="345"></font></a><a
+href="img/BarePi_LED12_top.png"><font face="Arial"><img
+src="img/BarePi_LED12_top_m.jpg" border="0" width="545"
+height="345"></font></a></p>
+
+<h3 align="left"><a name="oled128x64"></a><font face="Arial">OLED128x64</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;OLED128x64&quot;
+je černobílý OLED displej 0.96&quot; s rozlišením 128x64 a
+řadičem SSD1306. Modul lze osadit 2 typy OLED displejů, s
+různým pořadím pinů. Displej můžete zasunout horní nebo
+dolní pozice dutinkové lišty, podle požadovaného pořadí
+pinů. Z toho důvodu existují i dvě různé definice předního
+panelu modulu. Ve skutečnosti můžete použít jenom jeden
+panel, potištěný na obou stranách, kdy zadní strana je natištěná
+&quot;vzhůru nohama&quot;. Použijete potom tu stranu panelu,
+která souhlasí s pozicí použitého displeje.</font></p>
+
+<p align="left"><a href="img/BarePi_OLED128x64_3D.jpg"><font
+face="Arial"><img src="img/BarePi_OLED128x64_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_OLED128x64_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_OLED128x64_3D_bottom_m.jpg" border="0"
+width="400" height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_OLED128x64_diagram.png"><font
+face="Arial"><img src="img/BarePi_OLED128x64_diagram_m.jpg"
+border="0" width="526" height="288"></font></a></p>
+
+<p align="left"><a href="img/BarePi_OLED128x64_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_OLED128x64_mounting_m.jpg"
+border="0" width="400" height="317"></font></a><font face="Arial">
+</font><a href="img/BarePi_OLED128x64_label_GND_VDD.png"><font
+face="Arial"><img src="img/BarePi_OLED128x64_label_GND_VDD_m.jpg"
+border="0" width="384" height="266"></font></a><font face="Arial">
+</font><a href="img/BarePi_OLED128x64_label_VDD_GND.png"><font
+face="Arial"><img src="img/BarePi_OLED128x64_label_VDD_GND_m.jpg"
+border="0" width="384" height="266"></font></a></p>
+
+<p align="left"><a href="img/BarePi_OLED128x64_bottom.png"><font
+face="Arial"><img src="img/BarePi_OLED128x64_bottom_m.jpg"
+border="0" width="400" height="317"></font></a><a
+href="img/BarePi_OLED128x64_top.png"><font face="Arial"><img
+src="img/BarePi_OLED128x64_top_m.jpg" border="0" width="400"
+height="317"></font></a></p>
+
+<h2 align="left"><font face="Arial">Klávesnice</font></h2>
+
+<h3 align="left"><a name="calckey"></a><font face="Arial">CalcKey</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;CalcKey&quot; je
+klávesnice určená pro kalkulačky. Rozložení tlačítek
+odpovídá rozložení kalkulačky ET-58, která je klonem
+kalkulačky TI-58.</font></p>
+
+<p align="left"><a href="img/BarePi_CalcKey_3D.jpg"><font
+face="Arial"><img src="img/BarePi_CalcKey_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_CalcKey_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_CalcKey_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_CalcKey_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_CalcKey_mounting_m.jpg"
+border="0" width="417" height="687"></font></a><font face="Arial">
+</font><a href="img/BarePi_CalcKey_panel.png"><font face="Arial"><img
+src="img/BarePi_CalcKey_panel_m.jpg" border="0" width="384"
+height="626"></font></a></p>
+
+<p align="left"><a href="img/BarePi_CalcKey_bottom.png"><font
+face="Arial"><img src="img/BarePi_CalcKey_bottom_m.jpg"
+border="0" width="417" height="687"></font></a><a
+href="img/BarePi_CalcKey_top.png"><font face="Arial"><img
+src="img/BarePi_CalcKey_top_m.jpg" border="0" width="417"
+height="687"></font></a></p>
+
+<h3 align="left"><a name="keypad"></a><font face="Arial">KeyPad</font></h3>
+
+<p align="left"><font face="Arial">Modul &quot;KeyPad&quot; je základní
+jednoduchá klávesnice, sloužící především k ovládání
+her. Obsahuje 9 tlačítek - směrové šipky, hlavní akční
+tlačítko &quot;A&quot;, vedlejší akční tlačítko
+&quot;B&quot;, pomocné tlačítko &quot;X&quot;, tlačítko ukončení
+&quot;Y&quot; a tlačítko alternativního významu kláves
+&quot;ALT&quot;. Tlačítka slouží k přímému čtení stavu s
+využitím pull-up rezistorů, při stisku se spojí se zemí
+GND. Signál pro tlačítko &quot;ALT&quot; může sloužit
+současně jako zdroj hodinového signálu, proto je tlačítko připojeno
+přes ochranný rezistor 1K0.</font></p>
+
+<p align="left"><a href="img/BarePi_KeyPad_3D.jpg"><font
+face="Arial"><img src="img/BarePi_KeyPad_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_KeyPad_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_KeyPad_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_KeyPad_diagram.png"><font
+face="Arial"><img src="img/BarePi_KeyPad_diagram_m.jpg"
+border="0" width="514" height="330"></font></a></p>
+
+<p align="left"><a href="img/BarePi_KeyPad_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_KeyPad_mounting_m.jpg"
+border="0" width="399" height="327"></font></a><font face="Arial">
+</font><a href="img/BarePi_KeyPad_label.png"><font face="Arial"><img
+src="img/BarePi_KeyPad_label_m.jpg" border="0" width="384"
+height="278"></font></a></p>
+
+<p align="left"><a href="img/BarePi_KeyPad_bottom.png"><font
+face="Arial"><img src="img/BarePi_KeyPad_bottom_m.jpg" border="0"
+width="399" height="327"></font></a><a
+href="img/BarePi_KeyPad_top.png"><font face="Arial"><img
+src="img/BarePi_KeyPad_top_m.jpg" border="0" width="399"
+height="327"></font></a></p>
+
+<h3 align="left"><a name="minikey"></a><font face="Arial">MiniKey</font></h3>
+
+<p align="left"><font face="Arial">Modil &quot;MiniKey&quot; je
+minimalistická alfanumerická klávesnice. Obsahuje celkem 48
+tlačítek, z toho 9 tlačítek odpovídají tlačítkům klávesnice
+&quot;KeyPad&quot; s přímým přístupem k tlačítkům, zbylých
+39 tlačítek je multiplexovaných procesorem CH32V002F4P6, v
+matici 6x7 tlačítek.</font></p>
+
+<p align="left"><a href="img/BarePi_MiniKey_3D.jpg"><font
+face="Arial"><img src="img/BarePi_MiniKey_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_MiniKey_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_MiniKey_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MiniKey_diagram.png"><font
+face="Arial"><img src="img/BarePi_MiniKey_diagram_m.jpg"
+border="0" width="742" height="549"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MiniKey_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_MiniKey_mounting_m.jpg"
+border="0" width="616" height="496"></font></a><font face="Arial">
+</font><a href="img/BarePi_MiniKey_panel.png"><font face="Arial"><img
+src="img/BarePi_MiniKey_panel_m.jpg" border="0" width="591"
+height="443"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MiniKey_bottom.png"><font
+face="Arial"><img src="img/BarePi_MiniKey_bottom_m.jpg"
+border="0" width="616" height="495"></font></a><a
+href="img/BarePi_MiniKey_top.png"><font face="Arial"><img
+src="img/BarePi_MiniKey_top_m.jpg" border="0" width="616"
+height="495"></font></a></p>
+
+<p align="left">&nbsp;</p>
+
+<p align="right"><font face="Arial">Miroslav Němeček</font></p>
+
+<p align="left"><a href="../index.html"><font size="3"
+face="Arial">&lt;&lt; Zpět</font></a></p>
+
+<p>&nbsp;</p>
+</body>
+</html>
