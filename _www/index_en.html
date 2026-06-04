@@ -49,7 +49,2108 @@ web page is under construction &lt;&lt;&lt;</strong></font></p>
 
 <p align="center">&nbsp;</p>
 
+<p align="center"><a href="img/BarePi.jpg"><img
+src="img/BarePi2.jpg" border="0" width="500" height="310"></a></p>
+
+<p align="left"><font face="Arial"><em>Note: The schematics and
+PCBs are in KiCAD version 9 format. The PCBs were originally
+designed for home production using photolithography and may not
+be properly prepared for professional production. If you want to
+have your PCBs professionally produced, I recommend checking the
+designs carefully, especially the dimensions of the components,
+which may not be correctly defined. Typically, SMD capacitors may
+not have the correct dimensions.</em></font></p>
+
+<p align="left"><font face="Arial"><em>Note 2: A WCH-LinkE
+programmer (</em></font><a
+href="https://pajenicko.cz/usb-programator-a-debug-adapter-wch-link"><font
+face="Arial"><em>available e.g. here</em></font></a><font
+face="Arial"><em>) may be required to program CH32xxx processors.
+Before using it for the first time, it may be necessary to
+upgrade the firmware of the programmer first - this can be done
+in the MounRiver Studio development environment.</em></font></p>
+
+<h2 align="left"><a name="contents"></a><font face="Arial">Contents</font></h2>
+
+<ul>
+    <li><p align="left"><a href="#description"><font face="Arial">Description
+        of the kit</font></a><font face="Arial"> (basic
+        characteristics of the kit)</font></p>
+    </li>
+    <li><p align="left"><a href="#pins"><font face="Arial">Bus
+        connector</font></a><font face="Arial"> (description of
+        signals on the bus connector)</font></p>
+    </li>
+    <li><p align="left"><a href="#disppins"><font face="Arial">Display
+        connector</font></a><font face="Arial"> (description of
+        signals on the display connector)</font></p>
+    </li>
+    <li><p align="left"><a href="#zerotiny"><font face="Arial">ZeroTiny</font></a><font
+        face="Arial"> (example of a minimalist game console with
+        a Raspberry Zero module, created based on kit modules)</font></p>
+    </li>
+</ul>
+
+<p align="left"><font face="Arial">Special modules</font></p>
+
+<ul>
+    <li><p align="left"><a href="#base"><font face="Arial">Base</font></a><font
+        face="Arial"> (basic module - USB power supply, 3.3V
+        stabilizer, audio output, microSD card, Reset button)</font></p>
+    </li>
+    <li><p align="left"><a href="#busexp"><font face="Arial">BusExp</font></a><font
+        face="Arial"> (bus expander for connecting 4 modules)</font></p>
+    </li>
+    <li><p align="left"><a href="#port"><font face="Arial">Port</font></a><font
+        face="Arial"> (ports SPI, I2C, UART, digital I/O, ADC)</font></p>
+    </li>
+    <li><p align="left"><a href="#rtc"><font face="Arial">RTC</font></a><font
+        face="Arial"> (real-time clock and EEPROM memory)</font></p>
+    </li>
+    <li><p align="left"><a href="#testled"><font face="Arial">TestLed</font></a><font
+        face="Arial"> (bus tester)</font></p>
+    </li>
+</ul>
+
+<p align="left"><font face="Arial">Processors</font></p>
+
+<ul>
+    <li><p align="left"><a href="#megatinyjoypad"><font
+        face="Arial">MegaTinyJoypad</font></a><font face="Arial">
+        (Mega Tiny Joypad game console, ESP-07S processor module,
+        128x64 OLED display)</font></p>
+    </li>
+    <li><p align="left"><a href="#pga2350"><font face="Arial">PGA2350</font></a><font
+        face="Arial"> (PicoPadPGA game console, RP2350 processor)</font></p>
+    </li>
+    <li><p align="left"><a href="#picopad"><font face="Arial">PicoPad</font></a><font
+        face="Arial"> (PicoPad console, RP2040 or RP2350
+        processor)</font></p>
+    </li>
+    <li><p align="left"><a href="#picopadhstx"><font face="Arial">PicoPadHSTX</font></a><font
+        face="Arial"> (PicoPadHSTX console with VGA or HDMI
+        output, RP2350 processor)</font></p>
+    </li>
+    <li><p align="left"><a href="#pidiboy"><font face="Arial">PidiBoy</font></a><font
+        face="Arial"> (PidiBoy console, CH32V006F8P6 processor,
+        128x64 OLED display)</font></p>
+    </li>
+    <li><p align="left"><a href="#pidimet"><font face="Arial">PidiMet</font></a><font
+        face="Arial">, </font><a href="#pidimetadapter"><font
+        face="Arial">PidiMetAdapter</font></a><font face="Arial">
+        (universal multimeter)</font></p>
+    </li>
+    <li><p align="left"><a href="#pidipad"><font face="Arial">PidiPad</font></a><font
+        face="Arial"> (PidiPad console, CH32V006E8R6 processor,
+        output to VGA monitor)</font></p>
+    </li>
+    <li><p align="left"><a href="#sumopad"><font face="Arial">SumoPad</font></a><font
+        face="Arial"> (SumoPad console, CH32V208RBT6 processor,
+        output to VGA monitor or LCD display 320x240)</font></p>
+    </li>
+    <li><p align="left"><a href="#tinyjoypad"><font face="Arial">TinyJoypad</font></a><font
+        face="Arial"> (Tiny Joypad game console, ATtiny85
+        processor, 128x64 OLED display)</font></p>
+    </li>
+    <li><p align="left"><a href="#tweetyboy"><font face="Arial">TweetyBoy</font></a><font
+        face="Arial"> (TweetyBoy game console, CH32X035G8R6
+        processor, 160x80 LCD display)</font></p>
+    </li>
+    <li><p align="left"><a href="#zero"><font face="Arial">Zero</font></a><font
+        face="Arial"> (Raspberry Zero 1 or Raspberry Zero 2
+        module)</font></p>
+    </li>
+</ul>
+
+<p align="left"><font face="Arial">Displays</font></p>
+
+<ul>
+    <li><p align="left"><a href="#disphdmi"><font face="Arial">DispHDMI</font></a><font
+        face="Arial"> (adapter for connecting an HDMI monitor)</font></p>
+    </li>
+    <li><p align="left"><a href="#dispvga"><font face="Arial">DispVGA</font></a><font
+        face="Arial"> (adapter for connecting a VGA monitor)</font></p>
+    </li>
+    <li><p align="left"><a href="#extdisp"><font face="Arial">ExtDisp</font></a><font
+        face="Arial"> (converter for grabbing a 320x240 LCD
+        display and displaying it on a VGA or HDMI monitor)</font></p>
+    </li>
+    <li><p align="left"><a href="#lcd16x2"><font face="Arial">LCD16x2</font></a><font
+        face="Arial"> (text LCD display, 2 rows of 16 characters)</font></p>
+    </li>
+    <li><p align="left"><a href="#lcd160x80"><font face="Arial">LCD160x80</font></a><font
+        face="Arial"> (LCD color display 160x80)</font></p>
+    </li>
+    <li><p align="left"><a href="#lcd320x240"><font face="Arial">LCD320x240</font></a><font
+        face="Arial"> (LCD color display 320x240)</font></p>
+    </li>
+    <li><p align="left"><a href="#led12"><font face="Arial">LED12</font></a><font
+        face="Arial"> (7-segment LED display with 12 positions)</font></p>
+    </li>
+    <li><p align="left"><a href="#oled128x64"><font face="Arial">OLED128x64</font></a><font
+        face="Arial"> (OLED black and white display 128x64)</font></p>
+    </li>
+</ul>
+
+<p align="left"><font face="Arial">Keyboard</font></p>
+
+<ul>
+    <li><p align="left"><a href="#calckey"><font face="Arial">CalcKey</font></a><font
+        face="Arial"> (calculator keyboard)</font></p>
+    </li>
+    <li><p align="left"><a href="#keypad"><font face="Arial">KeyPad</font></a><font
+        face="Arial"> (basic gaming keyboard with 9 buttons)</font></p>
+    </li>
+    <li><p align="left"><a href="#minikey"><font face="Arial">MiniKey</font></a><font
+        face="Arial"> (minimalist alphanumeric keyboard)</font></p>
+    </li>
+</ul>
+
 <p align="left">&nbsp;</p>
+
+<h3 align="left"><a name="description"></a><font face="Arial">Description
+of the kit</font></h3>
+
+<p align="left"><font face="Arial">BarePi is a modular microchip
+kit designed for programming small devices such as game consoles
+or calculators. The main focus is on the Raspberry Zero 2 module,
+programmed as bare-metal (i.e. without an operating system).
+However, other types of processors supporting 3.3V signals can
+also be used (ATmega, CH32V, ESP32). The modules of the kit are
+connected via 40-pin connectors, forming a bus with signals
+defined according to the Raspberry Zero 2 module. The connectors
+ensure sufficient connection strength, no additional mechanical
+connections are needed. Most modules are pass-through - they
+contain both a bus input connector on the top edge of the board
+and a bus output connector on the bottom edge of the board. The
+exceptions are the processor modules, which contain only an
+output connector, and the alphanumeric keyboard module, which has
+only an input connector.</font></p>
+
+<p align="left"><font face="Arial">The connection connector
+consists of a 2x20-pin female header on the bottom of the module
+(signal output from the module - e.g. processor module) and a
+2x20-pin pin header on the top of the module (signal input to the
+module - e.g. keyboard). Most modules have a width of 65
+millimeters, based on the width of the Raspberry Zero 2 module.
+Most devices contain a processor module, a &quot;Base&quot;
+module with power supply and sound output, a display module and a
+keyboard module. All signals on the bus are at 3.3V levels. The
+bus also contains a 5V supply voltage, but this voltage is used
+both to supply power to the device (followed by a 3.3V
+stabilizer) and as a voltage for a possible signal converter to
+the 5V level. The 5V level must not be applied to the signal
+wires themselves, in many cases this could damage the device.</font></p>
+
+<p align="left"><font face="Arial">When building modules, you can
+solder the processor and display modules hard over the pin strip,
+but I recommend using a socket strip for easy replacement. The
+kit modules can be used in the simplest form, just the printed
+circuit board itself, but it is more luxurious to add a top
+panel. For some modules, such as the keyboard, the top panel is
+necessary because of the key labels. An additional printed
+circuit board can be used as the top panel, screwed to the module
+using spacers. The materials also include graphics for the bottom
+panel, but it is probably unnecessary - the bottom side of the
+module can be treated, for example, by gluing foam strips from
+window insulation so that the bottom side of the printed circuit
+board does not scratch the table. For the kit prototypes, instead
+of the top panel, I used only printed cardboard paper, covered
+with insulating tape against abrasion and with holes punched with
+a leather punch. For keyboards, I recommend adjusting the height
+of the keys so that the keycaps protrude 1 mm above the surface
+of the top panel. If the protrusion is too large, the keys may
+press into your fingers when pressed, and if the protrusion is
+too small, more force may be required to press.</font></p>
+
+<p align="left"><a href="img/BarePi_ZeroTiny5.jpg"><font
+face="Arial"><img src="img/BarePi_ZeroTiny5_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_CalcKey5.jpg"><font face="Arial"><img
+src="img/BarePi_CalcKey5_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<h3 align="left"><a name="pins"></a><font face="Arial">Bus
+connector</font></h3>
+
+<p align="left"><font face="Arial">Definition of the signals on
+the bus connector, looking at the header strip on the bottom edge
+of the module. The corresponding GPIO pin number of the Raspberry
+Zero 2 module is shown in parentheses.</font></p>
+
+<p align="left"><a href="img/BarePi_pins2.jpg"><font face="Arial"><img
+src="img/BarePi_pins2_m.jpg" border="0" width="500" height="355"></font></a></p>
+
+<p align="left"><a href="img/BarePi_pins.png"><font face="Arial"><img
+src="img/BarePi_pins_m.jpg" border="0" width="463" height="315"></font></a></p>
+
+<ul>
+    <li><p align="left"><font face="Arial"><strong>1,2</strong> </font><font
+        color="#FF0000" face="Arial"><strong>5V</strong></font><font
+        face="Arial"> ... Supply voltage 5V. It is used to power
+        the device, e.g. from a USB connector or a 3.7V battery.
+        The device itself is powered by a voltage of 3.3V, so the
+        device must also include a voltage stabilizer for 3.3V.
+        All signals on the bus are at 3.3V levels. If signals
+        with a 5V level are needed, a level converter must be
+        used.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>3,4</strong> </font><font
+        color="#FF0000" face="Arial"><strong>3V3</strong></font><font
+        face="Arial"> ... Supply voltage 3.3V. This is the main
+        supply voltage of the device. It can be obtained by a
+        stabilizer from a 5V voltage (e.g. from a USB connector)
+        or a voltage converter from a battery.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>5</strong> </font><font
+        color="#FF0000" face="Arial"><strong>BUS_SDA</strong></font><font
+        face="Arial"> (GPIO0) ... Internal I2C bus data wire. The
+        internal I2C bus is used to directly control the modules
+        of the kit. The internal I2C bus can be a separate bus,
+        separated from the external user I2C bus, so that the
+        user can independently control the communication. In the
+        Raspberry Zero 2 module, this is the I2C0 bus. In other
+        modules, the internal I2C bus can be shared with the
+        external I2C bus. In the Raspberry Zero 2 module, the
+        I2C0 bus is also used to access the system ID EEPROM
+        memory when the device is turned on - this must be
+        remembered to avoid overlapping the functions of the
+        EEPROM memory. The signal is of the open collector type -
+        pull-up resistors must be used.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>6</strong> </font><font
+        color="#FF0000" face="Arial"><strong>BUS_SCL</strong></font><font
+        face="Arial"> (GPIO1) ... Clock wire of the internal I2C
+        bus. In the Raspberry Zero 2 module this is the I2C0 bus.
+        The signal is of the open collector type - pull-up
+        resistors must be used.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>7</strong> </font><font
+        color="#FF0000" face="Arial"><strong>I2C_SDA</strong></font><font
+        face="Arial"> (GPIO2) ... External I2C bus data wire. The
+        external I2C bus is used to control user devices so that
+        communication does not conflict with the control of the
+        kit modules. In the Raspberry Zero 2 module, this is the
+        I2C1 bus. In other modules, the external I2C bus may be
+        shared with the internal I2C bus. The signal is of the
+        open collector type - pull-up resistors must be used.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>8 </strong></font><font
+        color="#FF0000" face="Arial"><strong>I2C_SCL</strong></font><font
+        face="Arial"> (GPIO3) ... Clock wire of external I2C bus.
+        In Raspberry Zero 2 module this is I2C1 bus. Signal is
+        open collector type - pull-up resistors must be used.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>9 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_ALT</strong></font><font
+        face="Arial"> (GPIO4) ... Input of the alternative
+        function button &quot;ALT&quot;. The button changes the
+        meaning of the other keyboard keys. The button connects
+        the pin to GND and requires the use of a pull-up
+        resistor. This signal can also have other functions if
+        the button function is not used. The clock signal from
+        the processor can be output to the pin - in the Raspberry
+        Zero 2 module this is the GPCLK0 signal. For this reason,
+        the &quot;ALT&quot; button should be connected via a
+        protective resistor (e.g. 1K0), which will prevent damage
+        to the circuits if the button is accidentally pressed if
+        the clock signal is output to the pin. Another additional
+        function of the pin is the input of the ADC converter -
+        typically in the Raspberry Pico and CH32 modules.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>10 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_DOWN</strong></font><font
+        face="Arial"> (GPIO5) ... &quot;DOWN&quot; button input.
+        Along with the &quot;ALT&quot; button, it has an
+        alternative meaning of &quot;Page Down&quot;. The button
+        connects the pin to GND and requires the use of a pull-up
+        resistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>11 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_UP</strong></font><font
+        face="Arial"> (GPIO6) ... &quot;UP&quot; button input.
+        Along with the &quot;ALT&quot; button, it has an
+        alternative meaning of &quot;Page Up&quot;. The button
+        connects the pin to GND and requires the use of a pull-up
+        resistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>12 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SPI_CS1</strong></font><font
+        face="Arial"> (GPIO7) ... The second SPI bus select
+        signal. In the Raspberry Zero module, this is the SPI0
+        bus.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>13 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SPI_CS0</strong></font><font
+        face="Arial"> (GPIO8) ... The first SPI bus select
+        signal. In the Raspberry Zero module, this is the SPI0
+        bus.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>14 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SPI_MISO</strong></font><font
+        face="Arial"> (GPIO9) ... SPI bus MISO signal - data
+        input to the processor from the peripheral (RX signal).
+        In the Raspberry Zero module, this is the SPI0 bus. In
+        some devices, the SPI bus may be shared with the SD card
+        - in this case, it is necessary to remove the SD card
+        from the slot before using the SPI bus.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>15 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SPI_MOSI</strong></font><font
+        face="Arial"> (GPIO10) ... SPI bus MOSI signal - data
+        output from the processor to the peripheral (TX signal).
+        In the Raspberry Zero module, this is the SPI0 bus.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>16 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SPI_SCLK</strong></font><font
+        face="Arial"> (GPIO11) ... SPI bus clock signal. In the
+        Raspberry Zero module, this is the SPI0 bus.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>17 </strong></font><font
+        color="#FF0000" face="Arial"><strong>PWM_L</strong></font><font
+        face="Arial"> (GPIO12) ... Left channel audio output.
+        Typically PWM modulation, so an RC filter may be
+        required.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>18 </strong></font><font
+        color="#FF0000" face="Arial"><strong>PWM_R</strong></font><font
+        face="Arial"> (GPIO13) ... Right channel audio output.
+        Typically PWM modulation, so an RC filter may be
+        required.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>19 </strong></font><font
+        color="#FF0000" face="Arial"><strong>UART_TX</strong></font><font
+        face="Arial"> (GPIO14) ... Serial data output of the UART
+        port. In some modules, this pin can be used as a CAN Bus
+        serial data output (CAN_TX signal).</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>20 </strong></font><font
+        color="#FF0000" face="Arial"><strong>UART_RX</strong></font><font
+        face="Arial"> (GPIO15) ... Serial data input of the UART
+        port. In some modules, this pin can be used as a CAN Bus
+        serial data input (CAN_RX signal).</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>21 </strong></font><font
+        color="#FF0000" face="Arial"><strong>LCD_DC</strong></font><font
+        face="Arial"> (GPIO16) ... Control signal for LCD SPI
+        display - resolution of data and control code.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>22 </strong></font><font
+        color="#FF0000" face="Arial"><strong>LCD_RES</strong></font><font
+        face="Arial"> (GPIO17) ... Signal to reset the LCD SPI
+        display controller.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>23 </strong></font><font
+        color="#FF0000" face="Arial"><strong>LCD_CS</strong></font><font
+        face="Arial"> (GPIO18) ... Signal for selecting the LCD
+        SPI display. In the Raspberry Zero module, this is the
+        SPI1 bus. The PCM_CLK signal for the I2S/PCM interface
+        can optionally be available on this pin.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>24 </strong></font><font
+        color="#FF0000" face="Arial"><strong>LCD_BL</strong></font><font
+        face="Arial"> (GPIO19) ... Signal for controlling the
+        brightness of the LCD SPI display backlight. Typically,
+        this is a PWM signal. Optionally, the PCM_FS signal for
+        the I2S/PCM interface can be available on this pin. If
+        the processor does not allow smooth brightness control,
+        this pin should be HIGH for full display brightness.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>25 </strong></font><font
+        color="#FF0000" face="Arial"><strong>LCD_MOSI</strong></font><font
+        face="Arial"> (GPIO20) ... Serial data output to the LCD
+        SPI display. In the Raspberry Zero module, this is the
+        SPI1 bus. The PCM_DIN signal for the I2S/PCM interface
+        can optionally be available on this pin.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>26 </strong></font><font
+        color="#FF0000" face="Arial"><strong>LCD_SCK</strong></font><font
+        face="Arial"> (GPIO21) ... LCD SPI display clock signal.
+        In the Raspberry Zero module, this is the SPI1 bus.
+        Optionally, the PCM_DOUT signal for the I2S/PCM interface
+        can be available on this pin.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>27 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_A</strong></font><font
+        face="Arial"> (GPIO22) ... Input button &quot;A&quot; -
+        the main action button. On the alphanumeric keyboard, it
+        corresponds to the &quot;Spacebar&quot; key. Together
+        with the &quot;ALT&quot; button, it has an alternative
+        meaning of &quot;Insert&quot;. The button connects the
+        pin to GND and requires the use of a pull-up resistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>28 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_B</strong></font><font
+        face="Arial"> (GPIO23) ... &quot;B&quot; button input -
+        secondary action button. On an alphanumeric keyboard, it
+        corresponds to the &quot;Enter&quot; key. Together with
+        the &quot;ALT&quot; button, it has an alternative meaning
+        of &quot;Edit&quot;. The button connects the pin to GND
+        and requires the use of a pull-up resistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>29 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_X</strong></font><font
+        face="Arial"> (GPIO24) ... Input button &quot;X&quot; -
+        additional functions button (e.g. help). On the
+        alphanumeric keyboard it corresponds to the
+        &quot;Tab&quot; key. Together with the &quot;ALT&quot;
+        button it has an alternative meaning &quot;Print
+        Screen&quot; - screenshot of the screen contents to a
+        file. The button connects the pin to GND and requires the
+        use of a pull-up resistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>30 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_RIGHT</strong></font><font
+        face="Arial"> (GPIO25) ... &quot;RIGHT&quot; button
+        input. Along with the &quot;ALT&quot; button, it has an
+        alternative meaning of &quot;End&quot;. The button
+        connects the pin to GND and requires the use of a pull-up
+        resistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>31 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_LEFT</strong></font><font
+        face="Arial"> (GPIO26) ... &quot;LEFT&quot; button input.
+        Along with the &quot;ALT&quot; button, it has an
+        alternative meaning of &quot;Home&quot;. The button
+        connects the pin to GND and requires the use of a pull-up
+        resistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>32 </strong></font><font
+        color="#FF0000" face="Arial"><strong>KEY_Y</strong></font><font
+        face="Arial"> (GPIO27) ... &quot;Y&quot; button input -
+        interrupt, exit or menu button. On an alphanumeric
+        keyboard, it corresponds to the &quot;Esc&quot; key.
+        Together with the &quot;ALT&quot; button, it has an
+        alternative meaning of &quot;Menu&quot;, invoking the
+        system menu. The button connects the pin to GND and
+        requires the use of a pull-up resistor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>33 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SD_CS</strong></font><font
+        face="Arial"> ... SPI signal for selecting the SD card.
+        An LED indicating access to the SD card can be connected
+        to this signal.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>34 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SD_MISO</strong></font><font
+        face="Arial"> ... SPI data input from SD card to
+        processor.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>35 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SD_MOSI</strong></font><font
+        face="Arial"> ... SPI data output from the processor to
+        the SD card.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>36 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SD_SCLK</strong></font><font
+        face="Arial"> ... SPI clock for SD card.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>37 </strong></font><font
+        color="#FF0000" face="Arial"><strong>USR_LED</strong></font><font
+        face="Arial"> ... Output to user LED. Active signal is
+        HIGH.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>38 </strong></font><font
+        color="#FF0000" face="Arial"><strong>RESET</strong></font><font
+        face="Arial"> ... &quot;RESET&quot; button input for
+        resetting the processor. The button connects the pin to
+        GND and requires the use of a pull-up resistor. For some
+        modules, the pull-up resistor is internally part of the
+        module.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>39, 40 </strong></font><font
+        color="#FF0000" face="Arial"><strong>GND</strong></font><font
+        face="Arial"> ... Ground 0V.</font></p>
+    </li>
+</ul>
+
+<h3 align="left"><a name="disppins"></a><font face="Arial">Display
+connector</font></h3>
+
+<p align="left"><font face="Arial">Some modules allow image
+output to an external display with a VGA or HDMI interface. These
+modules contain a 2x10-pin female header connector that contains
+signals for output to both an HDMI display and a VGA display. In
+addition, the connector contains a signal used to detect whether
+a DispHDMI, DispVGA module is inserted into the connector or the
+connector is left free. Accordingly, the interface for an HDMI
+display, a VGA display or an internal LCD display can be
+selected.</font></p>
+
+<p align="left"><font face="Arial">Definition of the signals on
+the display connector, looking at the female header strip at the
+output of the processor module. The corresponding GPIO pin number
+of the PGA2350 module is shown in parentheses.</font></p>
+
+<p align="left"><a href="img/BarePi_disppins2.jpg"><font
+face="Arial"><img src="img/BarePi_disppins2_m.jpg" border="0"
+width="494" height="350"></font></a></p>
+
+<p align="left"><a href="img/BarePi_disppins.png"><font
+face="Arial"><img src="img/BarePi_disppins_m.jpg" border="0"
+width="370" height="165"></font></a></p>
+
+<ul>
+    <li><p align="left"><font face="Arial"><strong>1 </strong></font><font
+        color="#FF0000" face="Arial"><strong>HSYNC</strong></font><font
+        face="Arial"> (GPIO18) ... Horizontal synchronization of
+        the VGA display. The signal is protected in the DispVGA
+        adapter by the 47 ohm resistor to limit current surge on
+        long wires.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>2 </strong></font><font
+        color="#FF0000" face="Arial"><strong>VSYNC</strong></font><font
+        face="Arial"> (GPIO19) ... Vertical synchronization of
+        the VGA display. The signal is protected in the DispVGA
+        adapter by the 47 ohm resistor to limit current surge on
+        long wires.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>3 </strong></font><font
+        color="#FF0000" face="Arial"><strong>GND</strong></font><font
+        face="Arial"> ... Ground 0V.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>4 </strong></font><font
+        color="#FF0000" face="Arial"><strong>BLUE</strong></font><font
+        face="Arial"> ... Blue color component for VGA display.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>5 </strong></font><font
+        color="#FF0000" face="Arial"><strong>DISP_SEL</strong></font><font
+        face="Arial"> ... Detection of connected adapter. The
+        signal is connected to GND in the DispVGA adapter, to 3V3
+        in the DispHDMI adapter. If no adapter is inserted, the
+        signal is not connected to any wire - in this
+        configuration, an internal LCD display can be used. In
+        some devices, in this third state, autodetection of the
+        connected VGA or HDMI monitor type is performed - by
+        testing the impedance on the VGA connector. However, it
+        is not recommended to use autodetection, as it is not
+        reliable enough.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>6 </strong></font><font
+        color="#FF0000" face="Arial"><strong>GREEN</strong></font><font
+        face="Arial"> ... Green color component for VGA display.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>7 </strong></font><font
+        color="#FF0000" face="Arial"><strong>3V3</strong></font><font
+        face="Arial"> ... Supply voltage 3.3V. Reserved for
+        pull-up resistors of the DispHDMI adapter, currently not
+        used.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>8 </strong></font><font
+        color="#FF0000" face="Arial"><strong>RED</strong></font><font
+        face="Arial"> ... Red color component for VGA display.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>9 </strong></font><font
+        color="#FF0000" face="Arial"><strong>HOTPLUG</strong></font><font
+        face="Arial"> ... HDMI monitor connection detection. If
+        an HDMI monitor is connected and ready to receive a
+        signal, it sets the HOTPLUG signal to HIGH. During normal
+        operation, the device will only start transmitting the
+        image when the HOTPLUG signal is set. The signal is
+        usually +5V, so a resistor divider is used in the
+        DispHDMI adapter to reduce the voltage to 3.3V.
+        Currently, no modules in the kit use the HOTPLUG signal;
+        the image is transmitted independently of the monitor
+        connection.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>10 </strong></font><font
+        color="#FF0000" face="Arial"><strong>5V</strong></font><font
+        face="Arial"> ... Supply voltage 5V. The voltage is used
+        to power the monitor's communication circuits, to power
+        display adapters (e.g. VGA to HDMI converter) and to
+        power the monitor's configuration EEPROM. The current is
+        limited by a 47 ohm protective resistor in the adapters.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>11 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SDA</strong></font><font
+        face="Arial"> ... I2C bus data signal used to read EDID
+        data from an HDMI monitor. Currently, no kit modules use
+        this signal. Be careful when using it - on most monitors
+        the signal is connected via a pull-up resistor to +5V,
+        which can be dangerous for circuits operating at 3.3V
+        levels.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>12 </strong></font><font
+        color="#FF0000" face="Arial"><strong>SCL</strong></font><font
+        face="Arial"> ... I2C bus clock signal used to read EDID
+        data from HDMI monitor. Currently, no kit modules use
+        this signal. Be careful when using it - on most monitors
+        the signal is connected via a pull-up resistor to +5V,
+        which can be dangerous for circuits operating with 3.3V
+        levels.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>13 </strong></font><font
+        color="#FF0000" face="Arial"><strong>CKN</strong></font><font
+        face="Arial"> (GPIO15) ... CK- signal for HDMI display.
+        The signal is limited by a 270 ohm resistor in the HDMI
+        adapter.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>14 </strong></font><font
+        color="#FF0000" face="Arial"><strong>CKP</strong></font><font
+        face="Arial"> (GPIO14) ... CK+ signal for HDMI display.
+        The signal is limited by a 270 ohm resistor in the HDMI
+        adapter.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>15 </strong></font><font
+        color="#FF0000" face="Arial"><strong>D0N</strong></font><font
+        face="Arial"> (GPIO13) ... D0- signal for HDMI display.
+        The signal is limited by a 270 ohm resistor in the HDMI
+        adapter.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>16 </strong></font><font
+        color="#FF0000" face="Arial"><strong>D0P</strong></font><font
+        face="Arial"> (GPIO12) ... D0+ signal for HDMI display.
+        The signal is limited by a 270 ohm resistor in the HDMI
+        adapter.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>17 </strong></font><font
+        color="#FF0000" face="Arial"><strong>D1N</strong></font><font
+        face="Arial"> (GPIO19) ... D1- signal for HDMI display.
+        The signal is limited by a 270 ohm resistor in the HDMI
+        adapter.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>18 </strong></font><font
+        color="#FF0000" face="Arial"><strong>D1P</strong></font><font
+        face="Arial"> (GPIO18) ... D1+ signal for HDMI display.
+        The signal is limited by a 270 ohm resistor in the HDMI
+        adapter.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>19 </strong></font><font
+        color="#FF0000" face="Arial"><strong>D2N</strong></font><font
+        face="Arial"> (GPIO17) ... D2- signal for HDMI display.
+        The signal is limited by a 270 ohm resistor in the HDMI
+        adapter.</font></p>
+    </li>
+    <li><p align="left"><font face="Arial"><strong>20 </strong></font><font
+        color="#FF0000" face="Arial"><strong>D2P</strong></font><font
+        face="Arial"> (GPIO16) ... D2+ signal for HDMI display.
+        The signal is limited by a 270 ohm resistor in the HDMI
+        adapter.</font></p>
+    </li>
+</ul>
+
+<h3 align="left"><a name="zerotiny"></a><font face="Arial">ZeroTiny</font></h3>
+
+<p align="left"><font face="Arial">The game console
+&quot;ZeroTiny&quot; is not directly part of the BarePi kit. This
+is a minimalist game console with a Raspberry Zero 2 or Raspberry
+Zero 1 module. It is an example of creating an end device based
+on the modules of the kit. Its connection corresponds to the
+connection of the &quot;Zero&quot;, &quot;Base&quot; and
+&quot;KeyPad&quot; modules. In the construction, I recommend
+using a female connector strip rather than direct soldering of
+the Zero module - so that the Zero 1 or Zero 2 modules can be
+exchanged.</font></p>
+
+<p align="left"><a href="img/BarePi_ZeroTiny4.jpg"><font
+face="Arial"><img src="img/BarePi_ZeroTiny4_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_ZeroTiny5.jpg"><font face="Arial"><img
+src="img/BarePi_ZeroTiny5_m.jpg" border="0" width="300"
+height="200"></font></a><font face="Arial"> </font><a
+href="img/ZeroTiny.jpg"><font face="Arial"><img
+src="img/ZeroTiny_m.jpg" border="0" width="300" height="192"></font></a></p>
+
+<p align="left"><a href="img/BarePi_ZeroTiny1.jpg"><font
+face="Arial"><img src="img/BarePi_ZeroTiny1_m.jpg" border="0"
+width="300" height="192"></font></a><font face="Arial"> </font><a
+href="img/BarePi_ZeroTiny2.jpg"><font face="Arial"><img
+src="img/BarePi_ZeroTiny2_m.jpg" border="0" width="300"
+height="198"></font></a><font face="Arial"> </font><a
+href="img/BarePi_ZeroTiny3.jpg"><font face="Arial"><img
+src="img/BarePi_ZeroTiny3_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/ZeroTiny_3D.jpg"><font face="Arial"><img
+src="img/ZeroTiny_3D_m.jpg" border="0" width="400" height="297"></font></a><font
+face="Arial"> </font><a href="img/ZeroTiny_3D_bottom.jpg"><font
+face="Arial"><img src="img/ZeroTiny_3D_bottom_m.jpg" border="0"
+width="400" height="284"></font></a></p>
+
+<p align="left"><a href="img/ZeroTiny_diagram.png"><font
+face="Arial"><img src="img/ZeroTiny_diagram_m.jpg" border="0"
+width="574" height="321"></font></a></p>
+
+<p align="left"><a href="img/ZeroTiny_mounting.jpg"><font
+face="Arial"><img src="img/ZeroTiny_mounting_m.jpg" border="0"
+width="403" height="210"></font></a><font face="Arial"> </font><a
+href="img/ZeroTiny_label.png"><font face="Arial"><img
+src="img/ZeroTiny_label_m.jpg" border="0" width="390"
+height="183"></font></a></p>
+
+<p align="left"><a href="img/ZeroTiny_bottom.png"><font
+face="Arial"><img src="img/ZeroTiny_bottom_m.jpg" border="0"
+width="403" height="210"></font></a><a
+href="img/ZeroTiny_top.png"><font face="Arial"><img
+src="img/ZeroTiny_top_m.jpg" border="0" width="403" height="210"></font></a></p>
+
+<h2 align="left"><font face="Arial">Special modules</font></h2>
+
+<h3 align="left"><a name="base"></a><font face="Arial">Base</font></h3>
+
+<p align="left"><font face="Arial">The &quot;Base&quot; module is
+the basic module of the kit. The module can be used with all
+devices - it provides power to the device from the USB connector
+(using a 3.3V stabilizer), audio output, microSD card slot,
+processor reset button, SD card access LED and user LED. Before
+manufacturing the PCB, check the definition for the audio
+connector, SD card slot, speaker and HT7533 stabilizer - the
+coordinates and meaning of the pins may vary from manufacturer to
+manufacturer. There is a jumper on the module that determines
+whether the internal 3.3V stabilizer is used. If the processor
+module contains its own stabilizer, it may be appropriate to turn
+off the stabilizer on the &quot;Base&quot; module.</font></p>
+
+<p align="left"><a href="img/BarePi_Base3.jpg"><font face="Arial"><img
+src="img/BarePi_Base3_m.jpg" border="0" width="300" height="200"></font></a><font
+face="Arial"> </font><a href="img/BarePi_Base5.jpg"><font
+face="Arial"><img src="img/BarePi_Base5_m.jpg" border="0"
+width="300" height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Base1.jpg"><font face="Arial"><img
+src="img/BarePi_Base1_m.jpg" border="0" width="300" height="200"></font></a><font
+face="Arial"> </font><a href="img/BarePi_Base2.jpg"><font
+face="Arial"><img src="img/BarePi_Base2_m.jpg" border="0"
+width="300" height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Base_3D.jpg"><font
+face="Arial"><img src="img/BarePi_Base_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_Base_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_Base_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Base_diagram.png"><font
+face="Arial"><img src="img/BarePi_Base_diagram_m.jpg" border="0"
+width="746" height="367"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Base_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_Base_mounting_m.jpg" border="0"
+width="435" height="299"></font></a><font face="Arial"> </font><a
+href="img/BarePi_Base_label.png"><font face="Arial"><img
+src="img/BarePi_Base_label_m.jpg" border="0" width="384"
+height="248"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Base_bottom.png"><font
+face="Arial"><img src="img/BarePi_Base_bottom_m.jpg" border="0"
+width="435" height="299"></font></a><a
+href="img/BarePi_Base_top.png"><font face="Arial"><img
+src="img/BarePi_Base_top_m.jpg" border="0" width="435"
+height="299"></font></a></p>
+
+<h3 align="left"><a name="busexp"></a><font face="Arial">BusExp</font></h3>
+
+<p align="left"><font face="Arial">The &quot;BusExp&quot; module
+is a bus expander. It allows you to connect up to 4 modules
+together if you prefer to organize the modules &quot;on top of
+each other&quot; rather than &quot;side by side&quot;.</font></p>
+
+<p align="left"><a href="img/BarePi_BusExp4.jpg"><font
+face="Arial"><img src="img/BarePi_BusExp4_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_BusExp3.jpg"><font face="Arial"><img
+src="img/BarePi_BusExp3_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_BusExp1.jpg"><font
+face="Arial"><img src="img/BarePi_BusExp1_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_BusExp2.jpg"><font face="Arial"><img
+src="img/BarePi_BusExp2_m.jpg" border="0" width="300"
+height="193"></font></a></p>
+
+<p align="left"><a href="img/BarePi_BusExp_3D.jpg"><font
+face="Arial"><img src="img/BarePi_BusExp_3D_m.jpg" border="0"
+width="350" height="260"></font></a><font face="Arial"> </font><a
+href="img/BarePi_BusExp_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_BusExp_3D_bottom_m.jpg" border="0" width="350"
+height="260"></font></a></p>
+
+<p align="left"><a href="img/BarePi_BusExp_diagram.png"><font
+face="Arial"><img src="img/BarePi_BusExp_diagram_m.jpg"
+border="0" width="523" height="449"></font></a></p>
+
+<p align="left"><a href="img/BarePi_BusExp_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_BusExp_mounting_m.jpg"
+border="0" width="324" height="227"></font></a></p>
+
+<p align="left"><a href="img/BarePi_BusExp_bottom.png"><font
+face="Arial"><img src="img/BarePi_BusExp_bottom_m.jpg" border="0"
+width="324" height="227"></font></a><a
+href="img/BarePi_BusExp_top.png"><font face="Arial"><img
+src="img/BarePi_BusExp_top_m.jpg" border="0" width="324"
+height="227"></font></a></p>
+
+<h3 align="left"><a name="port"></a><font face="Arial">Port</font></h3>
+
+<p align="left"><font face="Arial">The &quot;Port&quot; module is
+a module for connecting external peripherals. It contains
+connectors for SPI, I2C, UART connections, as well as a
+CH32V002A4M6 processor, which provides 12 digital inputs/outputs
+and 6 analog ADC inputs.</font></p>
+
+<p align="left"><a href="img/BarePi_Port3.jpg"><font face="Arial"><img
+src="img/BarePi_Port3_m.jpg" border="0" width="300" height="200"></font></a><font
+face="Arial"> </font><a href="img/BarePi_Port5.jpg"><font
+face="Arial"><img src="img/BarePi_Port5_m.jpg" border="0"
+width="300" height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Port1.jpg"><font face="Arial"><img
+src="img/BarePi_Port1_m.jpg" border="0" width="300" height="200"></font></a><font
+face="Arial"> </font><a href="img/BarePi_Port2.jpg"><font
+face="Arial"><img src="img/BarePi_Port2_m.jpg" border="0"
+width="300" height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Port_3D.jpg"><font
+face="Arial"><img src="img/BarePi_Port_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_Port_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_Port_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Port_diagram.png"><font
+face="Arial"><img src="img/BarePi_Port_diagram_m.jpg" border="0"
+width="539" height="543"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Port_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_Port_mounting_m.jpg" border="0"
+width="406" height="441"></font></a><font face="Arial"> </font><a
+href="img/BarePi_Port_label.png"><font face="Arial"><img
+src="img/BarePi_Port_label_m.jpg" border="0" width="384"
+height="384"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Port_bottom.png"><font
+face="Arial"><img src="img/BarePi_Port_bottom_m.jpg" border="0"
+width="406" height="441"></font></a><font face="Arial"> </font><a
+href="img/BarePi_Port_top.png"><font face="Arial"><img
+src="img/BarePi_Port_top_m.jpg" border="0" width="406"
+height="441"></font></a></p>
+
+<h3 align="left"><a name="rtc"></a><font face="Arial">RTC</font></h3>
+
+<p align="left"><font face="Arial">The &quot;RTC&quot; module is
+a module containing a real-time clock and EEPROM memory. The
+real-time clock is provided by the DS3231 circuit, backed up by a
+CR2032 battery. It is possible to use either the original MAXIM
+circuit or a much cheaper Chinese clone, which has lower
+accuracy, but its accuracy is sufficient for normal use. I
+personally used a commercially available </font><a
+href="https://www.laskakit.cz/arduino-rtc-hodiny-realneho-casu-ds3231-at24c32/"><font
+face="Arial">real-time clock module</font></a><font face="Arial">,
+from which I soldered out the DS3231 circuit, the AT24C32 memory
+and the CR2032 battery holder, and used everything in this
+module. The &quot;RTC&quot; module contains a built-in AT24C32
+EEPROM memory, with a capacity of 4KB, at I2C address 0x57. This
+memory is used to store program configurations. External modules
+with EEPROM memory with a capacity of up to 64KB can be connected
+to the module, in 2 different pinout configurations. An EEPROM
+module with a pinout of </font><a
+href="https://www.laskakit.cz/eeprom-modul--at24c02--i2c/"><font
+face="Arial">VCC-GND-SCL-SDA</font></a><font face="Arial"> can be
+connected to the first slot, J3. The second slot, J4, is used to
+connect an EEPROM module with the pinout </font><a
+href="https://www.hadex.cz/p/m518b-pamet-i2c-eeprom-s-at24c256-pro-arduino"><font
+face="Arial">VCC-SCL-SDA-GND</font></a><font face="Arial">.
+Memory slots can have an I2C address of 0x50 to 0x56. For
+AT23C256 and AT23C512 memories, the address range can only be
+selected from 0x50 to 0x53. When using EEPROM memories, it is
+important to remember that Raspberry Pi modules (Zero, 1, 2, 3)
+use the I2C0 bus to read the EEPROM ID during startup. If the
+user EEPROM does not use the same data structure as the EEPROM
+ID, this should not be a problem.</font></p>
+
+<p align="left"><a href="img/BarePi_RTC3.jpg"><font face="Arial"><img
+src="img/BarePi_RTC3_m.jpg" border="0" width="300" height="200"></font></a><font
+face="Arial"> </font><a href="img/BarePi_RTC1.jpg"><font
+face="Arial"><img src="img/BarePi_RTC1_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_RTC2.jpg"><font face="Arial"><img
+src="img/BarePi_RTC2_m.jpg" border="0" width="300" height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_RTC_3D.jpg"><font
+face="Arial"><img src="img/BarePi_RTC_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_RTC_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_RTC_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_RTC_diagram.png"><font
+face="Arial"><img src="img/BarePi_RTC_diagram_m.jpg" border="0"
+width="534" height="397"></font></a></p>
+
+<p align="left"><a href="img/BarePi_RTC_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_RTC_mounting_m.jpg" border="0"
+width="402" height="336"></font></a><font face="Arial"> </font><a
+href="img/BarePi_RTC_label.png"><font face="Arial"><img
+src="img/BarePi_RTC_label_m.jpg" border="0" width="384"
+height="283"></font></a></p>
+
+<p align="left"><a href="img/BarePi_RTC_bottom.png"><font
+face="Arial"><img src="img/BarePi_RTC_bottom_m.jpg" border="0"
+width="402" height="336"></font></a><a
+href="img/BarePi_RTC_top.png"><font face="Arial"><img
+src="img/BarePi_RTC_top_m.jpg" border="0" width="402"
+height="336"></font></a></p>
+
+<h3 align="left"><a name="testled"></a><font face="Arial">TestLed</font></h3>
+
+<p align="left"><font face="Arial">The &quot;TestLed&quot; module
+is a test module for testing the kit bus. It uses LEDs to
+indicate the states of the bus signals. Almost all LEDs, except
+for the LEDs for indicating the 5V and 3.3V supply voltages, are
+connected between the signal and the 3.3V supply voltage. By
+lighting up, they indicate the LOW state - because most signals
+are negative, when the idle state is HIGH and the active state is
+LOW. The exceptions are some signals, such as USR_LED, PWM_L,
+PWM_R, LCD_BL, which have a positive meaning and it might be more
+appropriate to indicate their level HIGH. But due to the
+possibility of easy detection of a short circuit between the
+signals, the same connection is left for these special cases of
+signals. The test LED for the USR_LED signal will therefore be on
+if the user LED is off, and similarly the LED for the display
+backlight will be on if the backlight is turned off. Of course,
+in cases where the signal is not used and is in a high impedance
+state, the LEDs will not light up even at the LOW level. For easy
+bus testing, a program can be loaded into some processors that
+gradually lights up the LEDs for bus signals, so you can visually
+check for bus interruption or short circuit errors on the bus.</font></p>
+
+<p align="left"><font face="Arial">The module uses SMD LEDs with
+PLCC-4 package. Different manufacturers use different pin
+connections - therefore, only 2 contacts out of 4 are used on the
+printed circuit board, the connection of which is followed by
+manufacturers.</font></p>
+
+<p align="left"><a href="img/BarePi_TestLed3.jpg"><font
+face="Arial"><img src="img/BarePi_TestLed3_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_TestLed5.jpg"><font face="Arial"><img
+src="img/BarePi_TestLed5_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TestLed1.jpg"><font
+face="Arial"><img src="img/BarePi_TestLed1_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_TestLed2.jpg"><font face="Arial"><img
+src="img/BarePi_TestLed2_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TestLed_3D.jpg"><font
+face="Arial"><img src="img/BarePi_TestLed_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_TestLed_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_TestLed_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TestLed_diagram.png"><font
+face="Arial"><img src="img/BarePi_TestLed_diagram_m.jpg"
+border="0" width="572" height="596"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TestLed_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_TestLed_mounting_m.jpg"
+border="0" width="401" height="390"></font></a><font face="Arial">
+</font><a href="img/BarePi_TestLed_label.png"><font face="Arial"><img
+src="img/BarePi_TestLed_label_m.jpg" border="0" width="384"
+height="337"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TestLed_bottom.png"><font
+face="Arial"><img src="img/BarePi_TestLed_bottom_m.jpg"
+border="0" width="401" height="390"></font></a><a
+href="img/BarePi_TestLed_top.png"><font face="Arial"><img
+src="img/BarePi_TestLed_top_m.jpg" border="0" width="401"
+height="390"></font></a></p>
+
+<h2 align="left"><font face="Arial">Processors</font></h2>
+
+<h3 align="left"><a name="megatinyjoypad"></a><font face="Arial">MegaTinyJoypad</font></h3>
+
+<p align="left"><font face="Arial">The &quot;MegaTinyJoypad&quot;
+module is designed to control the &quot;</font><a
+href="https://www.tinyjoypad.com/esp8285"><font face="Arial">MEGA
+Tiny Joypad</font></a><font face="Arial">&quot; game console,
+designed by (c) Daniel C (Electro L.I.B). The module contains an
+ESP-07S processor unit, which can either be soldered to the
+module directly, or use an </font><a
+href="https://pajenicko.cz/adapter-pro-esp8266-esp07-esp08-esp12"><font
+face="Arial">adapter for ESP-07</font></a><font face="Arial"> and
+a connector with a female connector strip. The program can be
+uploaded to the processor via UART pins, after pressing the
+&quot;A&quot; button during power-on. The &quot;Base&quot;,
+&quot;OLED128x64&quot; and &quot;KeyPad&quot; modules need to be
+connected to the module.</font></p>
+
+<p align="left"><a href="img/BarePi_MegaTinyJoypad3.jpg"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad3_m.jpg"
+border="0" width="300" height="200"></font></a><font face="Arial">
+</font><a href="img/BarePi_MegaTinyJoypad1.jpg"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad1_m.jpg"
+border="0" width="300" height="200"></font></a><font face="Arial">
+</font><a href="img/BarePi_MegaTinyJoypad2.jpg"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad2_m.jpg"
+border="0" width="300" height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MegaTinyJoypad_3D.jpg"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad_3D_m.jpg"
+border="0" width="400" height="297"></font></a><font face="Arial">
+</font><a href="img/BarePi_MegaTinyJoypad_3D_bottom.jpg"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad_3D_bottom_m.jpg"
+border="0" width="400" height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MegaTinyJoypad_diagram.png"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad_diagram_m.jpg"
+border="0" width="525" height="222"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MegaTinyJoypad_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad_mounting_m.jpg"
+border="0" width="396" height="239"></font></a><font face="Arial">
+</font><a href="img/BarePi_MegaTinyJoypad_panel.png"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad_panel_m.jpg"
+border="0" width="384" height="224"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MegaTinyJoypad_bottom.png"><font
+face="Arial"><img src="img/BarePi_MegaTinyJoypad_bottom_m.jpg"
+border="0" width="396" height="239"></font></a><a
+href="img/BarePi_MegaTinyJoypad_top.png"><font face="Arial"><img
+src="img/BarePi_MegaTinyJoypad_top_m.jpg" border="0" width="396"
+height="239"></font></a></p>
+
+<h3 align="left"><a name="pga2350"></a><font face="Arial">PGA2350</font></h3>
+
+<p align="left"><font face="Arial">The &quot;PGA2350&quot; module
+is a variant of the PicoPad console with a </font><a
+href="https://botland.cz/desky-mikrokontroleru-rp235x/25394-pga2350-vyvojova-deska-s-mikrokontrolerem-rp2350b-pimoroni-pim722-0769894025840.html"><font
+face="Arial">PGA2350 processor module</font></a><font
+face="Arial">, with an RP2350B processor, 16 MB Flash and 8 MB
+PSRAM. Image output is possible on a 320x240 pixel LCD display, a
+VGA monitor or an HDMI monitor. The &quot;DispVGA&quot;,
+&quot;DispHSTX&quot;, &quot;LCD320x240&quot;, &quot;Base&quot;
+and &quot;KeyPad&quot; modules need to be connected to the
+module.</font></p>
+
+<p align="left"><a href="img/BarePi_PGA23503.jpg"><font
+face="Arial"><img src="img/BarePi_PGA23503_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PGA23501.jpg"><font face="Arial"><img
+src="img/BarePi_PGA23501_m.jpg" border="0" width="300"
+height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PGA23502.jpg"><font face="Arial"><img
+src="img/BarePi_PGA23502_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PGA2350_3D.jpg"><font
+face="Arial"><img src="img/BarePi_PGA2350_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PGA2350_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_PGA2350_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PGA2350_diagram.png"><font
+face="Arial"><img src="img/BarePi_PGA2350_diagram_m.jpg"
+border="0" width="675" height="573"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PGA2350_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_PGA2350_mounting_m.jpg"
+border="0" width="428" height="413"></font></a><font face="Arial">
+</font><a href="img/BarePi_PGA2350_label.png"><font face="Arial"><img
+src="img/BarePi_PGA2350_label_m.jpg" border="0" width="384"
+height="384"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PGA2350_bottom.png"><font
+face="Arial"><img src="img/BarePi_PGA2350_bottom_m.jpg"
+border="0" width="428" height="413"></font></a><a
+href="img/BarePi_PGA2350_top.png"><font face="Arial"><img
+src="img/BarePi_PGA2350_top_m.jpg" border="0" width="428"
+height="413"></font></a></p>
+
+<h3 align="left"><a name="picopad"></a><font face="Arial">PicoPad</font></h3>
+
+<p align="left"><font face="Arial">The &quot;PicoPad&quot; module
+is used to assemble the PicoPad game console. I recommend not
+soldering the Pico module to the module, but using female
+connectors to allow easy exchange between the Pico 1, Pico 2
+(PicoPad 2) and Pimoroni Pico Plus 2 modules. The
+&quot;Base&quot;, &quot;LCD320x240&quot; and &quot;KeyPad&quot;
+modules need to be connected to the module.</font></p>
+
+<p align="left"><a href="img/BarePi_PicoPad3.jpg"><font
+face="Arial"><img src="img/BarePi_PicoPad3_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PicoPad1.jpg"><font face="Arial"><img
+src="img/BarePi_PicoPad1_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PicoPad_3D.jpg"><font
+face="Arial"><img src="img/BarePi_PicoPad_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PicoPad_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_PicoPad_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PicoPad_diagram.png"><font
+face="Arial"><img src="img/BarePi_PicoPad_diagram_m.jpg"
+border="0" width="543" height="231"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PicoPad_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_PicoPad_mounting_m.jpg"
+border="0" width="407" height="285"></font></a><font face="Arial">
+</font><a href="img/BarePi_PicoPad_label.png"><font face="Arial"><img
+src="img/BarePi_PicoPad_label_m.jpg" border="0" width="384"
+height="266"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PicoPad_bottom.png"><font
+face="Arial"><img src="img/BarePi_PicoPad_bottom_m.jpg"
+border="0" width="407" height="285"></font></a><a
+href="img/BarePi_PicoPad_top.png"><font face="Arial"><img
+src="img/BarePi_PicoPad_top_m.jpg" border="0" width="407"
+height="285"></font></a></p>
+
+<h3 align="left"><a name="picopadhstx"></a><font face="Arial">PicoPadHSTX</font></h3>
+
+<p align="left"><font face="Arial">The &quot;PicoPadHSTX&quot;
+module is used to build the PicoPadHSTX game console. The
+&quot;DispVGA&quot;, &quot;DispHSTX&quot;, &quot;Base&quot; and
+&quot;KeyPad&quot; modules need to be connected to the module.</font></p>
+
+<p align="left"><a href="img/BarePi_PicoPadHSTX3.jpg"><font
+face="Arial"><img src="img/BarePi_PicoPadHSTX3_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PicoPadHSTX1.jpg"><font face="Arial"><img
+src="img/BarePi_PicoPadHSTX1_m.jpg" border="0" width="300"
+height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PicoPadHSTX2.jpg"><font face="Arial"><img
+src="img/BarePi_PicoPadHSTX2_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PicoPadHSTX_3D.jpg"><font
+face="Arial"><img src="img/BarePi_PicoPadHSTX_3D_m.jpg"
+border="0" width="400" height="297"></font></a><font face="Arial">
+</font><a href="img/BarePi_PicoPadHSTX_3D_bottom.jpg"><font
+face="Arial"><img src="img/BarePi_PicoPadHSTX_3D_bottom_m.jpg"
+border="0" width="400" height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PicoPadHSTX_diagram.png"><font
+face="Arial"><img src="img/BarePi_PicoPadHSTX_diagram_m.jpg"
+border="0" width="553" height="413"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PicoPadHSTX_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_PicoPadHSTX_mounting_m.jpg"
+border="0" width="428" height="305"></font></a><font face="Arial">
+</font><a href="img/BarePi_PicoPadHSTX_label.png"><font
+face="Arial"><img src="img/BarePi_PicoPadHSTX_label_m.jpg"
+border="0" width="384" height="283"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PicoPadHSTX_bottom.png"><font
+face="Arial"><img src="img/BarePi_PicoPadHSTX_bottom_m.jpg"
+border="0" width="428" height="305"></font></a><a
+href="img/BarePi_PicoPadHSTX_top.png"><font face="Arial"><img
+src="img/BarePi_PicoPadHSTX_top_m.jpg" border="0" width="428"
+height="305"></font></a></p>
+
+<h3 align="left"><a name="pidiboy"></a><font face="Arial">PidiBoy</font></h3>
+
+<p align="left"><font face="Arial">The &quot;PidiBoy&quot; module
+is designed to build a PidiBoy game console, with a CH32V006F8P6
+processor and output to a 128x64 OLED display. The
+&quot;Base&quot;, &quot;OLED128x64&quot; and &quot;KeyPad&quot;
+modules need to be connected to the module.</font></p>
+
+<p align="left"><a href="img/BarePi_PidiBoy3.jpg"><font
+face="Arial"><img src="img/BarePi_PidiBoy3_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PidiBoy1.jpg"><font face="Arial"><img
+src="img/BarePi_PidiBoy1_m.jpg" border="0" width="300"
+height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PidiBoy2.jpg"><font face="Arial"><img
+src="img/BarePi_PidiBoy2_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiBoy_3D.jpg"><font
+face="Arial"><img src="img/BarePi_PidiBoy_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PidiBoy_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_PidiBoy_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiBoy_diagram.png"><font
+face="Arial"><img src="img/BarePi_PidiBoy_diagram_m.jpg"
+border="0" width="523" height="219"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiBoy_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_PidiBoy_mounting_m.jpg"
+border="0" width="403" height="168"></font></a><font face="Arial">
+</font><a href="img/BarePi_PidiBoy_panel.png"><font face="Arial"><img
+src="img/BarePi_PidiBoy_panel_m.jpg" border="0" width="384"
+height="154"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiBoy_bottom.png"><font
+face="Arial"><img src="img/BarePi_PidiBoy_bottom_m.jpg"
+border="0" width="403" height="168"></font></a><a
+href="img/BarePi_PidiBoy_top.png"><font face="Arial"><img
+src="img/BarePi_PidiBoy_top_m.jpg" border="0" width="403"
+height="168"></font></a></p>
+
+<h3 align="left"><a name="pidimet"></a><font face="Arial">PidiMet</font></h3>
+
+<p align="left"><font face="Arial">The &quot;PidiMet&quot; module
+is used to build a universal multimeter PidiMet. The
+&quot;Base&quot;, &quot;OLED128x64&quot; and &quot;KeyPad&quot;
+modules need to be connected to the module. The
+&quot;PidiMetAdapter&quot; adapter can be used to connect the
+measuring leads. When constructing this module, I would like to
+point out that some components are too close together and are
+difficult to solder - it might be better to rearrange the board
+slightly and also choose larger housings for the capacitors.</font></p>
+
+<p align="left"><a href="img/BarePi_PidiMet3.jpg"><font
+face="Arial"><img src="img/BarePi_PidiMet3_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PidiMet1.jpg"><font face="Arial"><img
+src="img/BarePi_PidiMet1_m.jpg" border="0" width="300"
+height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PidiMet2.jpg"><font face="Arial"><img
+src="img/BarePi_PidiMet2_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiMet_3D.jpg"><font
+face="Arial"><img src="img/BarePi_PidiMet_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PidiMet_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_PidiMet_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiMet_diagram.png"><font
+face="Arial"><img src="img/BarePi_PidiMet_diagram_m.jpg"
+border="0" width="670" height="607"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiMet_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_PidiMet_mounting_m.jpg"
+border="0" width="402" height="330"></font></a><font face="Arial">
+</font><a href="img/BarePi_PidiMet_panel.png"><font face="Arial"><img
+src="img/BarePi_PidiMet_panel_m.jpg" border="0" width="384"
+height="283"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiMet_bottom.png"><font
+face="Arial"><img src="img/BarePi_PidiMet_bottom_m.jpg"
+border="0" width="402" height="330"></font></a><a
+href="img/BarePi_PidiMet_top.png"><font face="Arial"><img
+src="img/BarePi_PidiMet_top_m.jpg" border="0" width="402"
+height="330"></font></a></p>
+
+<h3 align="left"><a name="pidimetadapter"></a><font face="Arial">PidiMetAdapter</font></h3>
+
+<p align="left"><font face="Arial">The &quot;PidiMetAdapter&quot;
+module is an adapter for connecting measuring leads to the
+&quot;PidiMet&quot; module.</font></p>
+
+<p align="left"><a href="img/BarePi_PidiMetAdapter3.jpg"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter3_m.jpg"
+border="0" width="300" height="200"></font></a><font face="Arial">
+</font><a href="img/BarePi_PidiMetAdapter1.jpg"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter1_m.jpg"
+border="0" width="300" height="200"></font></a><font face="Arial">
+</font><a href="img/BarePi_PidiMetAdapter2.jpg"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter2_m.jpg"
+border="0" width="300" height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiMetAdapter_3D.jpg"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter_3D_m.jpg"
+border="0" width="400" height="297"></font></a><font face="Arial">
+</font><a href="img/BarePi_PidiMetAdapter_3D_bottom.jpg"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter_3D_bottom_m.jpg"
+border="0" width="400" height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiMetAdapter_diagram.png"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter_diagram_m.jpg"
+border="0" width="181" height="231"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiMetAdapter_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter_mounting_m.jpg"
+border="0" width="399" height="129"></font></a><font face="Arial">
+</font><a href="img/BarePi_PidiMetAdapter_panel.png"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter_panel_m.jpg"
+border="0" width="384" height="112"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiMetAdapter_bottom.png"><font
+face="Arial"><img src="img/BarePi_PidiMetAdapter_bottom_m.jpg"
+border="0" width="399" height="129"></font></a><a
+href="img/BarePi_PidiMetAdapter_top.png"><font face="Arial"><img
+src="img/BarePi_PidiMetAdapter_top_m.jpg" border="0" width="399"
+height="129"></font></a></p>
+
+<h3 align="left"><a name="pidipad"></a><font face="Arial">PidiPad</font></h3>
+
+<p align="left"><font face="Arial">The &quot;PidiPad&quot; module
+is used to build a PidiPad game console, with a CH32V006E8R6
+processor and VGA monitor output. The &quot;DispVGA&quot;,
+&quot;Base&quot; and &quot;KeyPad&quot; modules need to be
+connected to the module. If you do not use a 25 MHz crystal, the
+processor will choose a lower-precision RC oscillator - the
+console will still be usable, but the VGA image will slightly
+waver and shake. For this reason, the crystal is placed in a
+socket so that it can be removed and tested without the crystal.</font></p>
+
+<p align="left"><a href="img/BarePi_PidiPad3.jpg"><font
+face="Arial"><img src="img/BarePi_PidiPad3_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PidiPad1.jpg"><font face="Arial"><img
+src="img/BarePi_PidiPad1_m.jpg" border="0" width="300"
+height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PidiPad2.jpg"><font face="Arial"><img
+src="img/BarePi_PidiPad2_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiPad_3D.jpg"><font
+face="Arial"><img src="img/BarePi_PidiPad_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_PidiPad_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_PidiPad_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiPad_diagram.png"><font
+face="Arial"><img src="img/BarePi_PidiPad_diagram_m.jpg"
+border="0" width="580" height="350"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiPad_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_PidiPad_mounting_m.jpg"
+border="0" width="394" height="216"></font></a><font face="Arial">
+</font><a href="img/BarePi_PidiPad_panel.png"><font face="Arial"><img
+src="img/BarePi_PidiPad_panel_m.jpg" border="0" width="384"
+height="207"></font></a></p>
+
+<p align="left"><a href="img/BarePi_PidiPad_bottom.png"><font
+face="Arial"><img src="img/BarePi_PidiPad_bottom_m.jpg"
+border="0" width="394" height="216"></font></a><a
+href="img/BarePi_PidiPad_top.png"><font face="Arial"><img
+src="img/BarePi_PidiPad_top_m.jpg" border="0" width="394"
+height="216"></font></a></p>
+
+<h3 align="left"><a name="sumopad"></a><font face="Arial">SumoPad</font></h3>
+
+<p align="left"><font face="Arial">The &quot;SumoPad&quot; module
+is used to build the SumoPad game console. The
+&quot;DispVGA&quot;, &quot;LCD320x240&quot;, &quot;Base&quot; and
+&quot;KeyPad&quot; modules need to be connected to the module.
+The heart of the module is the CH32V208RBT6 processor. Due to the
+difficulty of soldering it (and also due to the higher price),
+the processor does not have to be soldered directly to the module
+board, but can be soldered on an </font><a
+href="https://www.gme.cz/v/1508812/ups-qfp-universal-ic-adapter-qfp-qfp64-qfn64-na-sil64"><font
+face="Arial">LQFP-64 adapter</font></a><font face="Arial">, so
+that the processor can be replaced and used in other modules.
+Image output is possible either to an external VGA monitor or to
+an internal LCD320x240 display - depending on whether the
+&quot;DispVGA&quot; adapter is inserted into the module or not.
+The processor is controlled by a 24MHz crystal, instead of the
+recommended 32MHz crystal - due to better crystal availability.
+The processor can be used in the usual way with a 24MHz crystal,
+the only difference is that the Ethernet and Bluetooth interfaces
+cannot be used - but these are not available in this module
+anyway. The crystal could be changed to the recommended 32MHz, in
+which case the PLL module settings must be adjusted in the
+software, or automatic crystal frequency detection must be added
+to the firmware.</font></p>
+
+<p align="left"><a href="img/BarePi_SumoPad3.jpg"><font
+face="Arial"><img src="img/BarePi_SumoPad3_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_SumoPad1.jpg"><font face="Arial"><img
+src="img/BarePi_SumoPad1_m.jpg" border="0" width="300"
+height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_SumoPad2.jpg"><font face="Arial"><img
+src="img/BarePi_SumoPad2_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_SumoPad_3D.jpg"><font
+face="Arial"><img src="img/BarePi_SumoPad_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_SumoPad_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_SumoPad_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_SumoPad_diagram.png"><font
+face="Arial"><img src="img/BarePi_SumoPad_diagram_m.jpg"
+border="0" width="482" height="609"></font></a></p>
+
+<p align="left"><a href="img/BarePi_SumoPad_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_SumoPad_mounting_m.jpg"
+border="0" width="428" height="410"></font></a><font face="Arial">
+</font><a href="img/BarePi_SumoPad_panel.png"><font face="Arial"><img
+src="img/BarePi_SumoPad_panel_m.jpg" border="0" width="384"
+height="384"></font></a></p>
+
+<p align="left"><a href="img/BarePi_SumoPad_bottom.png"><font
+face="Arial"><img src="img/BarePi_SumoPad_bottom_m.jpg"
+border="0" width="428" height="410"></font></a><a
+href="img/BarePi_SumoPad_top.png"><font face="Arial"><img
+src="img/BarePi_SumoPad_top_m.jpg" border="0" width="428"
+height="410"></font></a></p>
+
+<h3 align="left"><a name="tinyjoypad"></a><font face="Arial">TinyJoypad</font></h3>
+
+<p align="left"><font face="Arial">The &quot;TinyJoypad&quot;
+module is designed to control the &quot;</font><a
+href="https://www.tinyjoypad.com/tinyjoypad_attiny85"><font
+face="Arial">Tiny Joypad</font></a><font face="Arial">&quot; game
+console, designed by (c) Daniel C (Electro L.I.B). The module
+contains an ATtiny85 processor. The program is loaded into the
+processor in a programmer, so it is advisable to use a DIL socket
+for the processor. The &quot;Base&quot;, &quot;OLED128x64&quot;
+and &quot;KeyPad&quot; modules need to be connected to the
+module.</font></p>
+
+<p align="left"><a href="img/BarePi_TinyJoypad3.jpg"><font
+face="Arial"><img src="img/BarePi_TinyJoypad3_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_TinyJoypad1.jpg"><font face="Arial"><img
+src="img/BarePi_TinyJoypad1_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TinyJoypad_3D.jpg"><font
+face="Arial"><img src="img/BarePi_TinyJoypad_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_TinyJoypad_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_TinyJoypad_3D_bottom_m.jpg" border="0"
+width="400" height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TinyJoypad_diagram.png"><font
+face="Arial"><img src="img/BarePi_TinyJoypad_diagram_m.jpg"
+border="0" width="534" height="225"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TinyJoypad_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_TinyJoypad_mounting_m.jpg"
+border="0" width="394" height="172"></font></a><font face="Arial">
+</font><a href="img/BarePi_TinyJoypad_panel.png"><font
+face="Arial"><img src="img/BarePi_TinyJoypad_panel_m.jpg"
+border="0" width="384" height="154"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TinyJoypad_bottom.png"><font
+face="Arial"><img src="img/BarePi_TinyJoypad_bottom_m.jpg"
+border="0" width="394" height="172"></font></a><a
+href="img/BarePi_TinyJoypad_top.png"><font face="Arial"><img
+src="img/BarePi_TinyJoypad_top_m.jpg" border="0" width="394"
+height="172"></font></a></p>
+
+<h3 align="left"><a name="tweetyboy"></a><font face="Arial">TweetyBoy</font></h3>
+
+<p align="left"><font face="Arial">The &quot;TweetyBoy&quot;
+module is designed to build the TweetyBoy game console. The
+&quot;LCD160x80&quot;, &quot;Base&quot; and &quot;KeyPad&quot;
+modules need to be connected to the module. The module is
+controlled by the CH32X035G8R6 processor.</font></p>
+
+<p align="left"><a href="img/BarePi_TweetyBoy3.jpg"><font
+face="Arial"><img src="img/BarePi_TweetyBoy3_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_TweetyBoy1.jpg"><font face="Arial"><img
+src="img/BarePi_TweetyBoy1_m.jpg" border="0" width="300"
+height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_TweetyBoy2.jpg"><font face="Arial"><img
+src="img/BarePi_TweetyBoy2_m.jpg" border="0" width="300"
+height="204"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TweetyBoy_3D.jpg"><font
+face="Arial"><img src="img/BarePi_TweetyBoy_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_TweetyBoy_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_TweetyBoy_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TweetyBoy_diagram.png"><font
+face="Arial"><img src="img/BarePi_TweetyBoy_diagram_m.jpg"
+border="0" width="607" height="223"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TweetyBoy_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_TweetyBoy_mounting_m.jpg"
+border="0" width="399" height="180"></font></a><font face="Arial">
+</font><a href="img/BarePi_TweetyBoy_panel.png"><font
+face="Arial"><img src="img/BarePi_TweetyBoy_panel_m.jpg"
+border="0" width="384" height="165"></font></a></p>
+
+<p align="left"><a href="img/BarePi_TweetyBoy_bottom.png"><font
+face="Arial"><img src="img/BarePi_TweetyBoy_bottom_m.jpg"
+border="0" width="399" height="180"></font></a><a
+href="img/BarePi_TweetyBoy_top.png"><font face="Arial"><img
+src="img/BarePi_TweetyBoy_top_m.jpg" border="0" width="399"
+height="180"></font></a></p>
+
+<h3 align="left"><a name="zero"></a><font face="Arial">Zero</font></h3>
+
+<p align="left"><font face="Arial">The &quot;Zero&quot; module is
+the highest type of processor module in the BarePi kit. It
+contains the Raspberry Zero 1 or Raspberry Zero 2 module. For
+easy replacement, I recommend fitting the module with a connector
+with a female strip, instead of hard soldering it over the pin
+strip. Unlike other modules, this module contains a USB connector
+for power and a microSD card, so it can be operated separately,
+without other modules. For PWM sound output, you may need to
+connect the &quot;Base&quot; module (I recommend disconnecting
+the internal stabilizer in the &quot;Base&quot; module with a
+jumper). For game control, you may need to connect the
+&quot;KeyPad&quot; module. The minimalist version of the game
+console is ZeroTiny - when using the kit modules, it corresponds
+to the connection of the &quot;Zero&quot;, &quot;Base&quot; and
+&quot;KeyPad&quot; modules.</font></p>
+
+<p align="left"><a href="img/BarePi_Zero3.jpg"><font face="Arial"><img
+src="img/BarePi_Zero3_m.jpg" border="0" width="300" height="200"></font></a><font
+face="Arial"> </font><a href="img/BarePi_Zero1.jpg"><font
+face="Arial"><img src="img/BarePi_Zero1_m.jpg" border="0"
+width="300" height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Zero4.jpg"><font face="Arial"><img
+src="img/BarePi_Zero4_m.jpg" border="0" width="300" height="202"></font></a><font
+face="Arial"> </font><a href="img/BarePi_Zero2.jpg"><font
+face="Arial"><img src="img/BarePi_Zero2_m.jpg" border="0"
+width="300" height="193"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Zero_3D.jpg"><font
+face="Arial"><img src="img/BarePi_Zero_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_Zero_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_Zero_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Zero_diagram.png"><font
+face="Arial"><img src="img/BarePi_Zero_diagram_m.jpg" border="0"
+width="493" height="311"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Zero_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_Zero_mounting_m.jpg" border="0"
+width="402" height="306"></font></a><font face="Arial"> </font><a
+href="img/BarePi_Zero_label.png"><font face="Arial"><img
+src="img/BarePi_Zero_label_m.jpg" border="0" width="384"
+height="283"></font></a></p>
+
+<p align="left"><a href="img/BarePi_Zero_bottom.png"><font
+face="Arial"><img src="img/BarePi_Zero_bottom_m.jpg" border="0"
+width="402" height="306"></font></a><a
+href="img/BarePi_Zero_top.png"><font face="Arial"><img
+src="img/BarePi_Zero_top_m.jpg" border="0" width="402"
+height="306"></font></a></p>
+
+<h2 align="left"><font face="Arial">Displays</font></h2>
+
+<h3 align="left"><a name="disphdmi"></a><font face="Arial">DispHDMI</font></h3>
+
+<p align="left"><font face="Arial">The &quot;DispHDMI&quot;
+module is a module for outputting images to a display with an
+HDMI interface. It is not a separate module with a bus, but an
+auxiliary module that can be connected to some processors using a
+connector with a 2x10-pin pin strip. The connector contains
+signals for output to both an HDMI display and a VGA display. In
+addition, it also contains a DISP_SEL signal used to detect
+whether a DispHDMI, DispVGA module is inserted into the connector
+or the connector is left free. Accordingly, the interface for an
+HDMI display, VGA display or internal LCD display can be
+selected.</font></p>
+
+<p align="left"><font face="Arial">The module also supplies the
+HOTPLUG, SCL and SDA signals to the display connector. Currently,
+no module uses these signals. Be careful when using the SCL and
+SDA signals - on most monitors, the signals are connected via
+pull-up resistors to +5V, which can be dangerous for circuits
+operating with 3.3V levels.</font></p>
+
+<p align="left"><a href="img/BarePi_DispHDMI1.jpg"><font
+face="Arial"><img src="img/BarePi_DispHDMI1_m.jpg" border="0"
+width="200" height="216"></font></a></p>
+
+<p align="left"><a href="img/BarePi_DispHDMI_3D.jpg"><font
+face="Arial"><img src="img/BarePi_DispHDMI_3D_m.jpg" border="0"
+width="300" height="223"></font></a><font face="Arial"> </font><a
+href="img/BarePi_DispHDMI_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_DispHDMI_3D_bottom_m.jpg" border="0" width="300"
+height="223"></font></a></p>
+
+<p align="left"><a href="img/BarePi_DispHDMI_diagram.png"><font
+face="Arial"><img src="img/BarePi_DispHDMI_diagram_m.jpg"
+border="0" width="470" height="280"></font></a></p>
+
+<p align="left"><a href="img/BarePi_DispHDMI_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_DispVGA_mounting_m.jpg"
+border="0" width="201" height="252"></font></a><font face="Arial">
+</font><a href="img/BarePi_DispHDMI_bottom.png"><font
+face="Arial"><img src="img/BarePi_DispHDMI_bottom_m.jpg"
+border="0" width="204" height="219"></font></a><a
+href="img/BarePi_DispHDMI_top.png"><font face="Arial"><img
+src="img/BarePi_DispHDMI_top_m.jpg" border="0" width="204"
+height="219"></font></a></p>
+
+<h3 align="left"><a name="dispvga"></a><font face="Arial">DispVGA</font></h3>
+
+<p align="left"><font face="Arial">The &quot;DispVGA&quot; module
+is a module for outputting images to a display with a VGA
+interface. It is not a separate module with a bus, but an
+auxiliary module that can be connected to some processors using a
+connector with a 2x10-pin pin strip. The connector contains
+signals for output to both an HDMI display and a VGA display. In
+addition, it also contains a DISP_SEL signal used to detect
+whether a DispHDMI, DispVGA module is inserted into the connector
+or the connector is left free. Accordingly, the interface for an
+HDMI display, VGA display or internal LCD display can be
+selected.</font></p>
+
+<p align="left"><a href="img/BarePi_DispVGA1.jpg"><font
+face="Arial"><img src="img/BarePi_DispVGA1_m.jpg" border="0"
+width="200" height="208"></font></a><font face="Arial"> </font><a
+href="img/BarePi_DispVGA2.jpg"><font face="Arial"><img
+src="img/BarePi_DispVGA2_m.jpg" border="0" width="200"
+height="202"></font></a></p>
+
+<p align="left"><a href="img/BarePi_DispVGA_3D.jpg"><font
+face="Arial"><img src="img/BarePi_DispVGA_3D_m.jpg" border="0"
+width="300" height="223"></font></a><font face="Arial"> </font><a
+href="img/BarePi_DispVGA_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_DispVGA_3D_bottom_m.jpg" border="0" width="300"
+height="223"></font></a></p>
+
+<p align="left"><a href="img/BarePi_DispVGA_diagram.png"><font
+face="Arial"><img src="img/BarePi_DispVGA_diagram_m.jpg"
+border="0" width="461" height="175"></font></a></p>
+
+<p align="left"><a href="img/BarePi_DispVGA_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_DispVGA_mounting_m.jpg"
+border="0" width="201" height="252"></font></a><font face="Arial">
+</font><a href="img/BarePi_DispVGA_bottom.png"><font face="Arial"><img
+src="img/BarePi_DispVGA_bottom_m.jpg" border="0" width="201"
+height="252"></font></a><a href="img/BarePi_DispVGA_top.png"><font
+face="Arial"><img src="img/BarePi_DispVGA_top_m.jpg" border="0"
+width="201" height="252"></font></a></p>
+
+<h3 align="left"><a name="extdisp"></a><font face="Arial">ExtDisp</font></h3>
+
+<p align="left"><font face="Arial">The &quot;ExtDisp&quot; module
+is designed to capture signals for an LCD display with an ST7789
+controller and a resolution of 320x240 pixels, and display it on
+a VGA or HDMI monitor. The choice of monitor is determined by
+whether a DispVGA adapter or a DispHDMI adapter is inserted into
+the display connector.</font></p>
+
+<p align="left"><a href="img/BarePi_ExtDisp3.jpg"><font
+face="Arial"><img src="img/BarePi_ExtDisp3_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_ExtDisp1.jpg"><font face="Arial"><img
+src="img/BarePi_ExtDisp1_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_ExtDisp_3D.jpg"><font
+face="Arial"><img src="img/BarePi_ExtDisp_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_ExtDisp_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_ExtDisp_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_ExtDisp_diagram.png"><font
+face="Arial"><img src="img/BarePi_ExtDisp_diagram_m.jpg"
+border="0" width="664" height="569"></font></a></p>
+
+<p align="left"><a href="img/BarePi_ExtDisp_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_ExtDisp_mounting_m.jpg"
+border="0" width="440" height="455"></font></a><font face="Arial">
+</font><a href="img/BarePi_ExtDisp_label.png"><font face="Arial"><img
+src="img/BarePi_ExtDisp_label_m.jpg" border="0" width="384"
+height="384"></font></a></p>
+
+<p align="left"><a href="img/BarePi_ExtDisp_bottom.png"><font
+face="Arial"><img src="img/BarePi_ExtDisp_bottom_m.jpg"
+border="0" width="440" height="456"></font></a><a
+href="img/BarePi_ExtDisp_top.png"><font face="Arial"><img
+src="img/BarePi_ExtDisp_top_m.jpg" border="0" width="440"
+height="456"></font></a></p>
+
+<h3 align="left"><a name="lcd16x2"></a><font face="Arial">LCD16x2</font></h3>
+
+<p align="left"><font face="Arial">The &quot;LCD16x2&quot; module
+is a DM1602A text LCD display with 2 rows of 16 characters and an
+HD44780 controller. The module contains a CH32V002A4M6 processor,
+which is used to control the display and communicate with the
+main processor via the I2C bus. The auxiliary function of the
+processor is to generate a 5V bias voltage for the LCD display.
+The V0_DN and V0_UP buttons can be used to control the voltage
+level for the bias voltage, and thus the contrast of the LCD
+display. The &quot;Backlight&quot; jumper can be used to turn the
+display backlight on or off.</font></p>
+
+<p align="left"><a href="img/BarePi_LCD16x23.jpg"><font
+face="Arial"><img src="img/BarePi_LCD16x23_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LCD16x21.jpg"><font face="Arial"><img
+src="img/BarePi_LCD16x21_m.jpg" border="0" width="300"
+height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LCD16x22.jpg"><font face="Arial"><img
+src="img/BarePi_LCD16x22_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD16x2_3D.jpg"><font
+face="Arial"><img src="img/BarePi_LCD16x2_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LCD16x2_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_LCD16x2_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD16x2_diagram.png"><font
+face="Arial"><img src="img/BarePi_LCD16x2_diagram_m.jpg"
+border="0" width="635" height="433"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD16x2_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_LCD16x2_mounting_m.jpg"
+border="0" width="491" height="417"></font></a><font face="Arial">
+</font><a href="img/BarePi_LCD16x2_label.png"><font face="Arial"><img
+src="img/BarePi_LCD16x2_label_m.jpg" border="0" width="472"
+height="360"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD16x2_bottom.png"><font
+face="Arial"><img src="img/BarePi_LCD16x2_bottom_m.jpg"
+border="0" width="491" height="417"></font></a><a
+href="img/BarePi_LCD16x2_top.png"><font face="Arial"><img
+src="img/BarePi_LCD16x2_top_m.jpg" border="0" width="491"
+height="417"></font></a></p>
+
+<h3 align="left"><a name="lcd160x80"></a><font face="Arial">LCD160x80</font></h3>
+
+<p align="left"><font face="Arial">The &quot;LCD160x80&quot;
+module is a 0.96&quot; graphic color display with SPI interface,
+160x80 resolution and ST7735S controller. The module optionally
+contains a CH32V002J4M6 processor, but it is not necessary to use
+it, it is only used to identify the module's connection to the
+bus. For easier identification of the display connection, an
+optional resistor R1, connected between the LCD_RE and LCD_CS
+signals, is also used. Using solder jumpers, you can choose
+whether to use the display backlight signal from the bus or
+whether it will be generated by the processor in the module. It
+may happen that some processor module will not be able to
+generate adjustable backlight brightness, in which case it may be
+more appropriate to generate the backlight in the display module.</font></p>
+
+<p align="left"><a href="img/BarePi_LCD160x803.jpg"><font
+face="Arial"><img src="img/BarePi_LCD160x803_m.jpg" border="0"
+width="300" height="190"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LCD160x801.jpg"><font face="Arial"><img
+src="img/BarePi_LCD160x801_m.jpg" border="0" width="300"
+height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LCD160x802.jpg"><font face="Arial"><img
+src="img/BarePi_LCD160x802_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD160x80_3D.jpg"><font
+face="Arial"><img src="img/BarePi_LCD160x80_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LCD160x80_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_LCD160x80_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD160x80_diagram.png"><font
+face="Arial"><img src="img/BarePi_LCD160x80_diagram_m.jpg"
+border="0" width="673" height="345"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD160x80_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_LCD160x80_mounting_m.jpg"
+border="0" width="399" height="334"></font></a><font face="Arial">
+</font><a href="img/BarePi_LCD160x80_label.png"><font
+face="Arial"><img src="img/BarePi_LCD160x80_label_m.jpg"
+border="0" width="384" height="289"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD160x80_bottom.png"><font
+face="Arial"><img src="img/BarePi_LCD160x80_bottom_m.jpg"
+border="0" width="399" height="334"></font></a><a
+href="img/BarePi_LCD160x80_top.png"><font face="Arial"><img
+src="img/BarePi_LCD160x80_top_m.jpg" border="0" width="399"
+height="334"></font></a></p>
+
+<h3 align="left"><a name="lcd320x240"></a><font face="Arial">LCD320x240</font></h3>
+
+<p align="left"><font face="Arial">The &quot;LCD320x240&quot;
+module is a 2.0&quot; graphic color display with SPI interface,
+320x240 resolution and ST7789 controller. The module optionally
+contains a CH32V002J4M6 processor, but it is not necessary to use
+it, it is only used to identify the module's connection to the
+bus. For easier identification of the display connection, an
+optional resistor R1, connected between the LCD_DC and LCD_CS
+signals, is also used. Using solder jumpers, you can choose
+whether to use the signal for the display backlight from the bus
+or whether it will be generated by the processor in the module.
+It may happen that some processor module will not be able to
+generate adjustable backlight brightness, in which case it may be
+more appropriate to generate the backlight in the display module.</font></p>
+
+<p align="left"><a href="img/BarePi_LCD320x2403.jpg"><font
+face="Arial"><img src="img/BarePi_LCD320x2403_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LCD320x2401.jpg"><font face="Arial"><img
+src="img/BarePi_LCD320x2401_m.jpg" border="0" width="300"
+height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LCD320x2402.jpg"><font face="Arial"><img
+src="img/BarePi_LCD320x2402_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD320x240_3D.jpg"><font
+face="Arial"><img src="img/BarePi_LCD320x240_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LCD320x240_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_LCD320x240_3D_bottom_m.jpg" border="0"
+width="400" height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD320x240_diagram.png"><font
+face="Arial"><img src="img/BarePi_LCD320x240_diagram_m.jpg"
+border="0" width="655" height="350"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD320x240_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_LCD320x240_mounting_m.jpg"
+border="0" width="399" height="338"></font></a><font face="Arial">
+</font><a href="img/BarePi_LCD320x240_label.png"><font
+face="Arial"><img src="img/BarePi_LCD320x240_label_m.jpg"
+border="0" width="384" height="289"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LCD320x240_bottom.png"><font
+face="Arial"><img src="img/BarePi_LCD320x240_bottom_m.jpg"
+border="0" width="399" height="338"></font></a><a
+href="img/BarePi_LCD320x240_top.png"><font face="Arial"><img
+src="img/BarePi_LCD320x240_top_m.jpg" border="0" width="399"
+height="338"></font></a></p>
+
+<h3 align="left"><a name="led12"></a><font face="Arial">LED12</font></h3>
+
+<p align="left"><font face="Arial">The &quot;LED12&quot; module
+contains a 12-digit display of 7-segment LED digits. It is
+controlled by a CH32V006E8R6 processor, which communicates with
+the main processor via the I2C bus. When constructing, I
+recommend placing red plexiglass over the display, which will
+ensure good contrast of the displayed data even in daylight.</font></p>
+
+<p align="left"><a href="img/BarePi_LED123.jpg"><font
+face="Arial"><img src="img/BarePi_LED123_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LED121.jpg"><font face="Arial"><img
+src="img/BarePi_LED121_m.jpg" border="0" width="300" height="200"></font></a><font
+face="Arial"> </font><a href="img/BarePi_LED122.jpg"><font
+face="Arial"><img src="img/BarePi_LED122_m.jpg" border="0"
+width="300" height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LED12_3D.jpg"><font
+face="Arial"><img src="img/BarePi_LED12_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_LED12_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_LED12_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LED12_diagram.png"><font
+face="Arial"><img src="img/BarePi_LED12_diagram_m.jpg" border="0"
+width="863" height="366"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LED12_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_LED12_mounting_m.jpg"
+border="0" width="545" height="345"></font></a><font face="Arial">
+</font><a href="img/BarePi_LED12_label.png"><font face="Arial"><img
+src="img/BarePi_LED12_label_m.jpg" border="0" width="531"
+height="295"></font></a></p>
+
+<p align="left"><a href="img/BarePi_LED12_bottom.png"><font
+face="Arial"><img src="img/BarePi_LED12_bottom_m.jpg" border="0"
+width="545" height="345"></font></a><a
+href="img/BarePi_LED12_top.png"><font face="Arial"><img
+src="img/BarePi_LED12_top_m.jpg" border="0" width="545"
+height="345"></font></a></p>
+
+<h3 align="left"><a name="oled128x64"></a><font face="Arial">OLED128x64</font></h3>
+
+<p align="left"><font face="Arial">The &quot;OLED128x64&quot;
+module is a 0.96&quot; black and white OLED display with an I2C
+interface, a resolution of 128x64 and an SSD1306 controller. The
+module can be equipped with two types of OLED displays, with
+different pin arrangements. You can insert the display into the
+upper or lower position of the header, depending on the desired
+pin arrangement. For this reason, there are also two different
+definitions of the module's front panel. In fact, you can use
+only one panel, printed on both sides, with the back side printed
+&quot;upside down&quot;. You will then use the side of the panel
+that matches the position of the display used.</font></p>
+
+<p align="left"><a href="img/BarePi_OLED128x643.jpg"><font
+face="Arial"><img src="img/BarePi_OLED128x643_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_OLED128x641.jpg"><font face="Arial"><img
+src="img/BarePi_OLED128x641_m.jpg" border="0" width="300"
+height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_OLED128x642.jpg"><font face="Arial"><img
+src="img/BarePi_OLED128x642_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_OLED128x64_3D.jpg"><font
+face="Arial"><img src="img/BarePi_OLED128x64_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_OLED128x64_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_OLED128x64_3D_bottom_m.jpg" border="0"
+width="400" height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_OLED128x64_diagram.png"><font
+face="Arial"><img src="img/BarePi_OLED128x64_diagram_m.jpg"
+border="0" width="526" height="288"></font></a></p>
+
+<p align="left"><a href="img/BarePi_OLED128x64_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_OLED128x64_mounting_m.jpg"
+border="0" width="400" height="317"></font></a><font face="Arial">
+</font><a href="img/BarePi_OLED128x64_label_GND_VDD.png"><font
+face="Arial"><img src="img/BarePi_OLED128x64_label_GND_VDD_m.jpg"
+border="0" width="384" height="266"></font></a><font face="Arial">
+</font><a href="img/BarePi_OLED128x64_label_VDD_GND.png"><font
+face="Arial"><img src="img/BarePi_OLED128x64_label_VDD_GND_m.jpg"
+border="0" width="384" height="266"></font></a></p>
+
+<p align="left"><a href="img/BarePi_OLED128x64_bottom.png"><font
+face="Arial"><img src="img/BarePi_OLED128x64_bottom_m.jpg"
+border="0" width="400" height="317"></font></a><a
+href="img/BarePi_OLED128x64_top.png"><font face="Arial"><img
+src="img/BarePi_OLED128x64_top_m.jpg" border="0" width="400"
+height="317"></font></a></p>
+
+<h2 align="left"><font face="Arial">Keyboard</font></h2>
+
+<h3 align="left"><a name="calckey"></a><font face="Arial">CalcKey</font></h3>
+
+<p align="left"><font face="Arial">The &quot;CalcKey&quot; module
+is a keyboard designed for calculators. The layout of the buttons
+corresponds to the layout of the ET-58 calculator, which is a
+clone of the TI-58 calculator. If you use a different calculator,
+you may need different key labels. You can make a mask with
+different labels, for example, by printing it on hard paper,
+covering the surface with insulating tape (for better abrasion
+resistance) and punching the holes for the buttons with a punch
+on the leather.</font></p>
+
+<p align="left"><a href="img/BarePi_CalcKey3.jpg"><font
+face="Arial"><img src="img/BarePi_CalcKey3_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_CalcKey5.jpg"><font face="Arial"><img
+src="img/BarePi_CalcKey5_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_CalcKey1.jpg"><font
+face="Arial"><img src="img/BarePi_CalcKey1_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_CalcKey2.jpg"><font face="Arial"><img
+src="img/BarePi_CalcKey2_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_CalcKey_3D.jpg"><font
+face="Arial"><img src="img/BarePi_CalcKey_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_CalcKey_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_CalcKey_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_CalcKey_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_CalcKey_mounting_m.jpg"
+border="0" width="417" height="687"></font></a><font face="Arial">
+</font><a href="img/BarePi_CalcKey_panel.png"><font face="Arial"><img
+src="img/BarePi_CalcKey_panel_m.jpg" border="0" width="384"
+height="626"></font></a></p>
+
+<p align="left"><a href="img/BarePi_CalcKey_bottom.png"><font
+face="Arial"><img src="img/BarePi_CalcKey_bottom_m.jpg"
+border="0" width="417" height="687"></font></a><a
+href="img/BarePi_CalcKey_top.png"><font face="Arial"><img
+src="img/BarePi_CalcKey_top_m.jpg" border="0" width="417"
+height="687"></font></a></p>
+
+<h3 align="left"><a name="keypad"></a><font face="Arial">KeyPad</font></h3>
+
+<p align="left"><font face="Arial">The &quot;KeyPad&quot; module
+is a basic simple keyboard, used primarily for controlling games.
+It contains 9 buttons - directional arrows, main action button
+&quot;A&quot;, secondary action button &quot;B&quot;, auxiliary
+button &quot;X&quot;, end button &quot;Y&quot; and alternative
+key meaning button &quot;ALT&quot;. The buttons are used for
+direct reading of the state using pull-up resistors, when pressed
+they connect to the ground GND. The signal for the
+&quot;ALT&quot; button can also serve as a clock signal source,
+therefore the button is connected via a 1K0 protective resistor.</font></p>
+
+<p align="left"><a href="img/BarePi_KeyPad3.jpg"><font
+face="Arial"><img src="img/BarePi_KeyPad3_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_KeyPad5.jpg"><font face="Arial"><img
+src="img/BarePi_KeyPad5_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_KeyPad1.jpg"><font
+face="Arial"><img src="img/BarePi_KeyPad1_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_KeyPad2.jpg"><font face="Arial"><img
+src="img/BarePi_KeyPad2_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_KeyPad_3D.jpg"><font
+face="Arial"><img src="img/BarePi_KeyPad_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_KeyPad_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_KeyPad_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_KeyPad_diagram.png"><font
+face="Arial"><img src="img/BarePi_KeyPad_diagram_m.jpg"
+border="0" width="514" height="330"></font></a></p>
+
+<p align="left"><a href="img/BarePi_KeyPad_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_KeyPad_mounting_m.jpg"
+border="0" width="399" height="327"></font></a><font face="Arial">
+</font><a href="img/BarePi_KeyPad_label.png"><font face="Arial"><img
+src="img/BarePi_KeyPad_label_m.jpg" border="0" width="384"
+height="278"></font></a></p>
+
+<p align="left"><a href="img/BarePi_KeyPad_bottom.png"><font
+face="Arial"><img src="img/BarePi_KeyPad_bottom_m.jpg" border="0"
+width="399" height="327"></font></a><a
+href="img/BarePi_KeyPad_top.png"><font face="Arial"><img
+src="img/BarePi_KeyPad_top_m.jpg" border="0" width="399"
+height="327"></font></a></p>
+
+<h3 align="left"><a name="minikey"></a><font face="Arial">MiniKey</font></h3>
+
+<p align="left"><font face="Arial">The &quot;MiniKey&quot; module
+is a minimalistic alphanumeric keyboard. It contains a total of
+48 buttons, of which 9 buttons correspond to the
+&quot;KeyPad&quot; keyboard buttons with direct access to the
+buttons, the remaining 39 buttons are multiplexed by the
+CH32V002F4P6 processor, in a 6x7 button matrix.</font></p>
+
+<p align="left"><a href="img/BarePi_MiniKey3.jpg"><font
+face="Arial"><img src="img/BarePi_MiniKey3_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_MiniKey5.jpg"><font face="Arial"><img
+src="img/BarePi_MiniKey5_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MiniKey1.jpg"><font
+face="Arial"><img src="img/BarePi_MiniKey1_m.jpg" border="0"
+width="300" height="200"></font></a><font face="Arial"> </font><a
+href="img/BarePi_MiniKey2.jpg"><font face="Arial"><img
+src="img/BarePi_MiniKey2_m.jpg" border="0" width="300"
+height="200"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MiniKey_3D.jpg"><font
+face="Arial"><img src="img/BarePi_MiniKey_3D_m.jpg" border="0"
+width="400" height="297"></font></a><font face="Arial"> </font><a
+href="img/BarePi_MiniKey_3D_bottom.jpg"><font face="Arial"><img
+src="img/BarePi_MiniKey_3D_bottom_m.jpg" border="0" width="400"
+height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MiniKey_diagram.png"><font
+face="Arial"><img src="img/BarePi_MiniKey_diagram_m.jpg"
+border="0" width="742" height="549"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MiniKey_mounting.jpg"><font
+face="Arial"><img src="img/BarePi_MiniKey_mounting_m.jpg"
+border="0" width="616" height="496"></font></a><font face="Arial">
+</font><a href="img/BarePi_MiniKey_panel.png"><font face="Arial"><img
+src="img/BarePi_MiniKey_panel_m.jpg" border="0" width="591"
+height="443"></font></a></p>
+
+<p align="left"><a href="img/BarePi_MiniKey_bottom.png"><font
+face="Arial"><img src="img/BarePi_MiniKey_bottom_m.jpg"
+border="0" width="616" height="495"></font></a><a
+href="img/BarePi_MiniKey_top.png"><font face="Arial"><img
+src="img/BarePi_MiniKey_top_m.jpg" border="0" width="616"
+height="495"></font></a></p>
 
 <p align="left">&nbsp;</p>
 

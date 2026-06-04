@@ -44,7 +44,7 @@ face="Arial">https://github.com/Panda381/BarePi</font></a></p>
 podkladů stavebnice BarePi</font></a><font face="Arial"> (100
 MB)</font></p>
 
-<p align="center"><font color="#FF0000" size="6" face="Arial"><strong></strong></font>&nbsp;</p>
+<p align="center">&nbsp;</p>
 
 <p align="center"><font color="#FF0000" size="6" face="Arial"><strong>&gt;&gt;&gt;
 stránka je ve výstavbě &lt;&lt;&lt;</strong></font></p>
@@ -60,8 +60,17 @@ byly původně navrženy pro domácí výrobu fotocestou a je
 tedy možné, že nejsou správně připraveny pro profesionální
 výrobu. Pokud si budete chtít nechat plošné spoje vyrobit
 profesionálně, doporučuji důkladně zkontrolovat návrhy, především
-rozměry součástek které nemusí být správně definované.
+rozměry součástek, které nemusí být správně definované.
 Typicky SMD kondenzátory zřejmě nemají správné rozměry.</em></font></p>
+
+<p align="left"><font face="Arial"><em>Poznámka 2: K
+programování procesorů CH32xxx může být zapotřebí
+WCH-LinkE programátor (</em></font><a
+href="https://pajenicko.cz/usb-programator-a-debug-adapter-wch-link"><font
+face="Arial"><em>k dispozici např. zde</em></font></a><font
+face="Arial"><em>). Před prvním použitím může být nutné
+nejdříve upgradovat firmware programátoru - lze provést ve
+vývojovém prostředí MounRiver Studio.</em></font></p>
 
 <h2 align="left"><a name="contents"></a><font face="Arial">Obsah</font></h2>
 
@@ -72,7 +81,7 @@ Typicky SMD kondenzátory zřejmě nemají správné rozměry.</em></font></p>
     </li>
     <li><p align="left"><a href="#pins"><font face="Arial">Konektor
         sběrnice</font></a><font face="Arial"> (popis signálů
-        ka konektoru sběrnice)</font></p>
+        na konektoru sběrnice)</font></p>
     </li>
     <li><p align="left"><a href="#disppins"><font face="Arial">Konektor
         displeje</font></a><font face="Arial"> (popis signálů
@@ -217,12 +226,12 @@ modul Raspberry Zero 2, programovaný jako bare-metal (tedy bez
 operačního systému). Lze ale používat i jiné typy procesorů,
 podporující signály s úrovní 3,3V (ATmega, CH32V, ESP32).
 Moduly stavebnice jsou propojené skrze 40-pinové konektory, tvořící
-sběrnici se signály vycházejícími z modulu Raspberry Zero 2.
-Konektory zajištují dostatečnou pevnost spojení, nejsou potřeba
-přídavné mechanické spoje. Většina modulů je průchozích
-- obsahují jak vstupní konektor sběrnice na horním okraji
-desky, tak výstupní konektor sběrnice na dolním okraji desky.
-Výjimkou jsou moduly procesory, které obsahují pouze
+sběrnici se signály definovanými podle modulu Raspberry Zero
+2. Konektory zajištují dostatečnou pevnost spojení, nejsou
+potřeba přídavné mechanické spoje. Většina modulů je
+průchozích - obsahují jak vstupní konektor sběrnice na horním
+okraji desky, tak výstupní konektor sběrnice na dolním okraji
+desky. Výjimkou jsou moduly procesoru, které obsahují pouze
 výstupní konektor, a modul alfanumerické klávesnice, který
 má pouze vstupní konektor.</font></p>
 
@@ -232,12 +241,12 @@ sestává z dutinkové lišty 2x20 pinů na dolní straně modulu
 pinové lišty 2x20 pinů na horní straně modulu (vstup signálů
 do modulu - např. klávesnice). Většina modulů má šířku
 65 milimetrů, vycházející z šířky modulu Raspberry Zero 2.
-Většina zařízení obsahuje procesorový modul, modul BASE s
-napájením a výstupem zvuku, modul displeje a modul
-klávesnice. Všechny signály na sběrnici jsou úrovně 3,3V.
-Sběrnice obsahuje sice i napájecí napětí 5V, ale toto napětí
-slouží jednak k přivedení napájení do zařízení
-(následuje stabilizátor na 3,3V) a jednak napětí pro případný
+Většina zařízení obsahuje procesorový modul, modul
+&quot;Base&quot; s napájením a výstupem zvuku, modul displeje
+a modul klávesnice. Všechny signály na sběrnici jsou úrovně
+3,3V. Sběrnice obsahuje sice i napájecí napětí 5V, ale toto
+napětí slouží jednak k přivedení napájení do zařízení
+(následuje stabilizátor na 3,3V) a jednak jako napětí pro případný
 převodník signálů na úroveň 5V. Na samotné signálové
 vodiče nesmí být přivedena úroveň 5V, v mnoha případech
 by mohlo dojít k poškození zařízení.</font></p>
@@ -245,23 +254,23 @@ by mohlo dojít k poškození zařízení.</font></p>
 <p align="left"><font face="Arial">Při stavbě modulů můžete
 sice moduly procesorů a displeje přiletovat natvrdo přes
 pinovou lištu, ale doporučuji používat raději dutinkovou
-lištu, pro snadnou možnost výměny. Moduly stavebnice je sice
-možné používat v nejjednodušší formě, pouze samotný
-plošný spoj, ale luxusnější je doplnit i horní panel. U
-některých modulů, jako např. klávesnice, je horní panel
-nutností, kvůli popiskám kláves. Jako horní panel lze
-použít další plošný spoj s potiskem, přišroubovaný k
-modulu pomocí distančních sloupků. V podkladech je
-připravena grafika i pro dolní panel, ale ten je zřejmě
-zbytečný - spodní stranu modulu lze ošetřit např.
-přilepením molitanových pásek z okenní izolace. U prototypů
-stavebnice jsem namísto horního panelu použil pouze
-potištěný kartonový papír, s otvory vyraženými
-průbojníkem na kůži. U klávesnic doporučuji nastavit
-výšku tlačítek tak, aby přesahovaly asi 1 mm nad plochu
-horního panelu. Při větším přesahu mohou tlačítka při
-stisku tlačit do prstů, při menším přesahu může být ke
-stisku nutné vyvinout větší sílu.</font></p>
+lištu, pro snadnou možnost výměny. Moduly stavebnice je možné
+používat v nejjednodušší formě, pouze samotný plošný
+spoj, ale luxusnější je doplnit i horní panel. U některých
+modulů, jako např. klávesnice, je horní panel nezbytný, kvůli
+popiskám kláves. Jako horní panel lze použít další plošný
+spoj s potiskem, přišroubovaný k modulu pomocí distančních
+sloupků. V podkladech je připravena grafika i pro dolní panel,
+ale ten je zřejmě zbytečný - spodní stranu modulu lze ošetřit
+např. přilepením molitanových pásek z okenní izolace, aby
+spodní strana plošného spoje nepoškrabala stůl. U prototypů
+stavebnice jsem namísto horního panelu použil pouze potištěný
+kartonový papír, přelepený izolepou proti otěru a s otvory
+vyraženými průbojníkem na kůži. U klávesnic doporučuji
+nastavit výšku tlačítek tak, aby hmatníky tlačítek přesahovaly
+1 mm nad plochu horního panelu. Při větším přesahu mohou
+tlačítka při stisku tlačit do prstů, při menším přesahu
+může být ke stisku nutné vyvinout větší sílu.</font></p>
 
 <p align="left"><a href="img/BarePi_ZeroTiny5.jpg"><font
 face="Arial"><img src="img/BarePi_ZeroTiny5_m.jpg" border="0"
@@ -274,9 +283,9 @@ height="200"></font></a></p>
 sběrnice</font></h3>
 
 <p align="left"><font face="Arial">Definice signálů na
-konektoru sběrnice, při pohledu na dutinkovou lištu na dolní
-straně modulu. V závorce je uvedeno odpovídající číslo
-GPIO pinu modulu Raspberry Zero 2.</font></p>
+konektoru sběrnice, při pohledu na dutinkovou lištu na dolním
+okraji modulu. V závorce je uvedeno odpovídající číslo GPIO
+pinu modulu Raspberry Zero 2.</font></p>
 
 <p align="left"><a href="img/BarePi_pins2.jpg"><font face="Arial"><img
 src="img/BarePi_pins2_m.jpg" border="0" width="500" height="355"></font></a></p>
@@ -297,52 +306,52 @@ src="img/BarePi_pins_m.jpg" border="0" width="463" height="315"></font></a></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>3,4</strong> </font><font
         color="#FF0000" face="Arial"><strong>3V3</strong></font><font
-        face="Arial"> ... Napájecí napětí 3,3V. Je hlavní
+        face="Arial"> ... Napájecí napětí 3,3V. Je to hlavní
         napájecí napětí zařízení. Může být získáno
         stabilizátorem z napětí 5V (např. z USB konektoru)
         nebo měničem napětí z baterie.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>5</strong> </font><font
         color="#FF0000" face="Arial"><strong>BUS_SDA</strong></font><font
-        face="Arial"> (GPIO0) ... Datový vodič interní I2C
-        periferie. Interní I2C periferie slouží k přímému
-        řízení modulů stavebnice. Interní I2C periferie může
-        být samostatná periferie, oddělená od externí uživatelské
-        I2C periferie, aby měl uživatel možnost samostatného
+        face="Arial"> (GPIO0) ... Datový vodič interní I2C sběrnice.
+        Interní I2C sběrnice slouží k přímému řízení
+        modulů stavebnice. Interní I2C sběrnice může být
+        samostatná sběrnice, oddělená od externí uživatelské
+        I2C sběrnice, aby měl uživatel možnost samostatného
         řízení komunikace. V modulu Raspberry Zero 2 se jedná
-        o periferii I2C0. U jiných modulů může být interní
-        I2C periferie sdílená s externí I2C periferie. V
-        modulu Raspberry Zero 2 se periferie I2C0 používá též
-        k přístupu systémových EEPROM pamětí při zapnutí
-        zařízení - na to je potřeba pamatovat, aby nedocházelo
-        k překrytí funkcí EEPROM pamětí. Signál je typu
-        otevřený kolektor - je nutné používat pull-up
-        rezistory.</font></p>
+        o sběrnici I2C0. U jiných modulů může být interní
+        I2C sběrnice sdílená s externí I2C sběrnicí. V
+        modulu Raspberry Zero 2 se sběrnice I2C0 používá též
+        k přístupu k systémovým ID EEPROM pamětem při
+        zapnutí zařízení - na to je potřeba pamatovat, aby
+        nedocházelo k překrytí funkcí EEPROM pamětí.
+        Signál je typu otevřený kolektor - je nutné používat
+        pull-up rezistory.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>6</strong> </font><font
         color="#FF0000" face="Arial"><strong>BUS_SCL</strong></font><font
         face="Arial"> (GPIO1) ... Hodinový vodič interní I2C
-        periferie. V modulu Raspberry Zero 2 se jedná o
-        periferii I2C0. Signál je typu otevřený kolektor - je
-        nutné používat pull-up rezistory.</font></p>
+        sběrnice. V modulu Raspberry Zero 2 se jedná o sběrnici
+        I2C0. Signál je typu otevřený kolektor - je nutné používat
+        pull-up rezistory.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>7</strong> </font><font
         color="#FF0000" face="Arial"><strong>I2C_SDA</strong></font><font
-        face="Arial"> (GPIO2) ... Datový vodič externí I2C
-        periferie. Externí I2C sběrnice slouží k řízení uživatelských
+        face="Arial"> (GPIO2) ... Datový vodič externí I2C sběrnice.
+        Externí I2C sběrnice slouží k řízení uživatelských
         zařízení, aby komunikace nekolidovala s řízením
         modulů stavebnice. V modulu Raspberry Zero 2 se jedná o
-        periferii I2C1. U jiných modulů může být externí
-        periferie sdílená s interní I2C periferie. Signál je
-        typu otevřený kolektor - je nutné používat pull-up
-        rezistory.</font></p>
+        sběrnici I2C1. U jiných modulů může být externí
+        I2C sběrnice sdílená s interní I2C sběrnicí.
+        Signál je typu otevřený kolektor - je nutné používat
+        pull-up rezistory.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>8 </strong></font><font
         color="#FF0000" face="Arial"><strong>I2C_SCL</strong></font><font
         face="Arial"> (GPIO3) ... Hodinový vodič externí I2C
-        periferie. V modulu Raspberry Zero 2 se jedná o
-        periferii I2C1. Signál je typu otevřený kolektor - je
-        nutné používat pull-up rezistory.</font></p>
+        sběrnice. V modulu Raspberry Zero 2 se jedná o sběrnici
+        I2C1. Signál je typu otevřený kolektor - je nutné používat
+        pull-up rezistory.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>9 </strong></font><font
         color="#FF0000" face="Arial"><strong>KEY_ALT</strong></font><font
@@ -357,7 +366,7 @@ src="img/BarePi_pins_m.jpg" border="0" width="463" height="315"></font></a></p>
         mělo být tlačítko &quot;ALT&quot; připojeno přes
         ochranný rezistor (např. 1K0), který zabrání poškození
         obvodů při nechtěném stisku tlačítka, je-li na pin
-        vyveden hodinový signál. Další doplňlovou funkcí
+        vyveden hodinový signál. Další doplňkovou funkcí
         pinu je vstup ADC převodníku - typicky u modulů
         Raspberry Pico a CH32.</font></p>
     </li>
@@ -377,47 +386,45 @@ src="img/BarePi_pins_m.jpg" border="0" width="463" height="315"></font></a></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>12 </strong></font><font
         color="#FF0000" face="Arial"><strong>SPI_CS1</strong></font><font
-        face="Arial"> (GPIO7) ... Druhý výběrový signál
-        periferie SPI. V modulu Raspberry Zero se jedná o
-        periferii SPI0.</font></p>
+        face="Arial"> (GPIO7) ... Druhý výběrový signál sběrnice
+        SPI. V modulu Raspberry Zero se jedná o sběrnici SPI0.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>13 </strong></font><font
         color="#FF0000" face="Arial"><strong>SPI_CS0</strong></font><font
-        face="Arial"> (GPIO8) ... První výběrový signál
-        periferie SPI. V modulu Raspberry Zero se jedná o
-        periferii SPI0.</font></p>
+        face="Arial"> (GPIO8) ... První výběrový signál sběrnice
+        SPI. V modulu Raspberry Zero se jedná o sběrnici SPI0.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>14 </strong></font><font
         color="#FF0000" face="Arial"><strong>SPI_MISO</strong></font><font
-        face="Arial"> (GPIO9) ... Signál MISO periferie SPI -
+        face="Arial"> (GPIO9) ... Signál MISO sběrnice SPI -
         vstup dat do procesoru z periferie (signál RX). V modulu
-        Raspberry Zero se jedná o periferii SPI0. V některých
-        zařízeních může být SPI periferie sdílena s SD
+        Raspberry Zero se jedná o sběrnici SPI0. V některých
+        zařízeních může být SPI sběrnice sdílena s SD
         kartou - v tom případě je nutné před použitím SPI
-        periferie vyjmout SD kartu ze slotu.</font></p>
+        sběrnice vyjmout SD kartu ze slotu.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>15 </strong></font><font
         color="#FF0000" face="Arial"><strong>SPI_MOSI</strong></font><font
-        face="Arial"> (GPIO10) ... Signál MOSI periferie SPI -
-        výstup dat z procesoru na periferii (signál TX). V
-        modulu Raspberry Zero se jedná o periferii SPI0.</font></p>
+        face="Arial"> (GPIO10) ... Signál MOSI sběrnice SPI - výstup
+        dat z procesoru na periferii (signál TX). V modulu
+        Raspberry Zero se jedná o sběrnici SPI0.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>16 </strong></font><font
         color="#FF0000" face="Arial"><strong>SPI_SCLK</strong></font><font
-        face="Arial"> (GPIO11) ... Hodinový signál periferie
-        SPI. V modulu Raspberry Zero se jedná o periferii SPI0.</font></p>
+        face="Arial"> (GPIO11) ... Hodinový signál sběrnice
+        SPI. V modulu Raspberry Zero se jedná o sběrnici SPI0.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>17 </strong></font><font
         color="#FF0000" face="Arial"><strong>PWM_L</strong></font><font
         face="Arial"> (GPIO12) ... Levý kanál zvukového
         výstupu. Zpravidla se jedná o PWM modulaci, může být
-        proto potřeba použít RC filtr.</font></p>
+        proto nutné použít RC filtr.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>18 </strong></font><font
         color="#FF0000" face="Arial"><strong>PWM_R</strong></font><font
         face="Arial"> (GPIO13) ... Pravý kanál zvukového
         výstupu. Zpravidla se jedná o PWM modulaci, může být
-        proto potřeba použít RC filtr.</font></p>
+        proto nutné použít RC filtr.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>19 </strong></font><font
         color="#FF0000" face="Arial"><strong>UART_TX</strong></font><font
@@ -444,7 +451,7 @@ src="img/BarePi_pins_m.jpg" border="0" width="463" height="315"></font></a></p>
     <li><p align="left"><font face="Arial"><strong>23 </strong></font><font
         color="#FF0000" face="Arial"><strong>LCD_CS</strong></font><font
         face="Arial"> (GPIO18) ... Signál pro výběr LCD SPI
-        displeje. V modulu Raspberry Zero se jedná o periferii
+        displeje. V modulu Raspberry Zero se jedná o sběrnici
         SPI1. Na tomto pinu může být volitelně k dispozici
         signál PCM_CLK pro rozhraní I2S/PCM.</font></p>
     </li>
@@ -461,14 +468,14 @@ src="img/BarePi_pins_m.jpg" border="0" width="463" height="315"></font></a></p>
     <li><p align="left"><font face="Arial"><strong>25 </strong></font><font
         color="#FF0000" face="Arial"><strong>LCD_MOSI</strong></font><font
         face="Arial"> (GPIO20) ... Výstup sériových dat do LCD
-        SPI displeje. V modulu Raspberry Zero se jedná o
-        periferii SPI1. Na tomto pinu může být volitelně k
-        dispozici signál PCM_DIN pro rozhraní I2S/PCM.</font></p>
+        SPI displeje. V modulu Raspberry Zero se jedná o sběrnici
+        SPI1. Na tomto pinu může být volitelně k dispozici
+        signál PCM_DIN pro rozhraní I2S/PCM.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>26 </strong></font><font
         color="#FF0000" face="Arial"><strong>LCD_SCK</strong></font><font
         face="Arial"> (GPIO21) ... Hodinový signál LCD SPI
-        displeje. V modulu Raspberry Zero se jedná o periferii
+        displeje. V modulu Raspberry Zero se jedná o sběrnici
         SPI1. Na tomto pinu může být volitelně k dispozici
         signál PCM_DOUT pro rozhraní I2S/PCM.</font></p>
     </li>
@@ -496,7 +503,8 @@ src="img/BarePi_pins_m.jpg" border="0" width="463" height="315"></font></a></p>
         - tlačítko doplňkových funkcí (např. nápověda).
         Na alfanumerické klávesnici odpovídá klávese
         &quot;Tab&quot;. Spolu s tlačítkem &quot;ALT&quot; má
-        alternativní význam &quot;Print Screen&quot;. Tlačítko
+        alternativní význam &quot;Print Screen&quot; -
+        screenshot obsahu obrazovky do souboru. Tlačítko
         spojuje pin s GND a vyžaduje použít pull-up rezistor.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>30 </strong></font><font
@@ -519,8 +527,9 @@ src="img/BarePi_pins_m.jpg" border="0" width="463" height="315"></font></a></p>
         - tlačítko přerušení, ukončení nebo menu. Na
         alfanumerické klávesnici odpovídá klávese
         &quot;Esc&quot;. Spolu s tlačítkem &quot;ALT&quot; má
-        alternativní význam &quot;Menu&quot;. Tlačítko
-        spojuje pin s GND a vyžaduje použít pull-up rezistor.</font></p>
+        alternativní význam &quot;Menu&quot;, vyvolání
+        systémového menu. Tlačítko spojuje pin s GND a vyžaduje
+        použít pull-up rezistor.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>33 </strong></font><font
         color="#FF0000" face="Arial"><strong>SD_CS</strong></font><font
@@ -615,8 +624,9 @@ width="370" height="165"></font></a></p>
         adaptéru DispHDMI s napájením 3V3. Není-li zasunut žádný
         adaptér, není signál připojen k žádnému vodiči -
         v této konfiguraci se může použít interní LCD
-        displej. U některých zařízení slouží tento stav k
-        autodetekci připojeného typu monitoru VGA nebo HDMI,
+        displej. U některých zařízení se při tomto třetím
+        stavu provádí autodetekce připojeného typu monitoru
+        VGA nebo HDMI - testováním impedance na VGA konektoru,
         ale nedoporučuje se autodetekci používat, není
         dostatečně spolehlivá.</font></p>
     </li>
@@ -653,7 +663,8 @@ width="370" height="165"></font></a></p>
         k napájení komunikačních obvodů monitoru, k napájení
         zobrazovacích adaptérů (např. převodník VGA na
         HDMI) a k napájení konfigurační EEPROM monitoru.
-        Proud je v adaptéru omezen ochranným rezistorem 47 ohmů.</font></p>
+        Proud je v adaptérech omezen ochranným rezistorem 47
+        ohmů.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>11 </strong></font><font
         color="#FF0000" face="Arial"><strong>SDA</strong></font><font
@@ -718,12 +729,15 @@ width="370" height="165"></font></a></p>
 <h3 align="left"><a name="zerotiny"></a><font face="Arial">ZeroTiny</font></h3>
 
 <p align="left"><font face="Arial">Herní konzole
-&quot;ZeroTiny&quot; není součástí stavebnice BarePi. Jedná
-se o minimalistickou herní konzoli založenou na modulu
-Raspberry Zero 2 nebo Raspberry Zero 1. Je to příklad vytvoření
+&quot;ZeroTiny&quot; není přímo součástí stavebnice BarePi.
+Jedná se o minimalistickou herní konzoli s modulem Raspberry
+Zero 2 nebo Raspberry Zero 1. Je to příklad vytvoření
 koncového zařízení na základě modulů stavebnice. Jeho
 zapojení odpovídá spojení modulů &quot;Zero&quot;,
-&quot;Base&quot; a &quot;KeyPad&quot;.</font></p>
+&quot;Base&quot; a &quot;KeyPad&quot;. Při konstrukci
+doporučuji použít raději dutinkovou lištu než přímé
+přiletování modulu Zero - aby bylo možné vyměňovat moduly
+Zero 1 nebo Zero 2.</font></p>
 
 <p align="left"><a href="img/BarePi_ZeroTiny4.jpg"><font
 face="Arial"><img src="img/BarePi_ZeroTiny4_m.jpg" border="0"
@@ -778,8 +792,12 @@ konektoru (s využitím stabilizátoru 3,3V), výstup zvuku, slot
 pro microSD kartu, tlačítko pro reset procesoru, LED
 indikující přístup k SD kartě a uživatelskou LED. Před výrobou
 plošného spoje zkontrolujte definici pro audio konektor, slot
-pro SD kartu, reproduktor a stabilizátor HT7533 - uspořádání
-a piny se mohou u různých výrobců lišit.</font></p>
+pro SD kartu, reproduktor a stabilizátor HT7533 - souřadnice a
+význam pinů se může u různých výrobců lišit. Na modulu
+se nachází propojka určující, zda se použije interní
+stabilizátor pro 3,3V. Pokud procesorový modul obsahuje
+vlastní stabilizátor, může být vhodné vypnout stabilizátor
+na modulu &quot;Base&quot;.</font></p>
 
 <p align="left"><a href="img/BarePi_Base3.jpg"><font face="Arial"><img
 src="img/BarePi_Base3_m.jpg" border="0" width="300" height="200"></font></a><font
@@ -821,9 +839,9 @@ height="299"></font></a></p>
 <h3 align="left"><a name="busexp"></a><font face="Arial">BusExp</font></h3>
 
 <p align="left"><font face="Arial">Modul &quot;BusExp&quot; je
-expandér sběrnice. Umožňuje propojit spolu až 4 moduly, dáváte-li
-přednost organizaci modulů &quot;nad sebou&quot;, namísto
-&quot;vedle sebe&quot;.</font></p>
+expandér sběrnice. Umožňuje propojit spolu až 4 moduly,
+pokud dáváte přednost organizaci modulů &quot;nad sebou&quot;
+raději než &quot;vedle sebe&quot;.</font></p>
 
 <p align="left"><a href="img/BarePi_BusExp4.jpg"><font
 face="Arial"><img src="img/BarePi_BusExp4_m.jpg" border="0"
@@ -980,10 +998,10 @@ LED indikuje stavy signálů sběrnice. Téměř všechny LED,
 kromě LED pro indikaci napájecích napětí 5V a 3,3V, jsou
 zapojeny mezi signálem a napájecím napětím 3,3V. Svým
 rozsvícením indikují tedy stav LOW - z toho důvodu, že
-většina signálů je negativní, kdy klidový stav je HIGH, a
+většina signálů je negativních, kdy klidový stav je HIGH a
 aktivní stav LOW. Výjimkou jsou některé signály, jako
 USR_LED, PWM_L, PWM_R, LCD_BL, které mají pozitivní význam a
-bylo by sice vhodnější indikovat jejich úroveň HIGH. Ale z
+mohlo by být vhodnější indikovat jejich úroveň HIGH. Ale z
 důvodu možnosti snadné detekce zkratu mezi signály je
 ponecháno stejné zapojení i pro tyto speciální případy
 signálů. Testovací LED pro signál USR_LED bude tedy svítit v
@@ -992,9 +1010,9 @@ svítit LED pro podsvícení displeje, pokud bude podsvícení
 vypnuto. Samozřejmě v případech, kdy signál nebude použitý
 a bude ve stavu vysoké impedance, tak LED nebudou svítit ani při
 úrovni LOW. Pro snadné testování sběrnice lze do některých
-procesorů nahrát program, který LED sběrnice postupně
-rozsvěcuje, a tak lze vizuálně zkontrolovat chyby přerušení
-sběrnice nebo zkratu na sběrnici.</font></p>
+procesorů nahrát program, který LED pro signály sběrnice
+postupně rozsvěcuje, a tak lze vizuálně zkontrolovat chyby
+přerušení sběrnice nebo zkratu na sběrnici.</font></p>
 
 <p align="left"><font face="Arial">V modulu se používají SMD
 LED diody s pouzdrem PLCC-4. Různí výrobci používají různé
@@ -1183,7 +1201,7 @@ height="285"></font></a></p>
 
 <h3 align="left"><a name="picopadhstx"></a><font face="Arial">PicoPadHSTX</font></h3>
 
-<p align="left"><font face="Arial">Modul &quot;PicoPadHXTS&quot;
+<p align="left"><font face="Arial">Modul &quot;PicoPadHSTX&quot;
 slouží k sestavení herní konzole PicoPadHSTX. K modulu je potřeba
 připojit moduly &quot;DispVGA&quot;, &quot;DispHSTX&quot;,
 &quot;Base&quot; a &quot;KeyPad&quot;.</font></p>
@@ -1415,7 +1433,15 @@ face="Arial">adaptéru LQFP-64</font></a><font face="Arial">, aby
 bylo možné procesor vyměňovat a používat i v jiných
 modulech. Výstup obrazu je možný buď na externí monitor VGA,
 nebo na interní displej LCD320x240 - v závislosti na tom, zda
-je do modulu zasunut adaptér &quot;DispVGA&quot;.</font></p>
+je do modulu zasunut adaptér &quot;DispVGA&quot; nebo ne.
+Procesor je řízen krystalem 24MHz, namísto doporučeného
+krystalu 32MHz - z důvodu lepší dostupnosti krystalu. Procesor
+lze s krystalem 24MHz používat běžným způsobem, liší se
+pouze v tom, že nelze používat rozhraní Ethernet a Bluetooth
+- ale to v tomto modulu není stejně k dispozici. Krystal by
+bylo možné změnit na doporučený 32MHz, v tom případě se
+musí v software upravit nastavení PLL modulu, případně do
+firmware doplnit automatickou detekci frekvence krystalu.</font></p>
 
 <p align="left"><a href="img/BarePi_SumoPad3.jpg"><font
 face="Arial"><img src="img/BarePi_SumoPad3_m.jpg" border="0"
@@ -1545,9 +1571,9 @@ nejvyšší typ procesorového modulu ve stavebnici BarePi.
 Obsahuje modul Raspberry Zero 1 nebo Raspberry Zero 2. Pro
 snadnou výměnu proto doporučuji modul osadit raději
 konektorem s dutinkovou lištou, namísto naletování natvrdo přes
-pinovou lištu. Na rozdíl od ostatních modulů obsahuje USB
-konektor pro napájení a microSD kartu, může být tedy
-provozován i samostatně, bez ostatních modulů. Pro výstup
+pinovou lištu. Na rozdíl od ostatních modulů tento modul
+obsahuje USB konektor pro napájení a microSD kartu, může být
+tedy provozován i samostatně, bez ostatních modulů. Pro výstup
 PWM zvuku může být potřeba připojit modul &quot;Base&quot;
 (doporučuji v modulu &quot;Base&quot; odpojit propojkou interní
 stabilizátor). Pro ovládání her může být potřeba
@@ -1599,14 +1625,21 @@ height="306"></font></a></p>
 
 <p align="left"><font face="Arial">Modul &quot;DispHDMI&quot; je
 modul pro výstup obrazu na displej s HDMI rozhraním. Nejedná
-se o samostatný modul, ale o pomocný modul připojitelný k některým
-procesorům pomocí konektoru s pinovou lištou 2x10 pinů.
-Konektor obsahuje signály pro výstup jak na HDMI displej, tak
-na VGA displej. Kromě toho obsahuje i signál sloužící k
-detekci, zda je do konektoru zasunut modul DispHDMI, DispVGA nebo
-je konektor ponechán volný. Podle toho může dojít k volbě
-interface pro HDMI displej, VGA displej nebo interní LCD
-displej.</font></p>
+se o samostatný modul se sběrnicí, ale o pomocný modul připojitelný
+k některým procesorům pomocí konektoru s pinovou lištou 2x10
+pinů. Konektor obsahuje signály pro výstup jak na HDMI
+displej, tak na VGA displej. Kromě toho obsahuje i signál
+DISP_SEL sloužící k detekci, zda je do konektoru zasunut modul
+DispHDMI, DispVGA nebo je konektor ponechán volný. Podle toho může
+dojít k volbě interface pro HDMI displej, VGA displej nebo
+interní LCD displej.</font></p>
+
+<p align="left"><font face="Arial">Modul přivádí na konektor
+displeje i signály HOTPLUG, SCL a SDA. V současnosti žádný
+modul tyto signály nepoužívá. Pozor na použití signálů
+SCL a SDA - u většiny monitorů jsou signály připojeny přes
+pull-up rezistory na napětí +5V, což může být nebezpečné
+pro obvody pracující s úrovněmi 3,3V.</font></p>
 
 <p align="left"><a href="img/BarePi_DispHDMI1.jpg"><font
 face="Arial"><img src="img/BarePi_DispHDMI1_m.jpg" border="0"
@@ -1637,14 +1670,14 @@ height="219"></font></a></p>
 
 <p align="left"><font face="Arial">Modul &quot;DispVGA&quot; je
 modul pro výstup obrazu na displej s VGA rozhraním. Nejedná se
-o samostatný modul, ale o pomocný modul připojitelný k některým
-procesorům pomocí konektoru s pinovou lištou 2x10 pinů.
-Konektor obsahuje signály pro výstup jak na HDMI displej, tak
-na VGA displej. Kromě toho obsahuje i signál sloužící k
-detekci, zda je do konektoru zasunut modul DispHDMI, DispVGA nebo
-je konektor ponechán volný. Podle toho může dojít k volbě
-interface pro HDMI displej, VGA displej nebo interní LCD
-displej.</font></p>
+o samostatný modul se sběrnicí, ale o pomocný modul připojitelný
+k některým procesorům pomocí konektoru s pinovou lištou 2x10
+pinů. Konektor obsahuje signály pro výstup jak na HDMI
+displej, tak na VGA displej. Kromě toho obsahuje i signál
+DISP_SEL sloužící k detekci, zda je do konektoru zasunut modul
+DispHDMI, DispVGA nebo je konektor ponechán volný. Podle toho může
+dojít k volbě interface pro HDMI displej, VGA displej nebo
+interní LCD displej.</font></p>
 
 <p align="left"><a href="img/BarePi_DispVGA1.jpg"><font
 face="Arial"><img src="img/BarePi_DispVGA1_m.jpg" border="0"
@@ -1677,7 +1710,7 @@ width="201" height="252"></font></a></p>
 
 <p align="left"><font face="Arial">Modul &quot;ExtDisp&quot; je
 určen k zachytávání signálů pro LCD displej s řadičem
-ST7789 a rozlišením 320x240 pixelů, a jeho zobrazení na VGA
+ST7789 a s rozlišením 320x240 pixelů, a jeho zobrazení na VGA
 nebo HDMI monitoru. Volba monitoru je určena tím, zda je do
 konektoru displeje zasunut DispVGA adaptér nebo DispHDMI
 adaptér.</font></p>
@@ -1717,7 +1750,7 @@ height="456"></font></a></p>
 <h3 align="left"><a name="lcd16x2"></a><font face="Arial">LCD16x2</font></h3>
 
 <p align="left"><font face="Arial">Modul &quot;LCD16x2&quot; je
-znakový LCD displej DM1602A se 2 řádky po 16 znacích a s
+textový LCD displej DM1602A se 2 řádky po 16 znacích a s
 řadičem HD44780. Modul obsahuje procesor CH32V002A4M6, který
 slouží k řízení displeje a ke komunikaci s hlavním
 procesorem přes sběrnici I2C. Pomocnou funkcí procesoru je
@@ -1765,12 +1798,18 @@ height="417"></font></a></p>
 <h3 align="left"><a name="lcd160x80"></a><font face="Arial">LCD160x80</font></h3>
 
 <p align="left"><font face="Arial">Modul &quot;LCD160x80&quot; je
-grafický barevný displej 0.96&quot; s rozhraním SPI, rozlišením
+grafický barevný displej 0.96&quot; s rozhraním SPI, s rozlišením
 160x80 a řadičem ST7735S. Modul obsahuje volitelně procesor
 CH32V002J4M6, ale není nutné ho použít, slouží pouze k
 identifikaci připojení modulu ke sběrnici. K jednodušší
 identifikaci připojení displeje slouží též volitelně
-rezistor R1, připojený mezi signály LCD_RE a LCD_CS.</font></p>
+rezistor R1, připojený mezi signály LCD_RE a LCD_CS. Pomocí
+letovacích propojek lze zvolit, zda se použije signál pro
+podsvícení displeje ze sběrnice, nebo zda ho bude generovat
+procesor v modulu. Může se stát, že některý procesorový
+modul nebude umět generovat nastavitelný jas podsvícení, v
+tom případě může být vhodnější generovat podsvícení v
+modulu displeje.</font></p>
 
 <p align="left"><a href="img/BarePi_LCD160x803.jpg"><font
 face="Arial"><img src="img/BarePi_LCD160x803_m.jpg" border="0"
@@ -1810,12 +1849,18 @@ height="334"></font></a></p>
 <h3 align="left"><a name="lcd320x240"></a><font face="Arial">LCD320x240</font></h3>
 
 <p align="left"><font face="Arial">Modul &quot;LCD320x240&quot;
-je grafický barevný displej 2.0&quot; s rozhraním SPI, rozlišením
+je grafický barevný displej 2.0&quot; s rozhraním SPI, s rozlišením
 320x240 a řadičem ST7789. Modul obsahuje volitelně procesor
 CH32V002J4M6, ale není nutné ho použít, slouží pouze k
-identifikaci připojení modulu ke sběrnici. K jerdnodušší
+identifikaci připojení modulu ke sběrnici. K jednodušší
 identifikaci připojení displeje slouží též volitelně
-rezistor R1, připojený mezi signály LCD_DC a LCD_CS.</font></p>
+rezistor R1, připojený mezi signály LCD_DC a LCD_CS. Pomocí
+letovacích propojek lze zvolit, zda se použije signál pro
+podsvícení displeje ze sběrnice, nebo zda ho bude generovat
+procesor v modulu. Může se stát, že některý procesorový
+modul nebude umět generovat nastavitelný jas podsvícení, v
+tom případě může být vhodnější generovat podsvícení v
+modulu displeje.</font></p>
 
 <p align="left"><a href="img/BarePi_LCD320x2403.jpg"><font
 face="Arial"><img src="img/BarePi_LCD320x2403_m.jpg" border="0"
@@ -1855,7 +1900,7 @@ height="338"></font></a></p>
 <h3 align="left"><a name="led12"></a><font face="Arial">LED12</font></h3>
 
 <p align="left"><font face="Arial">Modul &quot;LED12&quot;
-obsahuje 12-místný displej ze 7-segmentových LED číslovek.
+obsahuje 12-místný displej ze 7-segmentových LED číslicovek.
 Je řízen procesorem CH32V006E8R6, který komunikuje s hlavním
 procesorem přes I2C sběrnici. Při konstrukci doporučuji umístit
 přes displej červené plexisklo, které zajistí dobrý
@@ -1898,15 +1943,15 @@ height="345"></font></a></p>
 <h3 align="left"><a name="oled128x64"></a><font face="Arial">OLED128x64</font></h3>
 
 <p align="left"><font face="Arial">Modul &quot;OLED128x64&quot;
-je černobílý OLED displej 0.96&quot; s rozlišením 128x64 a
-řadičem SSD1306. Modul lze osadit 2 typy OLED displejů, s
-různým pořadím pinů. Displej můžete zasunout horní nebo
-dolní pozice dutinkové lišty, podle požadovaného pořadí
-pinů. Z toho důvodu existují i dvě různé definice předního
-panelu modulu. Ve skutečnosti můžete použít jenom jeden
-panel, potištěný na obou stranách, kdy zadní strana je natištěná
-&quot;vzhůru nohama&quot;. Použijete potom tu stranu panelu,
-která souhlasí s pozicí použitého displeje.</font></p>
+je černobílý OLED displej 0.96&quot; s rozhraním I2C, s rozlišením
+128x64 a řadičem SSD1306. Modul lze osadit dvěma typy OLED
+displejů, s různým pořadím pinů. Displej můžete zasunout
+do horní nebo dolní pozice dutinkové lišty, podle požadovaného
+pořadí pinů. Z toho důvodu existují i dvě různé definice
+předního panelu modulu. Ve skutečnosti můžete použít jenom
+jeden panel, potištěný na obou stranách, kdy zadní strana je
+natištěná &quot;vzhůru nohama&quot;. Použijete potom tu
+stranu panelu, která souhlasí s pozicí použitého displeje.</font></p>
 
 <p align="left"><a href="img/BarePi_OLED128x643.jpg"><font
 face="Arial"><img src="img/BarePi_OLED128x643_m.jpg" border="0"
@@ -1953,7 +1998,12 @@ height="317"></font></a></p>
 <p align="left"><font face="Arial">Modul &quot;CalcKey&quot; je
 klávesnice určená pro kalkulačky. Rozložení tlačítek
 odpovídá rozložení kalkulačky ET-58, která je klonem
-kalkulačky TI-58.</font></p>
+kalkulačky TI-58. Použijete-li jinou kalkulačku, můžete
+potřebovat jiné popisky kláves. Masku s jinými popiskami
+můžete vyrobít například tak, že ji natisknete na tvrdý
+papír, přelepíte povrch izolepou (pro lepší odolnost proti
+otěru) a otvory pro tlačítka vyrazíte průbojníkem na
+kůži.</font></p>
 
 <p align="left"><a href="img/BarePi_CalcKey3.jpg"><font
 face="Arial"><img src="img/BarePi_CalcKey3_m.jpg" border="0"
@@ -2045,9 +2095,9 @@ height="327"></font></a></p>
 
 <h3 align="left"><a name="minikey"></a><font face="Arial">MiniKey</font></h3>
 
-<p align="left"><font face="Arial">Modil &quot;MiniKey&quot; je
+<p align="left"><font face="Arial">Modul &quot;MiniKey&quot; je
 minimalistická alfanumerická klávesnice. Obsahuje celkem 48
-tlačítek, z toho 9 tlačítek odpovídají tlačítkům klávesnice
+tlačítek, z toho 9 tlačítek odpovídá tlačítkům klávesnice
 &quot;KeyPad&quot; s přímým přístupem k tlačítkům, zbylých
 39 tlačítek je multiplexovaných procesorem CH32V002F4P6, v
 matici 6x7 tlačítek.</font></p>
