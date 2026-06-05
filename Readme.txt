@@ -546,7 +546,14 @@ CH32V006E8R6 processor and VGA monitor output. The "DispVGA", "Base" and
 crystal, the processor will choose a lower-precision RC oscillator - the
 console will still be usable, but the VGA image will slightly waver and shake.
 For this reason, the crystal is placed in a socket so that it can be removed
-and tested without the crystal.
+and tested without the crystal. The PidiPad console in the PiLibSDK library,
+where you can also find sample applications:
+www https://www.breatharian.eu/hw/ch32libsdk/index_en.html#pidipad
+GitHub https://github.com/Panda381/CH32LibSDK
+
+Recommendation: Outputting video to a VGA monitor causes large current spikes
+in the power supply. Consider adding a tantalum capacitor to the processor's
+power supply; otherwise, the processor may operate at the limit of stability.
 
 
 SumoPad

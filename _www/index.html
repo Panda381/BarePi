@@ -32,7 +32,8 @@ content="text/html; charset=utf-8">
 <p align="center"><font color="#FF8000" size="4" face="Arial"><strong>Modulární
 mikročipová stavebnice</strong></font></p>
 
-<p align="center"><font face="Arial">Poslední aktualizace: 05.06.2026</font></p>
+<p align="center"><font face="Arial">Poslední aktualizace:
+05.06.2026</font></p>
 
 <p align="center"><font face="Arial">(c) 2026 Miroslav Němeček</font></p>
 
@@ -809,16 +810,15 @@ na modulu &quot;Base&quot;. Při konstrukci tohoto modulu
 upozorňuji, že některé součástky jsou příliš ztěsnané
 na sobě a špatně se letují - možná by bylo vhodnější
 desku mírně přeuspořádat, a také zvolit pro kondenzátory větší
-pouzdra. Zlepšit by se měl i reproduktor - zvuk je tichý,
-může by být potřeba přidat zesilovač.</font></p>
+pouzdra. Zlepšit by se měl i reproduktor - zvuk je tichý, může
+by být potřeba přidat zesilovač.</font></p>
 
 <p align="left"><font face="Arial">Audio signály PWM_L a PWM_R v
 tomto modulu končí a dále nepokračují. Je to z důvodu
-minimalizace rušení audio signálu. Je-li to možné,
-připojujte modul &quot;Base&quot; jako první, ihned za
-procesorový modul. Zřejmě by kvalitu audio signálu zlepšilo
-i lepší vedení audio vodičů a jejich důkladnější
-stínění.</font></p>
+minimalizace rušení audio signálu. Je-li to možné, připojujte
+modul &quot;Base&quot; jako první, ihned za procesorový modul.
+Zřejmě by kvalitu audio signálu zlepšilo i lepší vedení
+audio vodičů a jejich důkladnější stínění.</font></p>
 
 <p align="left"><a href="img/BarePi_Base3.jpg"><font face="Arial"><img
 src="img/BarePi_Base3_m.jpg" border="0" width="300" height="200"></font></a><font
@@ -1403,7 +1403,18 @@ připojit moduly &quot;DispVGA&quot;, &quot;Base&quot; a
 si zvolí RC oscilátor s nižší přesností - konzole bude
 stále použitelná, ale VGA obraz se bude mírně vlnit a třást.
 Z toho důvodu je krystal umístěn v objímce, aby ho bylo možné
-vyjímat a testovat provoz bez krystalu.</font></p>
+vyjímat a testovat provoz bez krystalu. Konzole PidiPad v
+knihovně CH32LibSDK, kde najdete i ukázkové aplikace: </font><a
+href="https://www.breatharian.eu/hw/ch32libsdk/index.html#pidipad"><font
+face="Arial">www</font></a><font face="Arial">, </font><a
+href="https://github.com/Panda381/CH32LibSDK"><font face="Arial">GitHub</font></a><font
+face="Arial">.</font></p>
+
+<p align="left"><font face="Arial">Doporučení: Výstup obrazu
+na VGA monitor představuje pro zdroj velké proudové rázy.
+Zvažte ještě doplnění tantalového kondenzátoru do
+napájení procesoru, jinak se procesor může nacházet na
+hranici stability.</font></p>
 
 <p align="left"><a href="img/BarePi_PidiPad3.jpg"><font
 face="Arial"><img src="img/BarePi_PidiPad3_m.jpg" border="0"
@@ -1440,10 +1451,17 @@ href="img/BarePi_PidiPad_top.png"><font face="Arial"><img
 src="img/BarePi_PidiPad_top_m.jpg" border="0" width="394"
 height="216"></font></a></p>
 
+<p align="left"><font face="Arial">Konzole PidiPad sestavená z
+modulů BarePi:</font></p>
+
+<p align="left"><a href="img/BarePi_PidiPad.jpg"><img
+src="img/BarePi_PidiPad_m.jpg" border="0" width="208"
+height="400"></a></p>
+
 <h3 align="left"><a name="sumopad"></a><font face="Arial">SumoPad</font></h3>
 
-<p align="left"><font face="Arial">Modul &quot;SumoPad&quot; slouží
-k sestavení herní konzole SumoPad. K modulu je potřeba
+<p align="left"><font face="Arial">Modul &quot;SumoPad&quot;
+slouží k sestavení herní konzole SumoPad. K modulu je potřeba
 připojit moduly &quot;DispVGA&quot;, &quot;LCD320x240&quot;,
 &quot;Base&quot; a &quot;KeyPad&quot;. Srdcem modulu je procesor
 CH32V208RBT6. Vzhledem k obtížnosti jeho letování (a také kvůli
