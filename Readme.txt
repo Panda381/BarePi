@@ -594,7 +594,7 @@ the "Base" module with a jumper). For game control, you may need to connect the
 using the kit modules, it corresponds to the connection of the "Zero", "Base"
 and "KeyPad" modules. The software for the "Zero" module uses the PiLibSDK
 library, which also includes sample applications:
-www https://www.breatharian.eu/hw/pilibsdk/index.html
+www https://www.breatharian.eu/hw/pilibsdk/index_en.html
 GitHub https://github.com/Panda381/PiLibSDK
 
 
