@@ -504,7 +504,10 @@ The "PicoPad" module is used to assemble the PicoPad game console. I recommend
 not soldering the Pico module to the module, but using female connectors to
 allow easy exchange between the Pico 1, Pico 2 (PicoPad 2) and Pimoroni Pico
 Plus 2 modules. The "Base", "LCD320x240" and "KeyPad" modules need to be
-connected to the module.
+connected to the module. The PicoPad console in the PicoLibSDK library, where
+you can also find sample applications:
+www https://www.breatharian.eu/hw/picolibsdk/index_en.html#picopad
+GitHub https://github.com/Panda381/PicoLibSDK
 
 
 PicoPadHSTX
