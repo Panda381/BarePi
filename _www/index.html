@@ -32,8 +32,7 @@ content="text/html; charset=utf-8">
 <p align="center"><font color="#FF8000" size="4" face="Arial"><strong>Modulární
 mikročipová stavebnice</strong></font></p>
 
-<p align="center"><font face="Arial">Poslední aktualizace:
-10.06.2026</font></p>
+<p align="center"><font face="Arial">Poslední aktualizace: 05.06.2026</font></p>
 
 <p align="center"><font face="Arial">(c) 2026 Miroslav Němeček</font></p>
 
@@ -43,13 +42,6 @@ face="Arial">https://github.com/Panda381/BarePi</font></a></p>
 <p align="center"><a href="dwn/BarePi.zip"><font face="Arial">Download
 podkladů stavebnice BarePi</font></a><font face="Arial"> (100
 MB)</font></p>
-
-<p align="center">&nbsp;</p>
-
-<p align="center"><font color="#FF0000" size="6" face="Arial"><strong>&gt;&gt;&gt;
-stránka je ve výstavbě &lt;&lt;&lt;</strong></font></p>
-
-<p align="center">&nbsp;</p>
 
 <p align="center"><a href="img/BarePi.jpg"><img
 src="img/BarePi2.jpg" border="0" width="500" height="310"></a></p>
@@ -741,8 +733,8 @@ zapojení odpovídá spojení modulů &quot;Zero&quot;,
 &quot;Base&quot; a &quot;KeyPad&quot;. Při konstrukci
 doporučuji použít raději dutinkovou lištu než přímé přiletování
 modulu Zero - aby bylo možné vyměňovat moduly Zero 1 nebo
-Zero 2. Konzole ZeroTiny v knihovně PiLibSDK, kde najdete i
-ukázkové aplikace: </font><a
+Zero 2. Konzole ZeroTiny v knihovně PiLibSDK, kde najdete i ukázkové
+aplikace: </font><a
 href="https://www.breatharian.eu/hw/pilibsdk/index.html#zerotiny"><font
 face="Arial">www</font></a><font face="Arial">, </font><a
 href="https://github.com/Panda381/PiLibSDK"><font face="Arial">GitHub</font></a><font
@@ -813,7 +805,20 @@ význam pinů se může u různých výrobců lišit. Na modulu
 se nachází propojka určující, zda se použije interní
 stabilizátor pro 3,3V. Pokud procesorový modul obsahuje
 vlastní stabilizátor, může být vhodné vypnout stabilizátor
-na modulu &quot;Base&quot;.</font></p>
+na modulu &quot;Base&quot;. Při konstrukci tohoto modulu
+upozorňuji, že některé součástky jsou příliš ztěsnané
+na sobě a špatně se letují - možná by bylo vhodnější
+desku mírně přeuspořádat, a také zvolit pro kondenzátory větší
+pouzdra. Zlepšit by se měl i reproduktor - zvuk je tichý,
+může by být potřeba přidat zesilovač.</font></p>
+
+<p align="left"><font face="Arial">Audio signály PWM_L a PWM_R v
+tomto modulu končí a dále nepokračují. Je to z důvodu
+minimalizace rušení audio signálu. Je-li to možné,
+připojujte modul &quot;Base&quot; jako první, ihned za
+procesorový modul. Zřejmě by kvalitu audio signálu zlepšilo
+i lepší vedení audio vodičů a jejich důkladnější
+stínění.</font></p>
 
 <p align="left"><a href="img/BarePi_Base3.jpg"><font face="Arial"><img
 src="img/BarePi_Base3_m.jpg" border="0" width="300" height="200"></font></a><font
@@ -1596,9 +1601,8 @@ stabilizátor). Pro ovládání her může být potřeba
 připojit modul &quot;KeyPad&quot;. Minimalistickou verzí herní
 konzole je ZeroTiny - při použití modulů stavebnice odpovídá
 spojení modulů &quot;Zero&quot;, &quot;Base&quot; a
-&quot;KeyPad&quot;. Software pro modul &quot;Zero&quot;
-využívá knihovnu PiLibSDK, kde můžete najít i ukázkové
-aplikace: </font><a
+&quot;KeyPad&quot;. Software pro modul &quot;Zero&quot; využívá
+knihovnu PiLibSDK, kde můžete najít i ukázkové aplikace: </font><a
 href="https://www.breatharian.eu/hw/pilibsdk/index.html"><font
 face="Arial">www</font></a><font face="Arial">, </font><a
 href="https://github.com/Panda381/PiLibSDK"><font face="Arial">GitHub</font></a><font

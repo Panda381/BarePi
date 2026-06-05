@@ -32,7 +32,7 @@ content="text/html; charset=utf-8">
 <p align="center"><font color="#FF8000" size="4" face="Arial"><strong>Modular
 Microchip Kit</strong></font></p>
 
-<p align="center"><font face="Arial">Last Update: 06/10/2026</font></p>
+<p align="center"><font face="Arial">Last Update: 06/05/2026</font></p>
 
 <p align="center"><font face="Arial">(c) 2026 Miroslav Nemecek</font></p>
 
@@ -41,13 +41,6 @@ face="Arial">https://github.com/Panda381/BarePi</font></a></p>
 
 <p align="center"><a href="dwn/BarePi.zip"><font face="Arial">Download
 sources of the BarePi kit</font></a><font face="Arial"> (100 MB)</font></p>
-
-<p align="center">&nbsp;</p>
-
-<p align="center"><font color="#FF0000" size="6" face="Arial"><strong>&gt;&gt;&gt;
-web page is under construction &lt;&lt;&lt;</strong></font></p>
-
-<p align="center">&nbsp;</p>
 
 <p align="center"><a href="img/BarePi.jpg"><img
 src="img/BarePi2.jpg" border="0" width="500" height="310"></a></p>
@@ -815,7 +808,21 @@ coordinates and meaning of the pins may vary from manufacturer to
 manufacturer. There is a jumper on the module that determines
 whether the internal 3.3V stabilizer is used. If the processor
 module contains its own stabilizer, it may be appropriate to turn
-off the stabilizer on the &quot;Base&quot; module.</font></p>
+off the stabilizer on the &quot;Base&quot; module. When
+constructing this module, I would like to point out that some
+components are too close together and are difficult to solder -
+it might be better to rearrange the board slightly and also
+choose larger housings for the capacitors. The speaker could also
+use some improvement - the sound is quiet, so an amplifier might
+be needed.</font></p>
+
+<p align="left"><font face="Arial">The PWM_L and PWM_R audio
+signals terminate in this module and do not continue beyond it.
+This is to minimize interference with the audio signal. If
+possible, connect the &quot;Base&quot; module first, immediately
+after the processor module. Better routing of the audio wires and
+more thorough shielding would likely improve the audio signal
+quality as well.</font></p>
 
 <p align="left"><a href="img/BarePi_Base3.jpg"><font face="Arial"><img
 src="img/BarePi_Base3_m.jpg" border="0" width="300" height="200"></font></a><font

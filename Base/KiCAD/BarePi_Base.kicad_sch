@@ -4111,6 +4111,10 @@
 		(uuid "016056ae-1a26-4f24-bc2c-da788890f68e")
 	)
 	(no_connect
+		(at 210.82 83.82)
+		(uuid "0d755b66-fab2-4be8-8198-7c9c7a8c6b99")
+	)
+	(no_connect
 		(at 50.8 132.08)
 		(uuid "0e1f5e2b-83cc-4445-b334-9e34f869b902")
 	)
@@ -4121,6 +4125,10 @@
 	(no_connect
 		(at 50.8 134.62)
 		(uuid "31c65413-7256-4ae4-9dde-25c06007aaf8")
+	)
+	(no_connect
+		(at 175.26 83.82)
+		(uuid "bc7090d0-f310-4ced-b044-79225701b409")
 	)
 	(no_connect
 		(at 132.08 124.46)
@@ -4948,16 +4956,6 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 83.82) (xy 175.26 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "930aa570-5e03-4bc2-9d64-23e3d81b3e64")
-	)
-	(wire
-		(pts
 			(xy 162.56 81.28) (xy 175.26 81.28)
 		)
 		(stroke
@@ -5475,16 +5473,6 @@
 			(type default)
 		)
 		(uuid "e388a9a7-cc31-4271-87f2-e42a1cbb969e")
-	)
-	(wire
-		(pts
-			(xy 210.82 83.82) (xy 223.52 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e388f5d5-4153-4ab2-8839-82b6c9617a2c")
 	)
 	(wire
 		(pts
@@ -6136,16 +6124,6 @@
 		)
 		(uuid "6816b0b6-7fd1-4a5b-b12d-5287da4993c1")
 	)
-	(label "PWM_R"
-		(at 223.52 83.82 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "68c6cb78-6397-4aec-ba89-c9032b3d2d79")
-	)
 	(label "LCD_MOSI"
 		(at 162.56 93.98 0)
 		(effects
@@ -6535,16 +6513,6 @@
 			(justify right bottom)
 		)
 		(uuid "c9de1f55-7344-4e0c-a4ac-72046f18ff73")
-	)
-	(label "PWM_L"
-		(at 162.56 83.82 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "cb09268f-d468-4f72-baf9-c9855ef53ad1")
 	)
 	(label "KEY_ALT"
 		(at 162.56 73.66 0)

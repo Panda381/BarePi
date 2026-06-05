@@ -3283,7 +3283,7 @@
 		)
 		(uuid "0dca0192-39f8-445a-9ff4-e15b66fc4d04")
 	)
-	(label "5V"
+	(label "5V_1"
 		(at 149.86 58.42 0)
 		(effects
 			(font
@@ -3403,7 +3403,7 @@
 		)
 		(uuid "1cf76754-dd1a-49de-9194-f125554daad7")
 	)
-	(label "GND"
+	(label "GND_1"
 		(at 83.82 106.68 0)
 		(effects
 			(font
@@ -3443,7 +3443,7 @@
 		)
 		(uuid "21308592-3ced-4b77-87fb-1913b6912120")
 	)
-	(label "GND"
+	(label "GND_1"
 		(at 149.86 162.56 0)
 		(effects
 			(font
@@ -3583,7 +3583,7 @@
 		)
 		(uuid "37522056-136d-4664-8c42-a1d471d22369")
 	)
-	(label "GND"
+	(label "GND_2"
 		(at 210.82 106.68 180)
 		(effects
 			(font
@@ -3593,7 +3593,7 @@
 		)
 		(uuid "383a9876-1e0c-4a6f-aa14-fe606e2747f6")
 	)
-	(label "5V"
+	(label "5V_2"
 		(at 144.78 58.42 180)
 		(effects
 			(font
@@ -3713,7 +3713,7 @@
 		)
 		(uuid "459253bd-127a-4dea-80f1-51e1dc7b58f1")
 	)
-	(label "3V3"
+	(label "3V3_2"
 		(at 210.82 60.96 180)
 		(effects
 			(font
@@ -3763,7 +3763,7 @@
 		)
 		(uuid "52e8c2f6-39c0-4e8a-a9fd-fd3f704a0418")
 	)
-	(label "GND"
+	(label "GND_1"
 		(at 149.86 106.68 0)
 		(effects
 			(font
@@ -3793,7 +3793,7 @@
 		)
 		(uuid "585ab299-658c-4a5b-bbca-c854c8ae24f9")
 	)
-	(label "5V"
+	(label "5V_1"
 		(at 149.86 114.3 0)
 		(effects
 			(font
@@ -3883,7 +3883,7 @@
 		)
 		(uuid "601a36c5-874e-4ace-afdf-de2aef93b581")
 	)
-	(label "3V3"
+	(label "3V3_2"
 		(at 210.82 116.84 180)
 		(effects
 			(font
@@ -3933,7 +3933,7 @@
 		)
 		(uuid "66e60b57-c264-4a47-83c9-7e777d45f41b")
 	)
-	(label "GND"
+	(label "GND_1"
 		(at 83.82 162.56 0)
 		(effects
 			(font
@@ -3943,7 +3943,7 @@
 		)
 		(uuid "67422ddf-21b8-42b5-8996-e6ecbc9b0c6e")
 	)
-	(label "GND"
+	(label "GND_2"
 		(at 210.82 162.56 180)
 		(effects
 			(font
@@ -3973,7 +3973,7 @@
 		)
 		(uuid "7331d653-f796-405c-8a1d-a4162bfb2e8c")
 	)
-	(label "5V"
+	(label "5V_2"
 		(at 210.82 114.3 180)
 		(effects
 			(font
@@ -4013,7 +4013,7 @@
 		)
 		(uuid "7b8bf692-4169-4642-bf2f-62c52d09b988")
 	)
-	(label "3V3"
+	(label "3V3_2"
 		(at 144.78 116.84 180)
 		(effects
 			(font
@@ -4043,7 +4043,7 @@
 		)
 		(uuid "823304e1-a0ee-4a16-97b9-eec7f2d15acf")
 	)
-	(label "3V3"
+	(label "3V3_2"
 		(at 144.78 60.96 180)
 		(effects
 			(font
@@ -4183,7 +4183,7 @@
 		)
 		(uuid "97ab8390-de57-4744-88d5-47a30a170d3d")
 	)
-	(label "GND"
+	(label "GND_2"
 		(at 144.78 106.68 180)
 		(effects
 			(font
@@ -4193,7 +4193,7 @@
 		)
 		(uuid "97bc4af8-3b03-4c8d-bdcf-70f470225258")
 	)
-	(label "5V"
+	(label "5V_2"
 		(at 144.78 114.3 180)
 		(effects
 			(font
@@ -4343,7 +4343,7 @@
 		)
 		(uuid "aedd9372-19f6-4c1d-921f-662c7dfbf3d5")
 	)
-	(label "GND"
+	(label "GND_2"
 		(at 144.78 162.56 180)
 		(effects
 			(font
@@ -4373,7 +4373,7 @@
 		)
 		(uuid "b4510341-475b-45f8-9f52-a06e55a0487f")
 	)
-	(label "3V3"
+	(label "3V3_1"
 		(at 149.86 116.84 0)
 		(effects
 			(font
@@ -4383,7 +4383,7 @@
 		)
 		(uuid "b54c1230-91c2-439c-8032-46078174594d")
 	)
-	(label "5V"
+	(label "5V_1"
 		(at 83.82 58.42 0)
 		(effects
 			(font
@@ -4443,7 +4443,7 @@
 		)
 		(uuid "baf632e3-5dbb-425f-ba57-d55ad60f3734")
 	)
-	(label "3V3"
+	(label "3V3_1"
 		(at 83.82 60.96 0)
 		(effects
 			(font
@@ -4513,7 +4513,7 @@
 		)
 		(uuid "c57db395-6d74-4aab-93db-683f7fd38902")
 	)
-	(label "5V"
+	(label "5V_2"
 		(at 210.82 58.42 180)
 		(effects
 			(font
@@ -4533,7 +4533,7 @@
 		)
 		(uuid "cd4e7695-0b1a-4e07-9ae2-c4bb33e60709")
 	)
-	(label "3V3"
+	(label "3V3_1"
 		(at 83.82 116.84 0)
 		(effects
 			(font
@@ -4613,7 +4613,7 @@
 		)
 		(uuid "d74be406-7fc6-471c-b427-b4ea19486c01")
 	)
-	(label "5V"
+	(label "5V_1"
 		(at 83.82 114.3 0)
 		(effects
 			(font
@@ -4643,7 +4643,7 @@
 		)
 		(uuid "e9bc4702-4b21-4bbc-b4eb-da4b93e16cca")
 	)
-	(label "3V3"
+	(label "3V3_1"
 		(at 149.86 60.96 0)
 		(effects
 			(font

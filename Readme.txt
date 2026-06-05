@@ -1,6 +1,6 @@
 BarePi - Modular microchip kit
 ==============================
-Last Update: 06/10/2026
+Last Update: 06/05/2026
 Copyright (c) 2026 Miroslav Nemecek
 
 Panda38@seznam.cz
@@ -399,7 +399,17 @@ definition for the audio connector, SD card slot, speaker and HT7533 stabilizer
 manufacturer. There is a jumper on the module that determines whether the
 internal 3.3V stabilizer is used. If the processor module contains its own
 stabilizer, it may be appropriate to turn off the stabilizer on the "Base"
-module.
+module. When constructing this module, I would like to point out that some
+components are too close together and are difficult to solder - it might be
+better to rearrange the board slightly and also choose larger housings for the
+capacitors. The speaker could also use some improvement - the sound is quiet,
+so an amplifier might be needed.
+
+The PWM_L and PWM_R audio signals terminate in this module and do not continue
+beyond it. This is to minimize interference with the audio signal. If possible,
+connect the "Base" module first, immediately after the processor module. Better
+routing of the audio wires and more thorough shielding would likely improve the
+audio signal quality as well.
 
 
 BusExp
