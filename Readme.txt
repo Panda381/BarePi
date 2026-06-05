@@ -9,9 +9,6 @@ https://github.com/Panda381/BarePi
 https://www.breatharian.eu/hw/barepi/index_en.html
 
 
->>> under construction <<<
-
-
 Note: The schematics and PCBs are in KiCAD version 9 format. The PCBs were
 originally designed for home production using photolithography and may not be
 properly prepared for professional production. If you want to have your PCBs
