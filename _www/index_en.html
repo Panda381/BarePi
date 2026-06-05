@@ -40,7 +40,7 @@ Microchip Kit</strong></font></p>
 face="Arial">https://github.com/Panda381/BarePi</font></a></p>
 
 <p align="center"><a href="dwn/BarePi.zip"><font face="Arial">Download
-sources of the BarePi kit</font></a><font face="Arial"> (90 MB)</font></p>
+sources of the BarePi kit</font></a><font face="Arial"> (100 MB)</font></p>
 
 <p align="center">&nbsp;</p>
 
@@ -214,18 +214,22 @@ of the kit</font></h3>
 <p align="left"><font face="Arial">BarePi is a modular microchip
 kit designed for programming small devices such as game consoles
 or calculators. The main focus is on the Raspberry Zero 2 module,
-programmed as bare-metal (i.e. without an operating system).
-However, other types of processors supporting 3.3V signals can
-also be used (ATmega, CH32V, ESP32). The modules of the kit are
-connected via 40-pin connectors, forming a bus with signals
-defined according to the Raspberry Zero 2 module. The connectors
-ensure sufficient connection strength, no additional mechanical
-connections are needed. Most modules are pass-through - they
-contain both a bus input connector on the top edge of the board
-and a bus output connector on the bottom edge of the board. The
-exceptions are the processor modules, which contain only an
-output connector, and the alphanumeric keyboard module, which has
-only an input connector.</font></p>
+programmed as bare-metal (i.e. without an operating system) with
+library PiLibSDK (link </font><a
+href="https://www.breatharian.eu/hw/pilibsdk/index_en.html"><font
+face="Arial">www</font></a><font face="Arial">, </font><a
+href="https://github.com/Panda381/PiLibSDK"><font face="Arial">GitHub</font></a><font
+face="Arial">). However, other types of processors supporting
+3.3V signals can also be used (ATmega, CH32V, ESP32). The modules
+of the kit are connected via 40-pin connectors, forming a bus
+with signals defined according to the Raspberry Zero 2 module.
+The connectors ensure sufficient connection strength, no
+additional mechanical connections are needed. Most modules are
+pass-through - they contain both a bus input connector on the top
+edge of the board and a bus output connector on the bottom edge
+of the board. The exceptions are the processor modules, which
+contain only an output connector, and the alphanumeric keyboard
+module, which has only an input connector.</font></p>
 
 <p align="left"><font face="Arial">The connection connector
 consists of a 2x20-pin female header on the bottom of the module
@@ -740,7 +744,12 @@ connection of the &quot;Zero&quot;, &quot;Base&quot; and
 &quot;KeyPad&quot; modules. In the construction, I recommend
 using a female connector strip rather than direct soldering of
 the Zero module - so that the Zero 1 or Zero 2 modules can be
-exchanged.</font></p>
+exchanged. The ZeroTiny console in the PiLibSDK library, where
+you can also find sample applications: </font><a
+href="https://www.breatharian.eu/hw/pilibsdk/index_en.html#zerotiny"><font
+face="Arial">www</font></a><font face="Arial">, </font><a
+href="https://github.com/Panda381/PiLibSDK"><font face="Arial">GitHub</font></a><font
+face="Arial">.</font></p>
 
 <p align="left"><a href="img/BarePi_ZeroTiny4.jpg"><font
 face="Arial"><img src="img/BarePi_ZeroTiny4_m.jpg" border="0"
@@ -783,6 +792,13 @@ face="Arial"><img src="img/ZeroTiny_bottom_m.jpg" border="0"
 width="403" height="210"></font></a><a
 href="img/ZeroTiny_top.png"><font face="Arial"><img
 src="img/ZeroTiny_top_m.jpg" border="0" width="403" height="210"></font></a></p>
+
+<p align="left"><font face="Arial">ZeroTiny console built from
+BarePi modules:</font></p>
+
+<p align="left"><a href="img/BarePi_ZeroTiny.jpg"><font
+face="Arial"><img src="img/BarePi_ZeroTiny_m.jpg" border="0"
+width="214" height="400"></font></a></p>
 
 <h2 align="left"><font face="Arial">Special modules</font></h2>
 
@@ -1589,7 +1605,13 @@ jumper). For game control, you may need to connect the
 &quot;KeyPad&quot; module. The minimalist version of the game
 console is ZeroTiny - when using the kit modules, it corresponds
 to the connection of the &quot;Zero&quot;, &quot;Base&quot; and
-&quot;KeyPad&quot; modules.</font></p>
+&quot;KeyPad&quot; modules. The software for the &quot;Zero&quot;
+module uses the PiLibSDK library, which also includes sample
+applications: </font><a
+href="https://www.breatharian.eu/hw/pilibsdk/index.html"><font
+face="Arial">www</font></a><font face="Arial">, </font><a
+href="https://github.com/Panda381/PiLibSDK"><font face="Arial">GitHub</font></a><font
+face="Arial">.</font></p>
 
 <p align="left"><a href="img/BarePi_Zero3.jpg"><font face="Arial"><img
 src="img/BarePi_Zero3_m.jpg" border="0" width="300" height="200"></font></a><font

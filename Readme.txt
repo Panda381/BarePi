@@ -80,13 +80,15 @@ Description of the kit
 ----------------------
 BarePi is a modular microchip kit designed for programming small devices such
 as game consoles or calculators. The main focus is on the Raspberry Zero 2
-module, programmed as bare-metal (i.e. without an operating system). However,
-other types of processors supporting 3.3V signals can also be used (ATmega,
-CH32V, ESP32). The modules of the kit are connected via 40-pin connectors,
-forming a bus with signals defined according to the Raspberry Zero 2 module.
-The connectors ensure sufficient connection strength, no additional mechanical
-connections are needed. Most modules are pass-through - they contain both a bus
-input connector on the top edge of the board and a bus output connector on the
+module, programmed as bare-metal (i.e. without an operating system) with
+library PiLibSDK (link www https://www.breatharian.eu/hw/pilibsdk/index_en.html,
+GitHub https://github.com/Panda381/PiLibSDK). However, other types of
+processors supporting 3.3V signals can also be used (ATmega, CH32V, ESP32).
+The modules of the kit are connected via 40-pin connectors, forming a bus with
+signals defined according to the Raspberry Zero 2 module. The connectors
+ensure sufficient connection strength, no additional mechanical connections
+are needed. Most modules are pass-through - they contain both a bus input
+connector on the top edge of the board and a bus output connector on the
 bottom edge of the board. The exceptions are the processor modules, which
 contain only an output connector, and the alphanumeric keyboard module, which
 has only an input connector.
@@ -377,7 +379,10 @@ is an example of creating an end device based on the modules of the kit. Its
 connection corresponds to the connection of the "Zero", "Base" and "KeyPad"
 modules. In the construction, I recommend using a female connector strip rather
 than direct soldering of the Zero module - so that the Zero 1 or Zero 2 modules
-can be exchanged.
+can be exchanged. The ZeroTiny console in the PiLibSDK library, where you can
+also find sample applications:
+www https://www.breatharian.eu/hw/pilibsdk/index_en.html#zerotiny
+GitHub https://github.com/Panda381/PiLibSDK
 
 
 Special modules
@@ -587,7 +592,10 @@ connect the "Base" module (I recommend disconnecting the internal stabilizer in
 the "Base" module with a jumper). For game control, you may need to connect the
 "KeyPad" module. The minimalist version of the game console is ZeroTiny - when
 using the kit modules, it corresponds to the connection of the "Zero", "Base"
-and "KeyPad" modules.
+and "KeyPad" modules. The software for the "Zero" module uses the PiLibSDK
+library, which also includes sample applications:
+www https://www.breatharian.eu/hw/pilibsdk/index.html
+GitHub https://github.com/Panda381/PiLibSDK
 
 
 Displays
