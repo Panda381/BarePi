@@ -531,7 +531,7 @@ produce less noise. To reduce noise, I recommend leaving the regulator in the
 module. Another option is to use an active PWM filter with a filtered supply
 voltage.  The PicoPad console in the PicoLibSDK library, where you can also
 find sample applications:
-www https://www.breatharian.eu/hw/picolibsdk/index_en.html#picopad
+www https://www.breatharian.eu/hw/picolibsdk/index_en.html#picopadhstx
 GitHub https://github.com/Panda381/PicoLibSDK
 
 
