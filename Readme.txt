@@ -545,6 +545,10 @@ PidiBoy
 The "PidiBoy" module is designed to build a PidiBoy game console, with a
 CH32V006F8P6 processor and output to a 128x64 OLED display. The "Base",
 "OLED128x64" and "KeyPad" modules need to be connected to the module.
+The PidiBoy console in the CH32LibSDK library, where you can also find sample
+applications:
+www https://www.breatharian.eu/hw/ch32libsdk/index_en.html#pidiboy
+GitHub https://github.com/Panda381/CH32LibSDK
 
 
 PidiMet
@@ -602,6 +606,11 @@ recommended 32MHz, in which case the PLL module settings must be adjusted in
 the software, or automatic crystal frequency detection must be added to the
 firmware.
 
+The SumoPad console software is based on the CH32LibSDK library (links:
+www https://www.breatharian.eu/hw/ch32libsdk/index_en.html
+GitHub https://github.com/Panda381/CH32LibSDK ),
+but the software for the SumoPad console is not yet ready.
+
 
 TinyJoypad
 ----------
@@ -617,7 +626,10 @@ TweetyBoy
 ---------
 The "TweetyBoy" module is designed to build the TweetyBoy game console. The
 "LCD160x80", "Base" and "KeyPad" modules need to be connected to the module.
-The module is controlled by the CH32X035G8R6 processor.
+The module is controlled by the CH32X035G8R6 processor. The TweetyBoy console
+in the CH32LibSDK library, where you can also find sample applications:
+www https://www.breatharian.eu/hw/ch32libsdk/index_en.html#tweetyboy
+GitHub https://github.com/Panda381/CH32LibSDK
 
 
 Zero
