@@ -32,7 +32,7 @@ content="text/html; charset=utf-8">
 <p align="center"><font color="#FF8000" size="4" face="Arial"><strong>Modular
 Microchip Kit</strong></font></p>
 
-<p align="center"><font face="Arial">Last Update: 06/05/2026</font></p>
+<p align="center"><font face="Arial">Last Update: 06/06/2026</font></p>
 
 <p align="center"><font face="Arial">(c) 2026 Miroslav Nemecek</font></p>
 
@@ -1201,6 +1201,16 @@ face="Arial">www</font></a><font face="Arial">, </font><a
 href="https://github.com/Panda381/PicoLibSDK"><font face="Arial">GitHub</font></a><font
 face="Arial">.</font></p>
 
+<p align="left"><font face="Arial">The original PicoPad console
+uses mono audio on the GPIO14 port. In the &quot;PicoPad&quot;
+module, the original audio from GPIO14 is routed to PWM_L, so you
+will hear audio from standard programs in the left channel. The
+GPIO15 port can be used for the right channel of stereo audio.
+However, it is necessary to modify the PicoPad programs for this
+option. To play MP3 music, you can use the MP3_1514 program,
+which has already been modified to play audio through the
+GPIO15/GPIO14 ports.</font></p>
+
 <p align="left"><a href="img/BarePi_PicoPad3.jpg"><font
 face="Arial"><img src="img/BarePi_PicoPad3_m.jpg" border="0"
 width="300" height="200"></font></a><font face="Arial"> </font><a
@@ -1243,9 +1253,24 @@ width="224" height="400"></font></a></p>
 <h3 align="left"><a name="picopadhstx"></a><font face="Arial">PicoPadHSTX</font></h3>
 
 <p align="left"><font face="Arial">The &quot;PicoPadHSTX&quot;
-module is used to build the PicoPadHSTX game console. The
-&quot;DispVGA&quot;, &quot;DispHSTX&quot;, &quot;Base&quot; and
-&quot;KeyPad&quot; modules need to be connected to the module.</font></p>
+module is used to assemble the PicoPadHSTX game console, which is
+equipped with a &quot;Pico 2&quot; or &quot;Pimoroni Pico Plus
+2&quot; module. The &quot;DispVGA,&quot; &quot;DispHSTX,&quot;
+&quot;Base,&quot; and &quot;KeyPad&quot; modules must be
+connected to this module. There may be noticeable increased noise
+in the audio due to the increased load on the internal voltage
+regulator caused by image generation. Modules with a higher-rated
+regulator (such as the Pimoroni Pico Plus 2) produce less noise.
+To reduce noise, I recommend leaving the regulator in the
+&quot;Base&quot; module active, which will boost the internal
+regulator of the Pico 2 module. Another option is to use an
+active PWM filter with a filtered supply voltage. The PicoPadHSTX
+console in the PicoLibSDK library, where you can also find sample
+applications: </font><a
+href="https://www.breatharian.eu/hw/picolibsdk/index_en.html#picopadhstx"><font
+face="Arial">www</font></a><font face="Arial">, </font><a
+href="https://github.com/Panda381/PicoLibSDK"><font face="Arial">GitHub</font></a><font
+face="Arial">.</font></p>
 
 <p align="left"><a href="img/BarePi_PicoPadHSTX3.jpg"><font
 face="Arial"><img src="img/BarePi_PicoPadHSTX3_m.jpg" border="0"
@@ -1281,6 +1306,13 @@ border="0" width="428" height="305"></font></a><a
 href="img/BarePi_PicoPadHSTX_top.png"><font face="Arial"><img
 src="img/BarePi_PicoPadHSTX_top_m.jpg" border="0" width="428"
 height="305"></font></a></p>
+
+<p align="left"><font face="Arial">PicoPadHSTX console built from
+BarePi modules:</font></p>
+
+<p align="left"><a href="img/BarePi_PicoPadHSTX.jpg"><font
+face="Arial"><img src="img/BarePi_PicoPadHSTX_m.jpg" border="0"
+width="324" height="400"></font></a></p>
 
 <h3 align="left"><a name="pidiboy"></a><font face="Arial">PidiBoy</font></h3>
 

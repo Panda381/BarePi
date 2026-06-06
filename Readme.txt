@@ -1,6 +1,6 @@
 BarePi - Modular microchip kit
 ==============================
-Last Update: 06/05/2026
+Last Update: 06/06/2026
 Copyright (c) 2026 Miroslav Nemecek
 
 Panda38@seznam.cz
@@ -509,12 +509,30 @@ you can also find sample applications:
 www https://www.breatharian.eu/hw/picolibsdk/index_en.html#picopad
 GitHub https://github.com/Panda381/PicoLibSDK
 
+The original PicoPad console uses mono audio on the GPIO14 port. In the
+"PicoPad" module, the original audio from GPIO14 is routed to PWM_L, so you
+will hear audio from standard programs in the left channel. The GPIO15 port
+can be used for the right channel of stereo audio. However, it is necessary to
+modify the PicoPad programs for this option. To play MP3 music, you can use
+the MP3_1514 program, which has already been modified to play audio through
+the GPIO15/GPIO14 ports.
+
 
 PicoPadHSTX
 -----------
-The "PicoPadHSTX" module is used to build the PicoPadHSTX game console. The
-"DispVGA", "DispHSTX", "Base" and "KeyPad" modules need to be connected to the
-module.
+The "PicoPadHSTX" module is used to assemble the PicoPadHSTX game console,
+which is equipped with a "Pico 2" or "Pimoroni Pico Plus 2" module. The
+"DispVGA," "DispHSTX," "Base," and "KeyPad" modules must be connected to this
+module. There may be noticeable increased noise in the audio due to the
+increased load on the internal voltage regulator caused by image generation.
+Modules with a higher-rated regulator (such as the Pimoroni Pico Plus 2)
+produce less noise. To reduce noise, I recommend leaving the regulator in the
+"Base" module active, which will boost the internal regulator of the Pico 2
+module. Another option is to use an active PWM filter with a filtered supply
+voltage.  The PicoPad console in the PicoLibSDK library, where you can also
+find sample applications:
+www https://www.breatharian.eu/hw/picolibsdk/index_en.html#picopad
+GitHub https://github.com/Panda381/PicoLibSDK
 
 
 PidiBoy

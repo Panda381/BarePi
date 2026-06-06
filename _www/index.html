@@ -33,7 +33,7 @@ content="text/html; charset=utf-8">
 mikročipová stavebnice</strong></font></p>
 
 <p align="center"><font face="Arial">Poslední aktualizace:
-05.06.2026</font></p>
+06.06.2026</font></p>
 
 <p align="center"><font face="Arial">(c) 2026 Miroslav Němeček</font></p>
 
@@ -1194,6 +1194,15 @@ face="Arial">www</font></a><font face="Arial">, </font><a
 href="https://github.com/Panda381/PicoLibSDK"><font face="Arial">GitHub</font></a><font
 face="Arial">.</font></p>
 
+<p align="left"><font face="Arial">Původní konzole PicoPad používá
+monofonní zvuk na portu GPIO14. V modulu &quot;PicoPad&quot; je
+původní zvuk z GPIO14 veden na PWM_L, zvuk ze standardních
+programů tedy uslyšíte v levém kanálu. Na portu GPIO15 je možný
+výstup pravého kanálu stereofonního zvuku. Je ovšem nutné
+programy z PicoPad upravit pro tuto možnost. Pro přehrávání
+MP3 hudby můžete použít program MP3_1514, který je již
+upraven pro přehrávání zvuku přes porty GPIO15/GPIO14.</font></p>
+
 <p align="left"><a href="img/BarePi_PicoPad3.jpg"><font
 face="Arial"><img src="img/BarePi_PicoPad3_m.jpg" border="0"
 width="300" height="200"></font></a><font face="Arial"> </font><a
@@ -1236,9 +1245,23 @@ width="224" height="400"></font></a></p>
 <h3 align="left"><a name="picopadhstx"></a><font face="Arial">PicoPadHSTX</font></h3>
 
 <p align="left"><font face="Arial">Modul &quot;PicoPadHSTX&quot;
-slouží k sestavení herní konzole PicoPadHSTX. K modulu je potřeba
-připojit moduly &quot;DispVGA&quot;, &quot;DispHSTX&quot;,
-&quot;Base&quot; a &quot;KeyPad&quot;.</font></p>
+slouží k sestavení herní konzole PicoPadHSTX, osazená
+modulem &quot;Pico 2&quot; nebo &quot;Pimoroni Pico Plus 2&quot;.
+K modulu je potřeba připojit moduly &quot;DispVGA&quot;,
+&quot;DispHSTX&quot;, &quot;Base&quot; a &quot;KeyPad&quot;. Ve
+zvuku může být znatelný zvýšený šum, z důvodu zvýšené
+zátěže interního stabilizátoru kvůli generování obrazu. U
+modulů s vyšší dimenzí zátěže stabilizátoru (jako má
+Pimoroni Pico Plus 2) je šum menší. Pro snížení šumu
+doporučuji ponechat stabilizátor v modulu &quot;Base&quot;
+aktivní, tím se posílí interní stabilizátor modulu Pico 2.
+Jiná možnost je použít aktivní PWM filtr s filtrovaným
+napájecím napětím. Konzole PicoPadHSTX v knihovně
+PicoLibSDK, kde najdete i ukázkové aplikace: </font><a
+href="https://www.breatharian.eu/hw/picolibsdk/index.html#picopadhstx"><font
+face="Arial">www</font></a><font face="Arial">, </font><a
+href="https://github.com/Panda381/PicoLibSDK"><font face="Arial">GitHub</font></a><font
+face="Arial">.</font></p>
 
 <p align="left"><a href="img/BarePi_PicoPadHSTX3.jpg"><font
 face="Arial"><img src="img/BarePi_PicoPadHSTX3_m.jpg" border="0"
@@ -1274,6 +1297,13 @@ border="0" width="428" height="305"></font></a><a
 href="img/BarePi_PicoPadHSTX_top.png"><font face="Arial"><img
 src="img/BarePi_PicoPadHSTX_top_m.jpg" border="0" width="428"
 height="305"></font></a></p>
+
+<p align="left"><font face="Arial">Konzole PicoPadHSTX sestavená
+z modulů BarePi:</font></p>
+
+<p align="left"><a href="img/BarePi_PicoPadHSTX.jpg"><img
+src="img/BarePi_PicoPadHSTX_m.jpg" border="0" width="324"
+height="400"></a></p>
 
 <h3 align="left"><a name="pidiboy"></a><font face="Arial">PidiBoy</font></h3>
 
