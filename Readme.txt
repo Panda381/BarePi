@@ -490,12 +490,17 @@ UART pins, after pressing the "A" button during power-on. The "Base",
 
 PGA2350
 -------
-The "PGA2350" module is a variant of the PicoPad console with a PGA2350 processor module
+The "PGA2350" module is used to build the PicoPadPGA game console. It is a
+variant of the PicoPad console featuring the PGA2350 processor module
 https://botland.cz/desky-mikrokontroleru-rp235x/25394-pga2350-vyvojova-deska-s-mikrokontrolerem-rp2350b-pimoroni-pim722-0769894025840.html,
-with an RP2350B processor, 16 MB Flash and 8 MB PSRAM. Image output is possible
-on a 320x240 pixel LCD display, a VGA monitor or an HDMI monitor. The
-"DispVGA", "DispHSTX", "LCD320x240", "Base" and "KeyPad" modules need to be
-connected to the module.
+which includes an RP2350B processor, 16 MB of Flash memory, and 8 MB of PSRAM.
+Video output is supported for a 320x240-pixel LCD display, a VGA monitor, or
+an HDMI monitor. The module requires the connection of the "DispVGA",
+"DispHDMI", "LCD320x240", "Base" and "KeyPad" modules. The PicoPadPGA console
+software is based on the PicoLibSDK library (links:
+www https://www.breatharian.eu/hw/picolibsdk/index_en.html
+GitHub https://github.com/Panda381/PicoLibSDK ),
+but the software for the PicoPadPGA console is not yet ready.
 
 
 PicoPad
@@ -522,7 +527,7 @@ PicoPadHSTX
 -----------
 The "PicoPadHSTX" module is used to assemble the PicoPadHSTX game console,
 which is equipped with a "Pico 2" or "Pimoroni Pico Plus 2" module. The
-"DispVGA," "DispHSTX," "Base," and "KeyPad" modules must be connected to this
+"DispVGA", "DispHDMI", "Base" and "KeyPad" modules must be connected to this
 module. There may be noticeable increased noise in the audio due to the
 increased load on the internal voltage regulator caused by image generation.
 Modules with a higher-rated regulator (such as the Pimoroni Pico Plus 2)
