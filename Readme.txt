@@ -466,7 +466,11 @@ be on if the backlight is turned off. Of course, in cases where the signal is
 not used and is in a high impedance state, the LEDs will not light up even at
 the LOW level. For easy bus testing, a program can be loaded into some
 processors that gradually lights up the LEDs for bus signals, so you can
-visually check for bus interruption or short circuit errors on the bus.
+visually check for bus interruption or short circuit errors on the bus. You can
+test the bus (except for the last 6 signals) using the "Zero" processor module
+and the TESTLED program from the PiLibSDK library, TEST folder:
+www https://www.breatharian.eu/hw/pilibsdk/index_en.html
+GitHub https://github.com/Panda381/PiLibSDK
 
 The module uses SMD LEDs with PLCC-4 package. Different manufacturers use
 different pin connections - therefore, only 2 contacts out of 4 are used on the
