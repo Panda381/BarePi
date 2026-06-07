@@ -1,6 +1,6 @@
 BarePi - Modular microchip kit
 ==============================
-Last Update: 06/06/2026
+Last Update: 06/07/2026
 Copyright (c) 2026 Miroslav Nemecek
 
 Panda38@seznam.cz
