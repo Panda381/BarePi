@@ -559,7 +559,13 @@ The "PidiMetAdapter" adapter can be used to connect the measuring leads. When
 constructing this module, I would like to point out that some components are
 too close together and are difficult to solder - it might be better to
 rearrange the board slightly and also choose larger housings for the
-capacitors.
+capacitors. Firmware for the "PidiMet" module can be found in the CH32LibSDK
+library in the ch32\DEVICE\PidiMet folder
+www https://www.breatharian.eu/hw/ch32libsdk/index_en.html#pidimet
+GitHub https://github.com/Panda381/CH32LibSDK/tree/main/ch32/DEVICE/PidiMet
+or as a standalone project
+www https://www.breatharian.eu/hw/pidimet/index_en.html
+GitHub https://github.com/Panda381/PidiMet
 
 
 PidiMetAdapter
@@ -688,7 +694,11 @@ ExtDisp
 The "ExtDisp" module is designed to capture signals for an LCD display with an
 ST7789 controller and a resolution of 320x240 pixels, and display it on a VGA
 or HDMI monitor. The choice of monitor is determined by whether a DispVGA
-adapter or a DispHDMI adapter is inserted into the display connector.
+adapter or a DispHDMI adapter is inserted into the display connector. Firmware
+for the "ExtDisp" module can be found in the PicoLibSDK library in the
+!Pico\Module folder, file ExtDisp0.UF2 (version 0 with the Pico module):
+www https://www.breatharian.eu/hw/picolibsdk/index_en.html
+GitHub https://github.com/Panda381/PicoLibSDK/tree/main/!Pico/Module
 
 
 LCD16x2
