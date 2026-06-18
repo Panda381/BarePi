@@ -32,8 +32,7 @@ content="text/html; charset=utf-8">
 <p align="center"><font color="#FF8000" size="4" face="Arial"><strong>Modulární
 mikročipová stavebnice</strong></font></p>
 
-<p align="center"><font face="Arial">Poslední aktualizace:
-07.06.2026</font></p>
+<p align="center"><font face="Arial">Poslední aktualizace: 18.06.2026</font></p>
 
 <p align="center"><font face="Arial">(c) 2026 Miroslav Němeček</font></p>
 
@@ -978,9 +977,21 @@ Paměťové sloty mohou mít I2C adresu 0x50 až 0x56. U pamětí
 AT23C256 a AT23C512 lze zvolit adresový rozsah pouze 0x50 až
 0x53. Při použití EEPROM pamětí je potřeba pamatovat na to,
 že moduly Raspberry Pi (Zero, 1, 2, 3) používají při svém
-startu sběrnici I2C0 pro čtení ID EEPROM. Pokud uživatelské
-EEPROM nebudou používat stejnou strukturu dat jako ID EEPROM,
-neměl by s tím být problém.</font></p>
+startu sběrnici I2C0 pro čtení ID EEPROM, která se nachází
+na adrese 0x50. Pokud uživatelské EEPROM nebudou používat
+stejnou strukturu dat jako ID EEPROM, nebo stejnou adresu, neměl
+by s tím být problém.</font></p>
+
+<p align="left"><font face="Arial">V knihovně PiLibSDK se ve
+složce _drv, soubory drv_rtc.*, k dispozici driver, který
+umožňuje načíst a nastavit aktuální čas v RTC modulu
+DS3231. Je-li na I2C0 sběrnici při startu aplikace detekován
+obvod DS3231, je z něj načten aktuální čas. Pro paměti I2C
+EEPROM je ve složce _drv k dispozici driver v souborech
+drv_eeprom.*. Pomocí driveru lze konfigurační EEPROM 4KB na
+adrese 0x57 formátovat, načítat a ukládat konfigurační
+položky. Programy sem mohou ukládat své konfigurace a záznamy
+pomocí vlastního ID čísla.</font></p>
 
 <p align="left"><a href="img/BarePi_RTC3.jpg"><font face="Arial"><img
 src="img/BarePi_RTC3_m.jpg" border="0" width="300" height="200"></font></a><font
@@ -1042,10 +1053,10 @@ přerušení sběrnice nebo zkratu na sběrnici.</font></p>
 <p align="left"><font face="Arial">V modulu se používají SMD
 LED diody s pouzdrem PLCC-4. Různí výrobci používají různé
 zapojení pinů - proto se na plošném spoji využívají pouze
-2 kontakty ze 4, jejichž zapojení výrobci dodržují.
-Sběrnici (kromě posledních 6 signálů) můžete testovat
-procesorovým modulem &quot;Zero&quot; a programem TESTLED z
-knihovny PiLibSDK, složka TEST: </font><a
+2 kontakty ze 4, jejichž zapojení výrobci dodržují. Sběrnici
+(kromě posledních 6 signálů) můžete testovat procesorovým
+modulem &quot;Zero&quot; a programem TESTLED z knihovny PiLibSDK,
+složka TEST: </font><a
 href="https://www.breatharian.eu/hw/pilibsdk/index.html"><font
 face="Arial">www</font></a><font face="Arial"> </font><a
 href="https://github.com/Panda381/PiLibSDK"><font face="Arial">GitHub</font></a><font
@@ -1847,6 +1858,18 @@ face="Arial">www</font></a><font face="Arial">, </font><a
 href="https://github.com/Panda381/PiLibSDK"><font face="Arial">GitHub</font></a><font
 face="Arial">.</font></p>
 
+<p align="left"><font face="Arial">K modulu &quot;Zero&quot; lze
+připojit i další moduly, které jsou knihovnou PiLibSDK
+podporovány. Připojíte-li modul &quot;LCD320x240&quot;,
+můžete zařízení provozovat s LCD displejem, namísto HDMI
+monitoru. Systém LCD displej automaticky detekuje a zajistí
+odesílání obrazu. Bližší popis k použití LCD displeje
+naleznete v sekci &quot;Úvod&quot; knihovny PiLibSDK.
+Připojíte-li &quot;RTC&quot; modul, budou programy využívat
+hodiny reálného času a EEPROM paměti. V knihovně PiLibSDK
+jsou k dispozici i drivery pro další moduly, jako např. OLED
+displeje SSD1306.</font></p>
+
 <p align="left"><a href="img/BarePi_ZeroTinyApps.jpg"><font
 face="Arial"><img src="img/BarePi_ZeroTinyApps_m.jpg" border="0"
 width="300" height="225"></font></a></p>
@@ -2114,6 +2137,13 @@ modul nebude umět generovat nastavitelný jas podsvícení, v
 tom případě může být vhodnější generovat podsvícení v
 modulu displeje.</font></p>
 
+<p align="left"><font face="Arial">Knihovna PiLibSDK obsahuje v
+souborech drv_lcd.*, ve složce _drv, driver pro obsluhu LCD SPI
+displejů. Driver umožňuje detekci připojení modulu
+LCD160x80. K detekci využívá rezistor 10K zapojený mezi piny
+RES a CS, proto se doporučuje modul tímto detekčním
+rezistorem osadit.</font></p>
+
 <p align="left"><a href="img/BarePi_LCD160x803.jpg"><font
 face="Arial"><img src="img/BarePi_LCD160x803_m.jpg" border="0"
 width="300" height="190"></font></a><font face="Arial"> </font><a
@@ -2164,6 +2194,25 @@ procesor v modulu. Může se stát, že některý procesorový
 modul nebude umět generovat nastavitelný jas podsvícení, v
 tom případě může být vhodnější generovat podsvícení v
 modulu displeje.</font></p>
+
+<p align="left"><font face="Arial">Knihovna PiLibSDK obsahuje v
+souborech drv_lcd.*, ve složce _drv, driver pro obsluhu LCD SPI
+displejů. Driver umožňuje detekci připojení modulu
+&quot;LCD320x240&quot;. K detekci využívá rezistor 10K
+zapojený mezi piny DC a CS, proto se doporučuje modul tímto
+detekčním rezistorem osadit. Zařízení s modulem Raspberry
+Zero 1 nebo 2 lze používat s LCD SPI displejem 320x240, s
+řadičem ST7789, zapojeným podle modulu &quot;LCD320x240&quot;.
+Pokud program s knihovnou PiLibSDK detekuje připojení displeje
+(pomocí detekčního rezistoru), zajistí se automaticky
+odesílání obrazu na tento displej. Chcete-li mít možnost u
+koncového zařízení výstup na LCD displej vypínat, můžete
+to provést vypínačem připojujícím detekční rezistor 10K.
+Detekce probíhá při startu aplikace nebo loaderu - po změně
+přepínače je tedy nutné ukončit nebo spustit program nebo
+loader. Vypnutí výstupu na LCD displej zajistí rychlejší
+chod programu, protože odesílání dat na LCD displej program
+značně zatěžuje.</font></p>
 
 <p align="left"><a href="img/BarePi_LCD320x2403.jpg"><font
 face="Arial"><img src="img/BarePi_LCD320x2403_m.jpg" border="0"
@@ -2254,7 +2303,10 @@ pořadí pinů. Z toho důvodu existují i dvě různé definice
 předního panelu modulu. Ve skutečnosti můžete použít jenom
 jeden panel, potištěný na obou stranách, kdy zadní strana je
 natištěná &quot;vzhůru nohama&quot;. Použijete potom tu
-stranu panelu, která souhlasí s pozicí použitého displeje.</font></p>
+stranu panelu, která souhlasí s pozicí použitého displeje.
+Knihovna PiLibSDK obsahuje v souborech drv_ssd1306.*, ve složce
+_drv, driver pro obsluhu I2C displejů s řadičem SSD1305 až
+SSD1309.</font></p>
 
 <p align="left"><a href="img/BarePi_OLED128x643.jpg"><font
 face="Arial"><img src="img/BarePi_OLED128x643_m.jpg" border="0"
@@ -2327,6 +2379,10 @@ width="400" height="297"></font></a><font face="Arial"> </font><a
 href="img/BarePi_CalcKey_3D_bottom.jpg"><font face="Arial"><img
 src="img/BarePi_CalcKey_3D_bottom_m.jpg" border="0" width="400"
 height="297"></font></a></p>
+
+<p align="left"><a href="img/BarePi_CalcKey_diagram.png"><font
+face="Arial"><img src="img/BarePi_CalcKey_diagram_m.jpg"
+border="0" width="570" height="540"></font></a></p>
 
 <p align="left"><a href="img/BarePi_CalcKey_mounting.jpg"><font
 face="Arial"><img src="img/BarePi_CalcKey_mounting_m.jpg"
