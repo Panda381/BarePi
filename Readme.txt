@@ -393,10 +393,10 @@ registers. The EEPROMs used in the BarePi kit, as well as the module
 controllers, are controlled via the I2C bus, typically operating at 100 kHz.
 The module controllers typically contain a CH32V-series processor, which is
 accessible via the I2C bus in a manner similar to EEPROM memory with 8-bit or
-16-bit addressing. At the beginning of the memory space are the controller’s
-control and data registers, followed by the processor’s Flash memory, which
+16-bit addressing. At the beginning of the memory space are the controller's
+control and data registers, followed by the processor's Flash memory, which
 can be used similarly to EEPROM memory to store configuration information.
-However, it is important to note that the processor’s Flash memory has a more
+However, it is important to note that the processor's Flash memory has a more
 limited number of write cycles than EEPROM memory - typically several thousand
 write cycles.
 
@@ -438,8 +438,8 @@ Configuration records begin at memory offset 4. Each record begins with a
 - Record offset 0: ... 2 bytes containing the record type identifier, in
   little-endian format (the lower byte is at the lower address). Values from
   0x0001 to 0x00FF are reserved for internal use by the BarePi kit. The value
-  0x0001 denotes the device controller’s register array. The value 0x0002
-  indicates the device’s freely usable RAM. The value 0xFFFF indicates the end
+  0x0001 denotes the device controller's register array. The value 0x0002
+  indicates the device's freely usable RAM. The value 0xFFFF indicates the end
   of records - before memory formatting, the memory is initialized to 0xFF and
   the header is written; the bytes 0xFF 0xFF following the header indicate the
   end of the record array.
@@ -846,10 +846,10 @@ The processor firmware can be found in the CH32LibSDK library in the
 ch32\BAREPI\LCD16x2\ folder (GitHub: 
 https://github.com/Panda381/CH32LibSDK/tree/main/ch32/BAREPI/LCD16x2 ).
 
-In the PiLibSDK library, you’ll find the device driver in drv_lcdtxt.* (GitHub:
+In the PiLibSDK library, you'll find the device driver in drv_lcdtxt.* (GitHub:
 https://github.com/Panda381/PiLibSDK/tree/main/_drv ).
 
-In the PiLibSDK library, you’ll find the test program in Apps\TEST\LCD16X2
+In the PiLibSDK library, you'll find the test program in Apps\TEST\LCD16X2
 (GitHub: https://github.com/Panda381/PiLibSDK/tree/main/Apps/TEST/LCD16X2 ).
 
 
@@ -879,10 +879,10 @@ The processor firmware can be found in the CH32LibSDK library in the
 ch32\BAREPI\LCD160x80\ folder (GitHub:
 https://github.com/Panda381/CH32LibSDK/tree/main/ch32/BAREPI/LCD160x80 ).
 
-In the PiLibSDK library, you’ll find the device driver in drv_lcd.* (GitHub:
+In the PiLibSDK library, you'll find the device driver in drv_lcd.* (GitHub:
 https://github.com/Panda381/PiLibSDK/tree/main/_drv ).
 
-In the PiLibSDK library, you’ll find the test program in Apps\TEST\LCD (GitHub:
+In the PiLibSDK library, you'll find the test program in Apps\TEST\LCD (GitHub:
 https://github.com/Panda381/PiLibSDK/tree/main/Apps/TEST/LCD ).
 
 
@@ -922,10 +922,10 @@ The processor firmware can be found in the CH32LibSDK library in the
 ch32\BAREPI\LCD320x240\ folder (GitHub:
 https://github.com/Panda381/CH32LibSDK/tree/main/ch32/BAREPI/LCD320x240 ).
 
-In the PiLibSDK library, you’ll find the device driver in drv_lcd.* (GitHub:
+In the PiLibSDK library, you'll find the device driver in drv_lcd.* (GitHub:
 https://github.com/Panda381/PiLibSDK/tree/main/_drv ).
 
-In the PiLibSDK library, you’ll find the test program in Apps\TEST\LCD (GitHub:
+In the PiLibSDK library, you'll find the test program in Apps\TEST\LCD (GitHub:
 https://github.com/Panda381/PiLibSDK/tree/main/Apps/TEST/LCD ).
 
 
@@ -936,18 +936,18 @@ controlled by a CH32V006E8R6 processor, which communicates with the main
 processor via the I2C bus at address 0x32. When building the module, I
 recommend placing a red plexiglass sheet over the display to increase the
 contrast of the displayed data. The current to the segments must be limited due
-to the current limitations of the processor’s pins, so the display’s brightness
+to the current limitations of the processor's pins, so the display's brightness
 is low, especially in daylight. It would be better to add drivers to the
-display’s anodes or to use a circuit with serial-to-parallel converters.
+display's anodes or to use a circuit with serial-to-parallel converters.
 
 The processor firmware can be found in the CH32LibSDK library in the
 ch32\BAREPI\LED12\ folder (GitHub:
 https://github.com/Panda381/CH32LibSDK/tree/main/ch32/BAREPI/LED12 ).
 
-In the PiLibSDK library, you’ll find the device driver in drv_led12.* (GitHub:
+In the PiLibSDK library, you'll find the device driver in drv_led12.* (GitHub:
 https://github.com/Panda381/PiLibSDK/tree/main/_drv ).
 
-In the PiLibSDK library, you’ll find the test program in Apps\TEST\LED12
+In the PiLibSDK library, you'll find the test program in Apps\TEST\LED12
 (GitHub: https://github.com/Panda381/PiLibSDK/tree/main/Apps/TEST/LED12 ).
 
 
@@ -986,10 +986,10 @@ The processor firmware can be found in the CH32LibSDK library in the
 ch32\BAREPI\CALCKEY\ folder (GitHub:
 https://github.com/Panda381/CH32LibSDK/tree/main/ch32/BAREPI/CALCKEY ).
 
-In the PiLibSDK library, you’ll find the device driver in drv_calckey.*
+In the PiLibSDK library, you'll find the device driver in drv_calckey.*
 (GitHub: https://github.com/Panda381/PiLibSDK/tree/main/_drv ).
 
-In the PiLibSDK library, you’ll find the test program in Apps\TEST\CALCKEY
+In the PiLibSDK library, you'll find the test program in Apps\TEST\CALCKEY
 (GitHub: https://github.com/Panda381/PiLibSDK/tree/main/Apps/TEST/CALCKEY ).
 
 
@@ -1019,12 +1019,12 @@ main processor via the I2C bus at address 0x34. Although the module has two
 solder jumpers for selecting the I2C address, the firmware does not use these
 jumpers.
 
-The processor’s firmware can be found in the CH32LibSDK library in the
+The processor's firmware can be found in the CH32LibSDK library in the
 ch32\BAREPI\MINIKEY\ folder (GitHub: 
 https://github.com/Panda381/CH32LibSDK/tree/main/ch32/BAREPI/MINIKEY ).
 
-In the PiLibSDK library, you’ll find the device driver in drv_minikey.*
+In the PiLibSDK library, you'll find the device driver in drv_minikey.*
 (GitHub: https://github.com/Panda381/PiLibSDK/tree/main/_drv ).
 
-In the PiLibSDK library, you’ll find the test program in Apps\TEST\MINIKEY
+In the PiLibSDK library, you'll find the test program in Apps\TEST\MINIKEY
 (GitHub: https://github.com/Panda381/PiLibSDK/tree/main/Apps/TEST/MINIKEY ).
