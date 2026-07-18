@@ -32,7 +32,8 @@ content="text/html; charset=utf-8">
 <p align="center"><font color="#FF8000" size="4" face="Arial"><strong>Modulární
 mikročipová stavebnice</strong></font></p>
 
-<p align="center"><font face="Arial">Poslední aktualizace: 18.07.2026</font></p>
+<p align="center"><font face="Arial">Poslední aktualizace:
+18.07.2026</font></p>
 
 <p align="center"><font face="Arial">(c) 2026 Miroslav Němeček</font></p>
 
@@ -486,9 +487,9 @@ src="img/BarePi_pins_m.jpg" border="0" width="463" height="315"></font></a></p>
         - hlavní akční tlačítko. Na alfanumerické
         klávesnici odpovídá klávese &quot;Mezerník&quot;.
         Spolu s tlačítkem &quot;ALT&quot; má alternativní
-        význam &quot;Zoom&quot; - přepínání pohledu
-        vestavěného LCD displeje. Tlačítko spojuje pin s GND
-        a vyžaduje použít pull-up rezistor.</font></p>
+        význam &quot;Zoom&quot; - přepínání pohledu vestavěného
+        LCD displeje. Tlačítko spojuje pin s GND a vyžaduje
+        použít pull-up rezistor.</font></p>
     </li>
     <li><p align="left"><font face="Arial"><strong>28 </strong></font><font
         color="#FF0000" face="Arial"><strong>KEY_B</strong></font><font
@@ -588,7 +589,7 @@ SPI graphics display (LCD320x240, LCD160x80)<br>
 <strong>0x57</strong> ... configuration EEPROM 4KB AT24C32<br>
 <strong>0x68</strong> ... RTC clock DS3231</font></p>
 
-<p align="left"><font face="Arial"></font>&nbsp;</p>
+<p align="left">&nbsp;</p>
 
 <h3 align="left"><a name="disppins"></a><font face="Arial">Konektor
 displeje</font></h3>
@@ -748,34 +749,34 @@ width="370" height="165"></font></a></p>
     </li>
 </ul>
 
-<h3 align="left"><a name="eeprom"><font face="Arial"></font></a><font
-face="Arial">Formát EEPROM a driverů</font></h3>
+<h3 align="left"><a name="eeprom"></a><font face="Arial">Formát
+EEPROM a driverů</font></h3>
 
 <p align="left"><font face="Arial">Stavebnice BarePi používá v
-konfiguračních pamětech EEPROM a v registrově řízených
-zařízeních jednotnou strukturu, usnadňující přístup k
-datům a řídicím registrům. Paměti EEPROM, používané ve
-stavebnici BarePi, stejně jako řadiče modulů, jsou řízené
-pomocí I2C sběrnice s rychlostí zpravidla 100kHz. Řadiče
-modulů obsahují typicky procesor řady CH32V, který je
-přístupný pomocí I2C sběrnice podobně jako EEPROM paměť s
-8-bitovým nebo 16-bitovým adresováním. Na začátku
-paměťového prostoru se nachází řídicí a datové registry
-řadiče, za kterými následuje Flash paměť procesoru, kterou
-lze použít podobně jako EEPROM paměť k uložení
-konfiguračních informací. Je však potřeba počítat s tím,
-že Flash paměť procesoru má omezenější počet zápisů
-než paměť EEPROM - zpravidla jde o několik tisíc zápisů.</font></p>
+konfiguračních pamětech EEPROM a v registrově řízených zařízeních
+jednotnou strukturu, usnadňující přístup k datům a řídicím
+registrům. Paměti EEPROM, používané ve stavebnici BarePi,
+stejně jako řadiče modulů, jsou řízené pomocí I2C sběrnice
+s rychlostí zpravidla 100kHz. Řadiče modulů obsahují typicky
+procesor řady CH32V, který je přístupný pomocí I2C sběrnice
+podobně jako EEPROM paměť s 8-bitovým nebo 16-bitovým
+adresováním. Na začátku paměťového prostoru se nachází
+řídicí a datové registry řadiče, za kterými následuje
+Flash paměť procesoru, kterou lze použít podobně jako EEPROM
+paměť k uložení konfiguračních informací. Je však
+potřeba počítat s tím, že Flash paměť procesoru má omezenější
+počet zápisů než paměť EEPROM - zpravidla jde o několik
+tisíc zápisů.</font></p>
 
 <p align="left"><font face="Arial">Paměti o velikosti 512 bajtů
 až 64 KB jsou adresované pomocí 16-bitové adresy. Paměti o
 velikosti 256 bajtů a menší jsou adresované pomocí 8-bitové
 adresy. Zde je odchylka od klasických pamětí EEPROM - paměti
-o velikosti 512B - 2KB bývají původně adresované jako
-paměti 256B na více I2C adresách. V BarePi jsou všechny
-paměti adresované pomocí jedné I2C adresy, buď v 8-bitovém
-nebo 16-bitovém módu, podle velikosti. Původní paměti EEPROM
-o velikosti 512B - 2KB lze sice také používat, ale jen jako
+o velikosti 512B - 2KB bývají původně adresované jako paměti
+256B na více I2C adresách. V BarePi jsou všechny paměti
+adresované pomocí jedné I2C adresy, buď v 8-bitovém nebo
+16-bitovém módu, podle velikosti. Původní paměti EEPROM o
+velikosti 512B - 2KB lze sice také používat, ale jen jako
 více pamětí 256B na více adresách.</font></p>
 
 <p align="left"><font face="Arial">Pro přístup k zařízením
@@ -783,13 +784,13 @@ doporučuji používat pouze rychlost I2C 100kHz. Vyšší
 rychlosti procesory v modulech nemusí spolehlivě stíhat.
 16-bitová adresa paměťové buňky je v big-endian formátu
 (formát Motorola), podobně jako adresa paměti EEPROM - tedy
-nejdříve se vysílá vyšší bajt adresy, následovaný
-nižším bajtem adresy. Avšak data v pamětech jsou v
-little-endian formátu (formát Intel) - tedy nejdříve nižší
-bajt, na vyšší adrese vyšší bajt. Navíc doporučuji
-zachovávat zarovnání položek (např. 16-bitové slovo
-zarovnat na sudou adresu), aby mohl řídicí procesor snáze
-přistupovat k položkám záznamu ve svých struktuturách.</font></p>
+nejdříve se vysílá vyšší bajt adresy, následovaný nižším
+bajtem adresy. Avšak data v pamětech jsou v little-endian formátu
+(formát Intel) - tedy nejdříve nižší bajt, na vyšší
+adrese vyšší bajt. Navíc doporučuji zachovávat zarovnání
+položek (např. 16-bitové slovo zarovnat na sudou adresu), aby
+mohl řídicí procesor snáze přistupovat k položkám záznamu
+ve svých struktuturách.</font></p>
 
 <p align="left"><font face="Arial">Na začátku konfigurační
 paměti EEPROM a paměti zařízení se nachází 4-bajtové
@@ -800,16 +801,16 @@ záhlaví s identifikací:</font></p>
 &quot;BPi&quot; (= &quot;Bare Pi&quot;)</font></p>
 
 <p align="left"><font face="Arial">- Offset paměti 3:
-&quot;D&quot; ... znak představující celkovou velikost
-paměti: ('3'=8B,... '9'=512B, 'A'=1KB,... 'G'=64KB). Tento znak
-může být hlavním procesorem využit k detekci velikosti
-paměti - ale pouze v 16-bitovém módu, tedy se jedná o
-velikosti paměti 512B až 64KB. Menší paměti nelze detekovat,
-protože nelze mixovat 8-bitový a 16-bitový přístup.</font></p>
+&quot;D&quot; ... znak představující celkovou velikost paměti:
+('3'=8B,... '9'=512B, 'A'=1KB,... 'G'=64KB). Tento znak může být
+hlavním procesorem využit k detekci velikosti paměti - ale
+pouze v 16-bitovém módu, tedy se jedná o velikosti paměti
+512B až 64KB. Menší paměti nelze detekovat, protože nelze
+mixovat 8-bitový a 16-bitový přístup.</font></p>
 
-<p align="left"><font face="Arial">Na offsetu paměti 4
-začínají konfigurační záznamy. Každý záznam začíná
-4-bajtovým záhlavím:</font></p>
+<p align="left"><font face="Arial">Na offsetu paměti 4 začínají
+konfigurační záznamy. Každý záznam začíná 4-bajtovým
+záhlavím:</font></p>
 
 <p align="left"><font face="Arial">- Offset záznamu 0: ... 2
 bajty obsahující identifikační slovo typu záznamu, ve
@@ -829,8 +830,8 @@ bajty obsahující délku následujících dat (bez hlavičky).</font></p>
 Raspberry Zero 1/2 obsahuje pro snadný přístup k pamětem a k
 zařízení driver &quot;drv_i2cbus.*&quot;, umožňující
 snadnou komunikaci se zařízeními na I2C sběrnici skrze frontu
-zpráv. Pro snadné používání záznamů v konfigurační
-paměti je k dispozici driver &quot;drv_eeprom.*&quot;.</font></p>
+zpráv. Pro snadné používání záznamů v konfigurační paměti
+je k dispozici driver &quot;drv_eeprom.*&quot;.</font></p>
 
 <h3 align="left"><a name="zerotiny"></a><font face="Arial">ZeroTiny</font></h3>
 
@@ -1410,6 +1411,9 @@ width="400" height="284"></font></a><font face="Arial"> </font><a
 href="img/BarePi_PicoPad_3D_bottom.jpg"><font face="Arial"><img
 src="img/BarePi_PicoPad_3D_bottom_m.jpg" border="0" width="400"
 height="284"></font></a></p>
+
+<p align="left"><a><font face="Arial"><img
+src="img/BarePi_PicoPad_diagram_m.jpg" width="595" height="228"></font></a></p>
 
 <p align="left"><a href="img/BarePi_PicoPad_mounting.jpg"><font
 face="Arial"><img src="img/BarePi_PicoPad_mounting_m.jpg"
@@ -2218,14 +2222,14 @@ pomocí tlačítek, se uchová v nastavení procesoru jako
 výchozí hodnota. Kontrast displeje lze řídit i z hlavního
 procesoru - nastavení z hlavního procesoru se však do trvalé
 paměti neukládá. Pomocí propojky &quot;Backlight&quot; lze
-zapnout nebo vypnout podsvícení displeje. Procesor je k I2C
-sběrnici připojen přes adresu 0x31. V modulu jsou sice k
-dispozici 2 letovací propojky k volbě I2C adresy, ale firmware
-tyto propojky nepoužívá. Firmware umožňuje předefinovat
-font pro 8 znaků, nebo zvolit jeden z 5 předdefinovaných
-fontů. V základním fontu jsou předefinované i 2 základní
-znaky z ASCII tabulky (zpětné lomítko a vlnovka), protože u
-některých displejů původně obsahují japonské znaky.</font></p>
+zapnout nebo vypnout podsvícení displeje. Procesor je k I2C sběrnici
+připojen přes adresu 0x31. V modulu jsou sice k dispozici 2
+letovací propojky k volbě I2C adresy, ale firmware tyto
+propojky nepoužívá. Firmware umožňuje předefinovat font pro
+8 znaků, nebo zvolit jeden z 5 předdefinovaných fontů. V základním
+fontu jsou předefinované i 2 základní znaky z ASCII tabulky
+(zpětné lomítko a vlnovka), protože u některých displejů
+původně obsahují japonské znaky.</font></p>
 
 <p align="left"><font face="Arial">Firmware procesoru naleznete v
 knihovně CH32LibSDK ve složce ch32\BAREPI\LCD16x2\ (GitHub: </font><a
@@ -2583,11 +2587,11 @@ kalkulačky TI-58. Použijete-li jinou kalkulačku, můžete
 potřebovat jiné popisky kláves. Masku s jinými popiskami můžete
 vyrobít například tak, že ji natisknete na tvrdý papír, přelepíte
 povrch izolepou (pro lepší odolnost proti otěru) a otvory pro
-tlačítka vyrazíte průbojníkem na kůži. Klávesnice je
-řízena procesorem CH32V002F4P6, který komunikuje s hlavním
-procesorem přes I2C sběrnici, na adrese 0x35. V modulu je sice
-k dispozici letovací propojka k volbě I2C adresy, ale firmware
-tuto propojku nepoužívá.</font></p>
+tlačítka vyrazíte průbojníkem na kůži. Klávesnice je řízena
+procesorem CH32V002F4P6, který komunikuje s hlavním procesorem
+přes I2C sběrnici, na adrese 0x35. V modulu je sice k dispozici
+letovací propojka k volbě I2C adresy, ale firmware tuto
+propojku nepoužívá.</font></p>
 
 <p align="left"><font face="Arial">Firmware procesoru naleznete v
 knihovně CH32LibSDK ve složce ch32\BAREPI\CALCKEY\ (GitHub: </font><a
@@ -2648,10 +2652,10 @@ height="694"></font></a></p>
 
 <h3 align="left"><a name="keypad"></a><font face="Arial">KeyPad</font></h3>
 
-<p align="left"><font face="Arial">Modul &quot;KeyPad&quot; je základní
-jednoduchá klávesnice, sloužící především k ovládání
-her. Obsahuje 9 tlačítek - směrové šipky, hlavní akční
-tlačítko &quot;A&quot;, vedlejší akční tlačítko
+<p align="left"><font face="Arial">Modul &quot;KeyPad&quot; je
+základní jednoduchá klávesnice, sloužící především k
+ovládání her. Obsahuje 9 tlačítek - směrové šipky, hlavní
+akční tlačítko &quot;A&quot;, vedlejší akční tlačítko
 &quot;B&quot;, pomocné tlačítko &quot;X&quot;, tlačítko ukončení
 &quot;Y&quot; a tlačítko alternativního významu kláves
 &quot;ALT&quot;. Tlačítka slouží k přímému čtení stavu s
