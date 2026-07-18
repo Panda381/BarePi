@@ -319,6 +319,130 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:R"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.032 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Raspberry:CH32V006F8P6"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -2512,6 +2636,16 @@
 	)
 	(wire
 		(pts
+			(xy 218.44 101.6) (xy 218.44 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "20037a65-459e-47c4-a103-dcafb36d1369")
+	)
+	(wire
+		(pts
 			(xy 157.48 96.52) (xy 170.18 96.52)
 		)
 		(stroke
@@ -2559,6 +2693,16 @@
 			(type default)
 		)
 		(uuid "302c1b60-dcb9-438c-b2c1-23aad3612e13")
+	)
+	(wire
+		(pts
+			(xy 203.2 106.68) (xy 208.28 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "38e259fb-2597-4f95-8322-43ef4c2f6e4f")
 	)
 	(wire
 		(pts
@@ -2652,6 +2796,16 @@
 	)
 	(wire
 		(pts
+			(xy 215.9 101.6) (xy 218.44 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5de1feca-036a-4f6e-a989-8f3812dc62ed")
+	)
+	(wire
+		(pts
 			(xy 137.16 81.28) (xy 149.86 81.28)
 		)
 		(stroke
@@ -2699,6 +2853,16 @@
 			(type default)
 		)
 		(uuid "98e6b833-75e6-44de-81cb-1d1e6ef4c45e")
+	)
+	(wire
+		(pts
+			(xy 220.98 93.98) (xy 220.98 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9f9d66f8-ea15-41ba-a30a-0207614453d1")
 	)
 	(wire
 		(pts
@@ -2832,6 +2996,16 @@
 	)
 	(wire
 		(pts
+			(xy 215.9 106.68) (xy 220.98 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c53c539c-6956-4705-b831-b51f81b49dad")
+	)
+	(wire
+		(pts
 			(xy 137.16 111.76) (xy 149.86 111.76)
 		)
 		(stroke
@@ -2839,6 +3013,16 @@
 			(type default)
 		)
 		(uuid "c6cdd97d-f219-44ff-b76f-b5ef8f9f34a1")
+	)
+	(wire
+		(pts
+			(xy 203.2 101.6) (xy 208.28 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cb57f9d3-029c-4dc4-b029-d7bdf63cdf0c")
 	)
 	(wire
 		(pts
@@ -2892,7 +3076,7 @@
 	)
 	(wire
 		(pts
-			(xy 205.74 93.98) (xy 218.44 93.98)
+			(xy 205.74 93.98) (xy 220.98 93.98)
 		)
 		(stroke
 			(width 0)
@@ -3089,6 +3273,16 @@
 			(justify right bottom)
 		)
 		(uuid "50991471-4465-4258-99f8-6446e37c0088")
+	)
+	(label "3V3"
+		(at 203.2 106.68 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "56b7b8b1-204c-43a5-bc5b-a5c0621afe64")
 	)
 	(label "KEY_B"
 		(at 157.48 73.66 0)
@@ -3360,6 +3554,16 @@
 		)
 		(uuid "c21ea977-e410-4ab2-bc30-658c92a00002")
 	)
+	(label "3V3"
+		(at 203.2 101.6 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c7034a58-29dd-424b-8df7-2c93432802c8")
+	)
 	(label "SPI_MISO"
 		(at 149.86 86.36 180)
 		(effects
@@ -3489,6 +3693,140 @@
 			(justify right bottom)
 		)
 		(uuid "ff41d873-8e48-4983-80a7-d37715d83aa6")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 212.09 101.6 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "081a7748-99c1-481c-935e-30dab377531d")
+		(property "Reference" "R1"
+			(at 209.55 99.06 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "15K"
+			(at 214.63 99.06 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
+			(at 212.09 99.822 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 212.09 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 212.09 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "e68623af-5498-4ba1-8f4f-f270f9b0ddd0")
+		)
+		(pin "1"
+			(uuid "9bfe80dc-1791-4978-8bd1-34dccaa73097")
+		)
+		(instances
+			(project "BarePi_PidiBoy"
+				(path "/b3c66170-a1e8-49f2-a3c7-446e9ba3066c"
+					(reference "R1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 212.09 106.68 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "191218e1-22c6-4417-8bb9-d56ddc4e3503")
+		(property "Reference" "R2"
+			(at 209.55 104.14 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "15K"
+			(at 214.63 104.14 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
+			(at 212.09 104.902 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 212.09 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 212.09 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "5bae0bdd-da43-4b26-ac3c-ee2b693332f4")
+		)
+		(pin "1"
+			(uuid "7f5872ad-6005-4590-b353-634bcd31dbfc")
+		)
+		(instances
+			(project "BarePi_PidiBoy"
+				(path "/b3c66170-a1e8-49f2-a3c7-446e9ba3066c"
+					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(symbol
 		(lib_id "Raspberry:CH32V006F8P6")

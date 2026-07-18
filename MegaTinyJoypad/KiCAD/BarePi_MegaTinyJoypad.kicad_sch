@@ -486,6 +486,130 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:R"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.032 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Raspberry:ESP-07"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -2643,6 +2767,16 @@
 	)
 	(wire
 		(pts
+			(xy 220.98 71.12) (xy 220.98 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1809db83-f329-436c-9fdb-b00df25e437f")
+	)
+	(wire
+		(pts
 			(xy 157.48 114.3) (xy 170.18 114.3)
 		)
 		(stroke
@@ -2740,6 +2874,16 @@
 			(type default)
 		)
 		(uuid "3ba2f1cb-1713-4712-a009-f9a1fe1e8407")
+	)
+	(wire
+		(pts
+			(xy 220.98 60.96) (xy 220.98 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3cd9f26e-82a5-4844-94e8-a2d48d881662")
 	)
 	(wire
 		(pts
@@ -2893,7 +3037,7 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 76.2) (xy 208.28 76.2)
+			(xy 198.12 76.2) (xy 220.98 76.2)
 		)
 		(stroke
 			(width 0)
@@ -2910,6 +3054,16 @@
 			(type default)
 		)
 		(uuid "a21b1b7a-bdac-4cbe-918c-d31c0d7412bb")
+	)
+	(wire
+		(pts
+			(xy 213.36 71.12) (xy 213.36 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a73a5849-a177-43aa-9ff8-058a62cd0044")
 	)
 	(wire
 		(pts
@@ -2960,6 +3114,16 @@
 			(type default)
 		)
 		(uuid "af4ffb9a-a7f4-4a90-ac2c-3c6766951f87")
+	)
+	(wire
+		(pts
+			(xy 213.36 60.96) (xy 213.36 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b0affd96-b710-4244-b335-f838ee205620")
 	)
 	(wire
 		(pts
@@ -3123,7 +3287,7 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 73.66) (xy 208.28 73.66)
+			(xy 198.12 73.66) (xy 213.36 73.66)
 		)
 		(stroke
 			(width 0)
@@ -3310,6 +3474,16 @@
 			(justify left bottom)
 		)
 		(uuid "5b9ceb68-9a10-4a94-8463-d5e55afa66af")
+	)
+	(label "3V3"
+		(at 213.36 60.96 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "62d470f1-388f-473d-a84f-a9bc3e440693")
 	)
 	(label "RESET"
 		(at 157.48 96.52 0)
@@ -3571,6 +3745,16 @@
 		)
 		(uuid "ce57d9de-dbfa-4f40-becc-107235535ece")
 	)
+	(label "3V3"
+		(at 220.98 60.96 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d4f11c80-8ff2-430e-886d-a6c8eb7ba681")
+	)
 	(label "GND"
 		(at 88.9 114.3 0)
 		(effects
@@ -3650,6 +3834,73 @@
 			(justify right bottom)
 		)
 		(uuid "fe255fb1-9c15-4f16-bb14-2224c60684de")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 213.36 67.31 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0760f1cd-0081-4ff5-bf30-aa88d9a8c76b")
+		(property "Reference" "R2"
+			(at 210.185 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "15K"
+			(at 210.185 65.405 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
+			(at 215.138 67.31 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 213.36 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 213.36 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "5c67ccfe-e19b-4fac-9b0a-471a2c6e88d4")
+		)
+		(pin "1"
+			(uuid "378146d0-91cf-45b5-a92b-f7ecb8a84064")
+		)
+		(instances
+			(project "BarePi_MegaTinyJoypad"
+				(path "/b3c66170-a1e8-49f2-a3c7-446e9ba3066c"
+					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x08")
@@ -4001,6 +4252,73 @@
 			(project "BarePi_MegaTinyJoypad"
 				(path "/b3c66170-a1e8-49f2-a3c7-446e9ba3066c"
 					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 220.98 67.31 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c836ace6-42e8-4e9e-b03c-3e5ccb51a764")
+		(property "Reference" "R1"
+			(at 217.805 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "15K"
+			(at 217.805 65.405 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
+			(at 222.758 67.31 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 220.98 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 220.98 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "7bf27eb3-2c28-48de-8fcf-f348f4feabe8")
+		)
+		(pin "1"
+			(uuid "030829e4-7bbe-4172-9489-c7f3e9d6e794")
+		)
+		(instances
+			(project "BarePi_MegaTinyJoypad"
+				(path "/b3c66170-a1e8-49f2-a3c7-446e9ba3066c"
+					(reference "R1")
 					(unit 1)
 				)
 			)

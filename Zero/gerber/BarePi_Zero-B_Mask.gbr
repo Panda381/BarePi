@@ -1,17 +1,33 @@
 %TF.GenerationSoftware,KiCad,Pcbnew,9.0.7*%
-%TF.CreationDate,2026-05-06T21:23:28+02:00*%
+%TF.CreationDate,2026-07-08T09:43:54+02:00*%
 %TF.ProjectId,BarePi_Zero,42617265-5069-45f5-9a65-726f2e6b6963,rev?*%
 %TF.SameCoordinates,Original*%
 %TF.FileFunction,Soldermask,Bot*%
 %TF.FilePolarity,Negative*%
 %FSLAX46Y46*%
 G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
-G04 Created by KiCad (PCBNEW 9.0.7) date 2026-05-06 21:23:28*
+G04 Created by KiCad (PCBNEW 9.0.7) date 2026-07-08 09:43:54*
 %MOMM*%
 %LPD*%
 G01*
 G04 APERTURE LIST*
 G04 Aperture macros list*
+%AMRoundRect*
+0 Rectangle with rounded corners*
+0 $1 Rounding radius*
+0 $2 $3 $4 $5 $6 $7 $8 $9 X,Y pos of 4 corners*
+0 Add a 4 corners polygon primitive as box body*
+4,1,4,$2,$3,$4,$5,$6,$7,$8,$9,$2,$3,0*
+0 Add four circle primitives for the rounded corners*
+1,1,$1+$1,$2,$3*
+1,1,$1+$1,$4,$5*
+1,1,$1+$1,$6,$7*
+1,1,$1+$1,$8,$9*
+0 Add four rect primitives between the rounded corners*
+20,1,$1+$1,$2,$3,$4,$5,0*
+20,1,$1+$1,$4,$5,$6,$7,0*
+20,1,$1+$1,$6,$7,$8,$9,0*
+20,1,$1+$1,$8,$9,$2,$3,0*%
 %AMOutline4P*
 0 Free polygon, 4 corners , with rotation*
 0 The origin of the aperture is its center*
@@ -21,15 +37,33 @@ G04 Aperture macros list*
 0 create outline with 4 corners*
 4,1,4,$1,$2,$3,$4,$5,$6,$7,$8,$1,$2,$9*%
 G04 Aperture macros list end*
-%ADD10Outline4P,-1.500000X-0.800000X1.500000X-0.800000X1.500000X0.800000X-1.500000X0.800000X270.000000*%
-%ADD11O,1.600000X3.000000*%
-%ADD12C,6.000000*%
-%ADD13C,3.000000*%
+%ADD10RoundRect,0.250000X-0.625000X0.400000X-0.625000X-0.400000X0.625000X-0.400000X0.625000X0.400000X0*%
+%ADD11Outline4P,-1.500000X-0.800000X1.500000X-0.800000X1.500000X0.800000X-1.500000X0.800000X270.000000*%
+%ADD12O,1.600000X3.000000*%
+%ADD13C,6.000000*%
+%ADD14C,3.000000*%
 G04 APERTURE END LIST*
 D10*
+%TO.C,R4*%
+X15885000Y-11225000D03*
+X15885000Y-14325000D03*
+%TD*%
+%TO.C,R3*%
+X8878333Y-11225000D03*
+X8878333Y-14325000D03*
+%TD*%
+%TO.C,R2*%
+X5375000Y-11225000D03*
+X5375000Y-14325000D03*
+%TD*%
+%TO.C,R1*%
+X12381667Y-11225000D03*
+X12381667Y-14325000D03*
+%TD*%
+D11*
 %TO.C,J2*%
 X8370000Y-39270000D03*
-D11*
+D12*
 X8370000Y-35930000D03*
 X10910000Y-39270000D03*
 X10910000Y-35930000D03*
@@ -70,13 +104,13 @@ X54090000Y-35930000D03*
 X56630000Y-39270000D03*
 X56630000Y-35930000D03*
 %TD*%
-D12*
+D13*
 %TO.C,J1*%
 X3500000Y-26500000D03*
 X61500000Y-26500000D03*
 X3500000Y-3500000D03*
 X61500000Y-3500000D03*
-D11*
+D12*
 X8370000Y-24830000D03*
 X8370000Y-28170000D03*
 X10910000Y-24830000D03*
@@ -118,7 +152,7 @@ X54090000Y-28170000D03*
 X56630000Y-24830000D03*
 X56630000Y-28170000D03*
 %TD*%
-D13*
+D14*
 %TO.C,REF\u002A\u002A*%
 X3500000Y-44500000D03*
 %TD*%

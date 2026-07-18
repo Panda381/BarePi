@@ -1,6 +1,6 @@
 BarePi - Modular microchip kit
 ==============================
-Last Update: 06/18/2026
+Last Update: 07/18/2026
 Copyright (c) 2026 Miroslav Nemecek
 
 Panda38@seznam.cz
@@ -30,6 +30,8 @@ Contents
 - Display connector (description of signals on the display connector)
 - ZeroTiny (example of a minimalist game console with a Raspberry Zero module,
   created based on kit modules)
+- EEPROM and driver formats (structure of EEPROMs and Register-Controlled
+  Drivers)
 
 Special modules
 - Base (basic module - USB power supply, 3.3V stabilizer, audio output, microSD
@@ -234,13 +236,14 @@ interface can be available on this pin.
 
 27 KEY_A (GPIO22) ... Input button "A" - the main action button. On the
 alphanumeric keyboard, it corresponds to the "Spacebar" key. Together with the
-"ALT" button, it has an alternative meaning of "Insert". The button connects
-the pin to GND and requires the use of a pull-up resistor.
+"ALT" button, it has an alternative meaning of "Zoom" - switching the view on
+the built-in LCD display. The button connects the pin to GND and requires the
+use of a pull-up resistor.
 
 28 KEY_B (GPIO23) ... "B" button input - secondary action button. On an
 alphanumeric keyboard, it corresponds to the "Enter" key. Together with the
-"ALT" button, it has an alternative meaning of "Edit". The button connects the
-pin to GND and requires the use of a pull-up resistor.
+"ALT" button, it has an alternative meaning of "Insert". The button connects
+the pin to GND and requires the use of a pull-up resistor.
 
 29 KEY_X (GPIO24) ... Input button "X" - additional functions button (e.g.
 help). On the alphanumeric keyboard it corresponds to the "Tab" key. Together
@@ -277,6 +280,20 @@ connects the pin to GND and requires the use of a pull-up resistor. For some
 modules, the pull-up resistor is internally part of the module.
 
 39, 40 GND ... Ground 0V.
+
+In most modules, the I2C bus signals are equipped with a 15K pull-up resistor.
+This value should ensure reliable bus operation with 1 to 5 connected devices.
+The BarePi kit modules use the following I2C addresses:
+0x30 ... LCD SPI graphics display (LCD320x240, LCD160x80)
+0x31 ... LCD text display (LCD16x2)
+0x32 ... LED 7-segment display (LED12)
+0x34 ... alphanumeric keyboard (MiniKey)
+0x35 ... calculator keyboard (CalcKey)
+0x38 ... PORT interface (Port module)
+0x3C ... OLED display SSD1306
+0x50-0x56 ... EEPROMs
+0x57 ... configuration EEPROM 4KB AT24C32
+0x68 ... RTC clock DS3231
 
 
 Display connector
@@ -368,6 +385,75 @@ ohm resistor in the HDMI adapter.
 ohm resistor in the HDMI adapter.
 
 
+EEPROM and Driver Formats
+-------------------------
+The BarePi kit uses a uniform structure in its EEPROM configuration memories
+and register-controlled devices, facilitating access to data and control
+registers. The EEPROMs used in the BarePi kit, as well as the module
+controllers, are controlled via the I2C bus, typically operating at 100 kHz.
+The module controllers typically contain a CH32V-series processor, which is
+accessible via the I2C bus in a manner similar to EEPROM memory with 8-bit or
+16-bit addressing. At the beginning of the memory space are the controller’s
+control and data registers, followed by the processor’s Flash memory, which
+can be used similarly to EEPROM memory to store configuration information.
+However, it is important to note that the processor’s Flash memory has a more
+limited number of write cycles than EEPROM memory - typically several thousand
+write cycles.
+
+Memories ranging in size from 512 bytes to 64 KB are addressed using a 16-bit
+address. Memories of 256 bytes or less are addressed using an 8-bit address.
+This differs from traditional EEPROMs - memory blocks ranging from 512 bytes to
+2 KB are typically originally addressed as 256-byte blocks across multiple I2C
+addresses. In BarePi, all memory blocks are addressed using a single I2C
+address, either in 8-bit or 16-bit mode, depending on their size. While the
+original 512B - 2KB EEPROMs can also be used, they can only be configured as
+multiple 256B memory blocks at multiple addresses.
+
+To access the devices, I recommend using only the 100 kHz I2C speed. Higher
+speeds may be too much for the processors in the modules to handle reliably.
+The 16-bit memory cell address is in big-endian format (Motorola format),
+similar to the EEPROM memory address - that is, the high byte of the address is
+transmitted first, followed by the low byte. However, the data in the memories
+is in little-endian format (Intel format) - that is, the lower byte comes
+first, and at higher addresses, the higher byte comes first. Additionally, I
+recommend maintaining the alignment of entries (e.g., aligning a 16-bit word to
+an even address) so that the control processor can more easily access the
+record entries in its structures.
+
+At the beginning of the EEPROM configuration memory and the device memory,
+there is a 4-byte header with identification:
+
+- Memory offset 0: "BPi" ... 3 characters containing the magic text "BPi"
+  (= "Bare Pi")
+
+- Memory offset 3: "D" ... a character representing the total memory size:
+  ('3'=8B, ... '9'=512B, 'A'=1KB, ... 'G'=64KB). This character can be used by
+  the main processor to detect the memory size - but only in 16-bit mode,
+  meaning memory sizes ranging from 512B to 64KB. Smaller memory sizes cannot
+  be detected because 8-bit and 16-bit access modes cannot be mixed.
+
+Configuration records begin at memory offset 4. Each record begins with a
+4-byte header:
+
+- Record offset 0: ... 2 bytes containing the record type identifier, in
+  little-endian format (the lower byte is at the lower address). Values from
+  0x0001 to 0x00FF are reserved for internal use by the BarePi kit. The value
+  0x0001 denotes the device controller’s register array. The value 0x0002
+  indicates the device’s freely usable RAM. The value 0xFFFF indicates the end
+  of records - before memory formatting, the memory is initialized to 0xFF and
+  the header is written; the bytes 0xFF 0xFF following the header indicate the
+  end of the record array.
+
+- Record offset 2: ... 2 bytes containing the length of the following data
+  (excluding the header).
+
+The PiLisbSDK library for the Raspberry Zero 1/2 module includes the
+"drv_i2cbus.*" driver for easy access to memory and devices, enabling simple
+communication with devices on the I2C bus via a message queue. The
+"drv_eeprom.*" driver is available for easy use of entries in the configuration
+memory.
+
+
 ZeroTiny
 --------
 The game console "ZeroTiny" is not directly part of the BarePi kit. This is a
@@ -420,7 +506,18 @@ Port
 ----
 The "Port" module is a module for connecting external peripherals. It contains
 connectors for SPI, I2C, UART connections, as well as a CH32V002A4M6 processor,
-which provides 12 digital inputs/outputs and 6 analog ADC inputs.
+which provides 12 digital inputs/outputs and 6 analog ADC inputs. The processor
+is connected to the I2C bus at address 0x38.
+
+You can find the processor firmware in the CH32LibSDK library in folder
+ch32\BAREPI\PORT12\ (GitHub:
+ https://github.com/Panda381/CH32LibSDK/tree/main/ch32/BAREPI/PORT12 ).
+
+In the PiLibSDK library, you'll find the device driver in drv_port12.* (GitHub:
+ https://github.com/Panda381/PiLibSDK/tree/main/_drv ).
+
+In the PiLibSDK library, you'll find the test program in Apps\TEST\PORT2
+(GitHub: https://github.com/Panda381/PiLibSDK/tree/main/Apps/TEST/PORT12 ).
 
 
 RTC
@@ -450,12 +547,15 @@ structure as the EEPROM ID, or the same address, this should not be a problem.
 
 In the PiLibSDK library, in the _drv folder, the drv_rtc.* files contain a
 driver that allows reading and setting the current time in the DS3231 RTC
-module. If a DS3231 chip is detected on the I2C0 bus when the application
-starts, the current time is read from it. For I2C EEPROMs, a driver is
-available in the _drv folder in the drv_eeprom.* files. Using this driver,
-you can format the 4KB configuration EEPROM at address 0x57, as well as read
-and write configuration entries. Programs can store their configurations and
-records here using their own ID number.
+module (GitHub: https://github.com/Panda381/PiLibSDK/tree/main/_drv ). If a
+DS3231 chip is detected on the I2C0 bus when the application starts, the
+current time is read from it. For I2C EEPROMs, a driver is available in the
+_drv folder in the drv_eeprom.* files. Using this driver, you can format the
+4KB configuration EEPROM at address 0x57, as well as read and write
+configuration entries. Programs can store their configurations and records
+here using their own ID number. In the PiLibSDK library, you'll find a test
+program in Apps\TEST\RTC that you can use to display and set the current time
+(GitHub: https://github.com/Panda381/PiLibSDK/tree/main/Apps/TEST/RTC ).
 
 
 TestLed
@@ -731,8 +831,26 @@ is used to control the display and communicate with the main processor via the
 I2C bus. The auxiliary function of the processor is to generate a 5V bias
 voltage for the LCD display. The V0_DN and V0_UP buttons can be used to control
 the voltage level for the bias voltage, and thus the contrast of the LCD
-display. The "Backlight" jumper can be used to turn the display backlight on or
-off.
+display. The display contrast, set using the buttons, is saved in the processor
+settings as the default value. The display contrast can also be controlled from
+the main processor - however, settings made from the main processor are not
+saved to permanent memory. The "Backlight" jumper can be used to turn the
+display backlight on or off. The processor is connected to the I2C bus at
+address 0x31. Although the module has two solder jumpers for selecting the I2C
+address, the firmware does not use these jumpers. The firmware allows you to
+redefine the font for 8 characters or select one of 5 predefined fonts. The
+default font also redefine 2 basic characters from the ASCII table (backslash
+and tilde), because some displays originally contain Japanese characters.
+
+The processor firmware can be found in the CH32LibSDK library in the
+ch32\BAREPI\LCD16x2\ folder (GitHub: 
+https://github.com/Panda381/CH32LibSDK/tree/main/ch32/BAREPI/LCD16x2 ).
+
+In the PiLibSDK library, you’ll find the device driver in drv_lcdtxt.* (GitHub:
+https://github.com/Panda381/PiLibSDK/tree/main/_drv ).
+
+In the PiLibSDK library, you’ll find the test program in Apps\TEST\LCD16X2
+(GitHub: https://github.com/Panda381/PiLibSDK/tree/main/Apps/TEST/LCD16X2 ).
 
 
 LCD160x80
@@ -740,19 +858,32 @@ LCD160x80
 The "LCD160x80" module is a 0.96" graphic color display with SPI interface,
 160x80 resolution and ST7735S controller. The module optionally contains a
 CH32V002J4M6 processor, but it is not necessary to use it, it is only used to
-identify the module's connection to the bus. For easier identification of the
-display connection, an optional resistor R1, connected between the LCD_RE and
-LCD_CS signals, is also used. Using solder jumpers, you can choose whether to
-use the display backlight signal from the bus or whether it will be generated
-by the processor in the module. It may happen that some processor module will
-not be able to generate adjustable backlight brightness, in which case it may
-be more appropriate to generate the backlight in the display module.
+identify the module's connection to the bus. The processor is connected to the
+I2C bus at address 0x30. Although the module has two solder jumpers for
+selecting the I2C address, the firmware does not use these jumpers. For easier
+identification of the display connection, an optional resistor R1, connected
+between the LCD_RES and LCD_CS signals, is also used. Using solder jumpers, you
+can choose whether to use the display backlight signal from the bus or whether
+it will be generated by the processor in the module. It may happen that some
+processor module will not be able to generate adjustable backlight brightness,
+in which case it may be more appropriate to generate the backlight in the
+display module.
 
 The PiLibSDK library contains driver for controlling SPI LCD displays in the
 drv_lcd.* files located in the _drv folder. The driver allows detection of the
-LCD160x80 module connection. It uses a 10K resistor connected between the RES
+LCD160x80 module connection. It uses a 15K resistor connected between the RES
 and CS pins for detection, so it is recommended that the module be equipped
 with this detection resistor.
+
+The processor firmware can be found in the CH32LibSDK library in the
+ch32\BAREPI\LCD160x80\ folder (GitHub:
+https://github.com/Panda381/CH32LibSDK/tree/main/ch32/BAREPI/LCD160x80 ).
+
+In the PiLibSDK library, you’ll find the device driver in drv_lcd.* (GitHub:
+https://github.com/Panda381/PiLibSDK/tree/main/_drv ).
+
+In the PiLibSDK library, you’ll find the test program in Apps\TEST\LCD (GitHub:
+https://github.com/Panda381/PiLibSDK/tree/main/Apps/TEST/LCD ).
 
 
 LCD320x240
@@ -760,18 +891,20 @@ LCD320x240
 The "LCD320x240" module is a 2.0" graphic color display with SPI interface,
 320x240 resolution and ST7789 controller. The module optionally contains a
 CH32V002J4M6 processor, but it is not necessary to use it, it is only used to
-identify the module's connection to the bus. For easier identification of the
-display connection, an optional resistor R1, connected between the LCD_DC and
-LCD_CS signals, is also used. Using solder jumpers, you can choose whether to
-use the signal for the display backlight from the bus or whether it will be
-generated by the processor in the module. It may happen that some processor
-module will not be able to generate adjustable backlight brightness, in which
-case it may be more appropriate to generate the backlight in the display
-module.
+identify the module's connection to the bus. The processor is connected to the
+I2C bus at address 0x30. Although the module has two solder jumpers for
+selecting the I2C address, the firmware does not use these jumpers. For easier
+identification of the display connection, an optional resistor R1, connected
+between the LCD_DC and LCD_CS signals, is also used. Using solder jumpers, you
+can choose whether to use the signal for the display backlight from the bus or
+whether it will be generated by the processor in the module. It may happen that
+some processor module will not be able to generate adjustable backlight
+brightness, in which case it may be more appropriate to generate the backlight
+in the display module.
 
 The PiLibSDK library contains drivers for SPI LCD displays in the drv_lcd.*
 files located in the _drv folder. The driver enables detection of the
-"LCD320x240" module when it is connected. It uses a 10K resistor connected
+"LCD320x240" module when it is connected. It uses a 15K resistor connected
 between the DC and CS pins for detection, so it is recommended that the module
 be equipped with this detection resistor. Devices with a Raspberry Zero 1 or 2
 module can be used with a 320x240 LCD SPI display, with an ST7789 controller,
@@ -779,20 +912,43 @@ wired according to the "LCD320x240" module. If a program using the PiLibSDK
 library detects that a display is connected (via the detection resistor), it
 will automatically send the image to that display. If you want to be able to
 disable the LCD output on the end device, you can do so using a switch that
-connects the 10K detection resistor. Detection occurs when the application or
+connects the 15K detection resistor. Detection occurs when the application or
 loader starts - so after changing the switch, you must terminate or start the
 program or loader. Disabling the output to the LCD display ensures faster
 program execution, as sending data to the LCD display places a significant load
 on the program.
+
+The processor firmware can be found in the CH32LibSDK library in the
+ch32\BAREPI\LCD320x240\ folder (GitHub:
+https://github.com/Panda381/CH32LibSDK/tree/main/ch32/BAREPI/LCD320x240 ).
+
+In the PiLibSDK library, you’ll find the device driver in drv_lcd.* (GitHub:
+https://github.com/Panda381/PiLibSDK/tree/main/_drv ).
+
+In the PiLibSDK library, you’ll find the test program in Apps\TEST\LCD (GitHub:
+https://github.com/Panda381/PiLibSDK/tree/main/Apps/TEST/LCD ).
 
 
 LED12
 -----
 The "LED12" module contains a 12-digit display of 7-segment LED digits. It is
 controlled by a CH32V006E8R6 processor, which communicates with the main
-processor via the I2C bus. When constructing, I recommend placing red
-plexiglass over the display, which will ensure good contrast of the displayed
-data even in daylight.
+processor via the I2C bus at address 0x32. When building the module, I
+recommend placing a red plexiglass sheet over the display to increase the
+contrast of the displayed data. The current to the segments must be limited due
+to the current limitations of the processor’s pins, so the display’s brightness
+is low, especially in daylight. It would be better to add drivers to the
+display’s anodes or to use a circuit with serial-to-parallel converters.
+
+The processor firmware can be found in the CH32LibSDK library in the
+ch32\BAREPI\LED12\ folder (GitHub:
+https://github.com/Panda381/CH32LibSDK/tree/main/ch32/BAREPI/LED12 ).
+
+In the PiLibSDK library, you’ll find the device driver in drv_led12.* (GitHub:
+https://github.com/Panda381/PiLibSDK/tree/main/_drv ).
+
+In the PiLibSDK library, you’ll find the test program in Apps\TEST\LED12
+(GitHub: https://github.com/Panda381/PiLibSDK/tree/main/Apps/TEST/LED12 ).
 
 
 OLED128x64
@@ -807,7 +963,7 @@ one panel, printed on both sides, with the back side printed "upside down". You
 will then use the side of the panel that matches the position of the display
 used. The PiLibSDK library contains driver for I2C displays with SSD1305
 through SSD1309 controllers in the drv_ssd1306.* files located in the _drv
-folder.
+folder (GitHub: https://github.com/Panda381/PiLibSDK/tree/main/_drv ).
 
 
 Keyboard
@@ -821,7 +977,20 @@ the TI-58 calculator. If you use a different calculator, you may need different
 key labels. You can make a mask with different labels, for example, by printing
 it on hard paper, covering the surface with insulating tape (for better
 abrasion resistance) and punching the holes for the buttons with a punch on the
-leather.
+leather. The keyboard is controlled by the CH32V002F4P6 processor, which
+communicates with the main processor via the I2C bus at address 0x35. Although
+the module includes a solder jumper for selecting the I2C address, the firmware
+does not use this jumper.
+
+The processor firmware can be found in the CH32LibSDK library in the
+ch32\BAREPI\CALCKEY\ folder (GitHub:
+https://github.com/Panda381/CH32LibSDK/tree/main/ch32/BAREPI/CALCKEY ).
+
+In the PiLibSDK library, you’ll find the device driver in drv_calckey.*
+(GitHub: https://github.com/Panda381/PiLibSDK/tree/main/_drv ).
+
+In the PiLibSDK library, you’ll find the test program in Apps\TEST\CALCKEY
+(GitHub: https://github.com/Panda381/PiLibSDK/tree/main/Apps/TEST/CALCKEY ).
 
 
 KeyPad
@@ -832,7 +1001,9 @@ secondary action button "B", auxiliary button "X", end button "Y" and
 alternative key meaning button "ALT". The buttons are used for direct reading
 of the state using pull-up resistors, when pressed they connect to the ground
 GND. The signal for the "ALT" button can also serve as a clock signal source,
-therefore the button is connected via a 1K0 protective resistor.
+therefore the button is connected via a 1K0 protective resistor. The Alt+[A]
+key combination (= "Zoom") switches the display mode of the built-in LCD screen
+when the video mode resolution is higher than the LCD screen's resolution.
 
 
 MiniKey
@@ -840,4 +1011,20 @@ MiniKey
 The "MiniKey" module is a minimalistic alphanumeric keyboard. It contains a
 total of 48 buttons, of which 9 buttons correspond to the "KeyPad" keyboard
 buttons with direct access to the buttons, the remaining 39 buttons are
-multiplexed by the CH32V002F4P6 processor, in a 6x7 button matrix.
+multiplexed by the CH32V002F4P6 processor, in a 6x7 button matrix. You can make
+a mask with labels, for example, by printing it on cardstock, covering the
+surface with adhesive tape (for better abrasion resistance), and punching the
+holes for the buttons with a leather punch. The processor communicates with the
+main processor via the I2C bus at address 0x34. Although the module has two
+solder jumpers for selecting the I2C address, the firmware does not use these
+jumpers.
+
+The processor’s firmware can be found in the CH32LibSDK library in the
+ch32\BAREPI\MINIKEY\ folder (GitHub: 
+https://github.com/Panda381/CH32LibSDK/tree/main/ch32/BAREPI/MINIKEY ).
+
+In the PiLibSDK library, you’ll find the device driver in drv_minikey.*
+(GitHub: https://github.com/Panda381/PiLibSDK/tree/main/_drv ).
+
+In the PiLibSDK library, you’ll find the test program in Apps\TEST\MINIKEY
+(GitHub: https://github.com/Panda381/PiLibSDK/tree/main/Apps/TEST/MINIKEY ).
